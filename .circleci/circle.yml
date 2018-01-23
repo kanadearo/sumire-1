@@ -7,7 +7,9 @@ machine:
     TEST_ENV: test
 
 test:
-  override:
+  pre:
     - bundle exec rspec
+  override:
     - bundle exec rubocop
+  post:
     - reek
