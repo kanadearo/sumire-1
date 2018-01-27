@@ -66,6 +66,7 @@ group :test do
   gem 'selenium-webdriver', '~>2.45.0'
 end
 
+gem 'kaminari'
 gem 'rake'
-gem 'rubocop'
 gem 'reek'
+gem 'rubocop'
