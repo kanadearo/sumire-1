@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20180127145238) do
     t.string   "uid"
     t.string   "provider"
     t.string   "name",                   default: "anonymous"
+    t.string   "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
