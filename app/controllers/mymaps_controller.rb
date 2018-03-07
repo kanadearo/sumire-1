@@ -1,11 +1,8 @@
-class PlacesController < ApplicationController
-  def index
-  end
-
+class MymapsController < ApplicationController
   def show
   end
 
-  def list
+  def search
   end
 
   def new

@@ -5,4 +5,14 @@ Rails.application.routes.draw do
   controllers: { :omniauth_callbacks => "omniauth_callbacks" }
   root to: 'homes#index'
   resources :users
+  resources :places do
+    collection do
+      get :list
+    end
+  end
+  resources :mymaps, except: [:index] do
+    collection do
+      get :search
+    end
+  end
 end
