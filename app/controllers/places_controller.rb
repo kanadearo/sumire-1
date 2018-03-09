@@ -11,7 +11,10 @@ class PlacesController < ApplicationController
   def list
     keyword = params[:search]
     @client = GooglePlaces::Client.new(ENV['GOOGLE_API_KEY'])
-    @places = @client.spots_by_query( keyword )
+    places = @client.spots_by_query( keyword )
+    @places = places.map do |place|
+      @client.spot(place.place_id)
+    end
   end
 
   def new

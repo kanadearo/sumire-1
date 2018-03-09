@@ -1,2 +1,14 @@
-<h1>Places#list</h1>
-<p>Find me in app/views/places/list.html.erb</p>
+<h1>気になるスポットは見つかったかな？</h1>
+
+
+<% @places.each do |place| %>
+  <p><%= place.name%></p>
+  <p><%= place.vicinity %></p>
+  <p><%= place.place_id %></p>
+  <p><%= place.types %></p>
+  <p><%= place.rating %></p>
+  <p><%= place.formatted_phone_number %></p>
+  <p><%= place.url %></p>
+  <p><%= place.opening_hours %></p>
+<% end %>
+
