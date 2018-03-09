@@ -1,4 +1,4 @@
-class FrendsController < ApplicationController
+class FriendsController < ApplicationController
   def index
   end
 
