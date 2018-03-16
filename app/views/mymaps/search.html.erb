@@ -1,2 +1,34 @@
-<h1>Mymaps#search</h1>
-<p>Find me in app/views/mymaps/search.html.erb</p>
+<h1>登録したスポットの検索</h1>
+
+<div class="col-md-6">
+  <%= form_tag({ action: 'result' }, :method => :get, remote: true) do %>
+    <div class="form-group">
+      <label><%= check_box_tag 'types_number[]', 0 %>食べる</label>
+      <label><%= check_box_tag 'types_number[]', 1 %>見る・遊ぶ</label>
+      <label><%= check_box_tag 'types_number[]', 2 %>買う</label>
+      <label><%= check_box_tag 'types_number[]', 3 %>泊まる</label>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :mymap, "登録するマイマップ" %>
+      <%= collection_select :mymap_id, :id, @mymaps, :id, :name, :prompt => "すべてのマイマップ" %>
+    </div>
+
+    <div class="form-group">
+      <p>この時間に営業中のスポットのみ</p>
+      <label class="switch_label">
+        <%= check_box :place, :open_timing, {}, "true", "false" %>
+        <span class="switch__content"></span>
+        <span class="switch__circle"></span>
+      </label>
+    </div>
+
+    <div class="form-group">
+      <%= button_tag( {:type => "submit", :name => nil, :class => "btn btn-default" } ) do %>
+        <span class="glyphicon glyphicon-search">検索</span>
+      <% end %>
+    </div>
+  <% end %>
+
+  <ul id="result"></ul>
+</div>

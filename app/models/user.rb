@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :places, dependent: :destroy
+  has_many :mymaps, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

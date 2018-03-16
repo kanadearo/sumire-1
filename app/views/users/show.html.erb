@@ -1,2 +1,24 @@
 <h1>こんにちは、<%= current_user.name %>さん</h1>
 <p>マイマップ一覧</p>
+
+<%= link_to "マイマップから検索する", search_mymaps_path %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Comment</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mymaps.each do |mymap| %>
+      <tr>
+        <td><%= mymap.name %></td>
+        <td><%= mymap.comment %></td>
+        <td><%= link_to "詳細", mymap %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :mymaps, except: [:index] do
     collection do
       get :search
+      get :result
     end
   end
   resources :friends, only: [:index, :create, :destroy]

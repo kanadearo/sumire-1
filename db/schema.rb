@@ -12,6 +12,15 @@
 
 ActiveRecord::Schema.define(version: 20180308160611) do
 
+  create_table "mymaps", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.text     "comment"
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_mymaps_on_user_id"
+  end
+
   create_table "place_pictures", force: :cascade do |t|
     t.integer  "place_id",   null: false
     t.text     "picture",    null: false
@@ -21,11 +30,11 @@ ActiveRecord::Schema.define(version: 20180308160611) do
   end
 
   create_table "places", force: :cascade do |t|
-    t.integer  "user_id",      null: false
-    t.integer  "mymap_id"
+    t.integer  "mymap_id",     null: false
     t.string   "name",         null: false
-    t.string   "type",         null: false
-    t.text     "adress",       null: false
+    t.integer  "types_number", null: false
+    t.string   "types_name",   null: false
+    t.text     "address",      null: false
     t.string   "phone_number"
     t.text     "google_url"
     t.string   "open_timing"
@@ -34,7 +43,6 @@ ActiveRecord::Schema.define(version: 20180308160611) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["mymap_id"], name: "index_places_on_mymap_id"
-    t.index ["user_id"], name: "index_places_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

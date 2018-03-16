@@ -1,14 +1,44 @@
 <h1>気になるスポットは見つかったかな？</h1>
 
+<div class="col-md-12">
+<%= form_for @place do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
 
-<% @places.each do |place| %>
-  <p><%= place.name%></p>
-  <p><%= place.vicinity %></p>
-  <p><%= place.place_id %></p>
-  <p><%= place.types %></p>
-  <p><%= place.rating %></p>
-  <p><%= place.formatted_phone_number %></p>
-  <p><%= place.url %></p>
-  <p><%= place.opening_hours %></p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @places.each do |place| %>
+        <tr>
+          <td><%= place.name %></td>
+          <td><%= place.formatted_address %></td>
+          <td><label><%= f.radio_button :placeId, place.place_id %></label></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="form-group">
+    <%= f.label :memo, "メモ" %>
+    <%= f.text_area :memo %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :mymap_id, "登録するマイマップ" %>
+    <%= f.collection_select :mymap_id, current_user.mymaps.all, :id, :name, :prompt => true %>
+  </div>
+
+  <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
 <% end %>
+
+  <button type="button" class="btn pull-right btn-lg btn-default">
+    <%= link_to 'Back', places_path %>
+  </button>
+</div>
 
