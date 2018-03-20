@@ -4,7 +4,15 @@ Rails.application.routes.draw do
   path_names: {sign_in: 'login', sign_out: 'logout', edit: 'profile'},
   controllers: { :omniauth_callbacks => "omniauth_callbacks" }
   root to: 'homes#index'
-  resources :users
+  resources :users do
+    member do
+      get :friends
+      get :friends_result
+      get :followings
+      get :followers
+      get :profile
+    end
+  end
   resources :places do
     collection do
       get :list
@@ -16,5 +24,6 @@ Rails.application.routes.draw do
       get :result
     end
   end
-  resources :friends, only: [:index, :create, :destroy]
+  resources :relationships, only: [:create, :destroy]
+  resources :user_mymaps, only: [:create, :destroy]
 end

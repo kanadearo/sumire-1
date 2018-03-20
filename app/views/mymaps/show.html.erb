@@ -1,3 +1,4 @@
 <h1><%= @mymap.name %></h1>
+<%= render 'user_mymaps/favorite_button', mymap: @mymap %>
 
 <%= link_to( "削除", @mymap, method: :delete, data: { confirm: "#{@mymap.name} の位置情報を削除します" }, :title => "delete" ) %>

@@ -5,6 +5,16 @@ class ApplicationController < ActionController::Base
     user_path(id: current_user.id)
   end
 
+  def counts(user)
+    @count_mymaps = user.mymaps.count
+    @count_followings = user.followings.count
+    @count_followers = user.followers.count
+  end
+
+  def mymap_counts(mymap)
+    @count_favoriters = mymap.favoriters.count
+  end
+
   private
 
   def sign_in_required

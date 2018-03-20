@@ -1,13 +1,14 @@
-<h1>こんにちは、<%= current_user.name %>さん</h1>
+<h1><%= link_to @user.name, profile_user_path(@user) %></h1>
+<%= render 'relationships/follow_button', user: @user %>
 <p>マイマップ一覧</p>
-
-<%= link_to "マイマップから検索する", search_mymaps_path %>
+<%= link_to "マイマップから検索する", controller: "mymaps", action: "search", user_id: @user.id %>
 
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
       <th>Comment</th>
+      <th></th>
       <th></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= mymap.name %></td>
         <td><%= mymap.comment %></td>
         <td><%= link_to "詳細", mymap %></td>
+        <td><%= render 'user_mymaps/favorite_button', mymap: mymap %></td>
       </tr>
     <% end %>
   </tbody>

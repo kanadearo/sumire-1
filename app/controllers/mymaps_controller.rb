@@ -5,7 +5,8 @@ class MymapsController < ApplicationController
   end
 
   def search
-    @mymaps = current_user.mymaps.all
+    @user = User.find(params[:user_id])
+    @mymaps = @user.feed_mymaps
   end
 
   def result
@@ -19,7 +20,8 @@ class MymapsController < ApplicationController
       place_sets.each{|f| places.push f}
       @places = places
     else
-      mymaps = current_user.mymaps.all
+      user = User.find(params[:user_id].to_i)
+      mymaps = user.feed_mymaps
       mymaps.each do |mymap|
         place_sets = place_data_set(mymap, types_number, open_timing)
         place_sets.each{|f| places.push f}

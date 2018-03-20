@@ -24,6 +24,7 @@
     </div>
 
     <div class="form-group">
+      <%= hidden_field_tag :user_id, @user.id %>
       <%= button_tag( {:type => "submit", :name => nil, :class => "btn btn-default" } ) do %>
         <span class="glyphicon glyphicon-search">検索</span>
       <% end %>

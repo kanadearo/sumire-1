@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308160611) do
+ActiveRecord::Schema.define(version: 20180319051509) do
 
   create_table "mymaps", force: :cascade do |t|
     t.string   "name",       null: false
@@ -43,6 +43,26 @@ ActiveRecord::Schema.define(version: 20180308160611) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["mymap_id"], name: "index_places_on_mymap_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "follow_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follow_id"], name: "index_relationships_on_follow_id"
+    t.index ["user_id", "follow_id"], name: "index_relationships_on_user_id_and_follow_id", unique: true
+    t.index ["user_id"], name: "index_relationships_on_user_id"
+  end
+
+  create_table "user_mymaps", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "mymap_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mymap_id"], name: "index_user_mymaps_on_mymap_id"
+    t.index ["user_id", "mymap_id"], name: "index_user_mymaps_on_user_id_and_mymap_id", unique: true
+    t.index ["user_id"], name: "index_user_mymaps_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
