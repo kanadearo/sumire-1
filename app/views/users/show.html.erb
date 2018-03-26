@@ -1,4 +1,6 @@
 <h1><%= link_to @user.name, profile_user_path(@user) %></h1>
+<%= image_tag @user.picture.url %>
+<%= image_tag @user.picture.thumb.url %>
 <%= render 'relationships/follow_button', user: @user %>
 <p>マイマップ一覧</p>
 <%= link_to "マイマップから検索する", controller: "mymaps", action: "search", user_id: @user.id %>

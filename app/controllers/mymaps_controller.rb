@@ -1,5 +1,6 @@
 class MymapsController < ApplicationController
   before_action :set_mymap, only: [:show, :destroy, :edit, :update]
+  before_action :sign_in_required
 
   def show
   end
@@ -87,6 +88,6 @@ class MymapsController < ApplicationController
   end
 
   def mymap_params
-    params.require(:mymap).permit(:name, :comment)
+    params.require(:mymap).permit(:name, :comment, :status)
   end
 end

@@ -14,6 +14,12 @@
       <%= f.text_area :comment %>
     </div>
 
+    <div class="form-group">
+      <label><%= f.radio_button :status, 0 %>全員に公開</label>
+      <label><%= f.radio_button :status, 1 %>フォロワーに公開</label>
+      <label><%= f.radio_button :status, 2 %>非公開</label>
+    </div>
+
     <%= f.submit "登録", class: 'btn btn-primary btn-block' %>
   <% end %>
 </div>

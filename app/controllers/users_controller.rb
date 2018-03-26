@@ -9,8 +9,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @mymaps = @user.feed_mymaps
-    @favorites = @user.favoritings(params[:page])
+    @mymaps = mymap_type_sets(@user)
+    @favorite_mymaps = favorite_mymap_type_sets(@user)
   end
 
   def edit; end
@@ -28,6 +28,39 @@ class UsersController < ApplicationController
   def followers
     @user = User.find(params[:id])
     @followers = @user.followers.page(params[:page])
+  end
+
+  private
+
+  def mymap_type_sets(user)
+    if user == current_user
+      return user.mymaps.all
+    elsif user != current_user
+      if current_user.following?(user)
+        return user.mymaps.where(status: [0,1])
+      else
+        return user.mymaps.where(status: 0)
+      end
+    end
+  end
+
+  def favorite_mymap_type_sets(user)
+    favorites = user.favoritings.all
+    favorite_mymaps = []
+    if favorites
+      favorites.each do |favorite|
+        if favorite.status == 1
+          mymap_user = User.find(favorite.user_id)
+          if current_user.following?(mymap_user)
+            favorite_mymaps.push favorite
+          end
+        elsif favorite.status == 0
+          favorite_mymaps.push favorite
+        end
+      end
+    end
+
+    return favorite_mymaps
   end
 
 end

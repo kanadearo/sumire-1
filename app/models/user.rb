@@ -4,18 +4,28 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
+  mount_uploader :picture, PictureUploader
+
   def self.from_omniauth(auth)
     user = User.where(email: auth.info.email).first
     if user
       return user
     else
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-        user.email = auth.info.email
-        user.password = Devise.friendly_token[0,20]
-        user.name = auth.info.name
-        user.image = auth.info.image
-        user.uid = auth.uid
-        user.provider = auth.provider
+      registered_user = User.where(provider: auth.provider, uid: auth.uid).first
+      if registered_user
+        return registered_user
+      else
+        user = User.new(
+                         email: auth.info.email,
+                         password: Devise.friendly_token[0,20],
+                         name: auth.info.name,
+                         image: auth.info.image + "?type=large",
+                         uid: auth.uid,
+                         provider: auth.provider,
+                       )
+        user.remote_picture_url = process_uri(auth.info.image + "?type=large")
+        user.save!
+        return user
       end
     end
   end
@@ -60,4 +70,11 @@ class User < ApplicationRecord
   def favoriting?(mymap)
     self.favoritings.include?(mymap)
   end
+
+  def self.process_uri(uri)
+    avatar_url = URI.parse(uri)
+    avatar_url.scheme = 'https'
+    avatar_url.to_s
+  end
+
 end

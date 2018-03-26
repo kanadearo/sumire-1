@@ -1,13 +1,12 @@
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :destroy, :edit, :update]
+  before_action :sign_in_required
 
   def index
-    if current_user.mymaps.empty?
-      redirect_to new_mymap_path
-    end
   end
 
   def show
+    @place_picture = @place.place_pictures.first
   end
 
   def list
@@ -26,7 +25,9 @@ class PlacesController < ApplicationController
     respond_to do |format|
       if @place.save
         if place_photo
-          @place.place_pictures.create(picture: place_photo)
+          place_picture = @place.place_pictures.new
+          place_picture.remote_picture_url = place_photo.gsub('http://','https://')
+          place_picture.save!
         end
         format.html { redirect_to @place, notice: "#{@place.name}の位置情報を保存しました"}
       else
@@ -87,7 +88,7 @@ class PlacesController < ApplicationController
 
     place_photo = place.photos[0]
     if place_photo
-      return place_param, place_photo.fetch_url(400)
+      return place_param, place_photo.fetch_url(600)
     else
       return place_param
     end
