@@ -24,5 +24,13 @@
         <td><%= render 'user_mymaps/favorite_button', mymap: mymap %></td>
       </tr>
     <% end %>
+    <% @favorite_mymaps.each do |mymap| %>
+      <tr>
+        <td><%= mymap.name %></td>
+        <td><%= mymap.comment %></td>
+        <td><%= link_to "詳細", mymap %></td>
+        <td><%= render 'user_mymaps/favorite_button', mymap: mymap %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>

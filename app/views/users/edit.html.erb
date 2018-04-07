@@ -1,0 +1,29 @@
+<h1>プロフィールを編集</h1>
+
+<div class="col-md-12">
+  <%= form_for @user do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+
+    <div class="form-group">
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="form-group">
+      <%= f.text_field :facebook_url %>
+    </div>
+
+    <div class="form-group">
+      <%= f.text_field :twitter_url %>
+    </div>
+
+    <div class="form-group">
+      <%= f.text_field :own_url %>
+    </div>
+
+    <div class="form-group">
+      <%= f.file_field :picture %>
+    </div>
+
+    <%= f.submit "更新", class: 'btn btn-primary btn-block' %>
+  <% end %>
+</div>

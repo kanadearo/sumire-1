@@ -1,4 +1,30 @@
 <h1><%= @mymap.name %></h1>
+<% if @mymap.picture.url %>
+  <%= image_tag @mymap.picture.url %>
+<% elsif  @place_picture %>
+  <%= image_tag @place_picture.picture.url %>
+<% end %>
 <%= render 'user_mymaps/favorite_button', mymap: @mymap %>
 
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Memo</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @places.each do |place| %>
+      <tr>
+        <td><%= place.name %></td>
+        <td><%= place.memo %></td>
+        <td><%= link_to "詳細", place %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "編集", edit_mymap_path(@mymap) %>
 <%= link_to( "削除", @mymap, method: :delete, data: { confirm: "#{@mymap.name} の位置情報を削除します" }, :title => "delete" ) %>

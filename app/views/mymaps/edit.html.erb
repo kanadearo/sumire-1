@@ -1,2 +1,30 @@
-<h1>Mymaps#edit</h1>
-<p>Find me in app/views/mymaps/edit.html.erb</p>
+<h1>マイマップを編集</h1>
+
+<div class="col-md-12">
+  <%= form_for @mymap do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+
+    <div class="form-group">
+      <%= f.label :name, "マイマップ名" %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :comment, "説明" %>
+      <%= f.text_area :comment %>
+    </div>
+
+    <div class="form-group">
+      <label><%= f.radio_button :status, 0 %>全員に公開</label>
+      <label><%= f.radio_button :status, 1 %>フォロワーに公開</label>
+      <label><%= f.radio_button :status, 2 %>非公開</label>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :picture, "写真を編集" %>
+      <%= f.file_field :picture %>
+    </div>
+
+    <%= f.submit "更新", class: 'btn btn-primary btn-block' %>
+  <% end %>
+</div>

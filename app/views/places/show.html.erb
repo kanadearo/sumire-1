@@ -4,4 +4,12 @@
 <p><%= @place.google_url %></p>
 <p><%= @place.types_name %></p>
 <p><%= @place.types_number %></p>
-<%= image_tag @place_picture.picture.thumb.url %>
+<% if @place_pictures %>
+  <% @place_pictures.each do |place_picture| %>
+    <%= image_tag place_picture.picture.thumb.url %>
+  <% end %>
+<% end %>
+
+<%= link_to "編集", edit_place_path(@place) %>
+
+<%= link_to "このスポットをGoogleMapで見る", @place.google_url %>

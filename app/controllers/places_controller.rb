@@ -6,7 +6,7 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @place_picture = @place.place_pictures.first
+    @place_pictures = @place.place_pictures.all
   end
 
   def list
@@ -19,7 +19,7 @@ class PlacesController < ApplicationController
   end
 
   def create
-    place_param, place_photo = place_params
+    place_param, place_photo = create_place_params
     @place = Place.new(place_param)
 
     respond_to do |format|
@@ -37,9 +37,29 @@ class PlacesController < ApplicationController
   end
 
   def edit
+    @place.place_pictures.new
   end
 
   def update
+    begin
+      ActiveRecord::Base.transaction do
+        place_params = update_place_params
+        @place.name = place_params['name'] if place_params['name']
+        @place.mymap_id = place_params['mymap_id'] if place_params['mymap_id']
+        @place.memo = place_params['memo'] if place_params['memo']
+        @place.save!
+        if place_params['place_picture']
+          place_picture = @place.place_pictures.new
+          place_picture.picture = place_params['place_pictures'][:picture]
+          place_picture.save!
+        end
+      end
+      flash[:notice] = "#{@place.name}の位置情報を更新しました"
+      redirect_to @place
+    rescue
+      flash[:notice] = "#{@place.name}の位置情報を更新できませんでした"
+      redirect_to edit_place_path
+    end
   end
 
   def destroy
@@ -56,7 +76,7 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
   end
 
-  def place_params
+  def create_place_params
     place_param = params.require(:place).permit(:mymap_id, :placeId, :memo, :types_name, :types_number)
 
     place = client.spot(place_param[:placeId])
@@ -92,6 +112,10 @@ class PlacesController < ApplicationController
     else
       return place_param
     end
+  end
+
+  def update_place_params
+    params.require(:place).permit(:name, :mymap_id, :memo, place_pictures: %i[picture])
   end
 
   def client

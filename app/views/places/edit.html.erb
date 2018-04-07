@@ -1,0 +1,29 @@
+<h1>スポット情報編集</h1>
+
+<%= form_for @place do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+
+  <div class="form-group">
+    <%= f.label :name, "スポット名" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :mymap_id, "登録するマイマップ" %>
+    <%= f.collection_select :mymap_id, current_user.mymaps.all, :id, :name, :prompt => true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :memo, "メモ" %>
+    <%= f.text_area :memo %>
+  </div>
+
+  <div class="form-group">
+  <%= f.fields_for :place_pictures, @place.place_pictures do |m| %>
+      <%= m.label :picture, "写真を編集" %>
+      <%= m.file_field :picture %>
+  <% end %>
+  </div>
+
+  <%= f.submit '更新', class: 'btn btn-primary btn-block' %>
+<% end %>

@@ -10,19 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180325165939) do
-
-  create_table "mymap_pictures", force: :cascade do |t|
-    t.integer  "mymap_id",   null: false
-    t.string   "picture",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["mymap_id"], name: "index_mymap_pictures_on_mymap_id"
-  end
+ActiveRecord::Schema.define(version: 20180319051509) do
 
   create_table "mymaps", force: :cascade do |t|
     t.string   "name",                   null: false
     t.text     "comment"
+    t.string   "picture"
     t.integer  "status",     default: 0
     t.integer  "user_id",                null: false
     t.datetime "created_at",             null: false
@@ -92,6 +85,10 @@ ActiveRecord::Schema.define(version: 20180325165939) do
     t.string   "name",                   default: "anonymous"
     t.string   "image"
     t.string   "picture"
+    t.text     "user_access_token"
+    t.string   "facebook_url"
+    t.string   "twitter_url"
+    t.string   "own_url"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

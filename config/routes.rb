@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :friends
-      get :friends_result
       get :followings
       get :followers
       get :profile

@@ -3,6 +3,11 @@ class MymapsController < ApplicationController
   before_action :sign_in_required
 
   def show
+    @places = @mymap.places.all
+    place = @mymap.places.first
+    if place
+      @place_picture = place.place_pictures.first
+    end
   end
 
   def search
@@ -36,7 +41,7 @@ class MymapsController < ApplicationController
   end
 
   def create
-    @mymap = current_user.mymaps.new(mymap_params)
+    @mymap = current_user.mymaps.new(create_mymap_params)
 
     respond_to do |format|
       if @mymap.save
@@ -51,6 +56,13 @@ class MymapsController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+      if @mymap.update(update_mymap_params)
+        format.html { redirect_to @mymap, notice: "#{@mymap.name}の情報を更新しました"}
+      else
+        format.html { redirect_to edit_mymap_path, notice: "#{@mymap.name}の情報を更新できませんでした"}
+      end
+    end
   end
 
   def destroy
@@ -87,7 +99,11 @@ class MymapsController < ApplicationController
     @mymap = Mymap.find(params[:id])
   end
 
-  def mymap_params
+  def create_mymap_params
     params.require(:mymap).permit(:name, :comment, :status)
+  end
+
+  def update_mymap_params
+    params.require(:mymap).permit(:name, :comment, :status, :picture)
   end
 end

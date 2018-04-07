@@ -7,12 +7,18 @@ class User < ApplicationRecord
   mount_uploader :picture, PictureUploader
 
   def self.from_omniauth(auth)
-    user = User.where(email: auth.info.email).first
+    user = User.where(provider: auth.provider, uid: auth.uid).first
+    p Time.now.ago(1.month)
+    p User.where("last_sign_in_at <= ?", Time.now.ago(1.month))
     if user
+      user.user_access_token = auth.credentials.token
+      user.save!
       return user
     else
-      registered_user = User.where(provider: auth.provider, uid: auth.uid).first
+      registered_user = User.where(email: auth.info.email).first
       if registered_user
+        registered_user.user_access_token = auth.credentials.token
+        registered_user.save!
         return registered_user
       else
         user = User.new(
@@ -22,6 +28,7 @@ class User < ApplicationRecord
                          image: auth.info.image + "?type=large",
                          uid: auth.uid,
                          provider: auth.provider,
+                         user_access_token: auth.credentials.token
                        )
         user.remote_picture_url = process_uri(auth.info.image + "?type=large")
         user.save!
@@ -38,6 +45,17 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :follow
   has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverses_of_relationship, source: :user
+
+  def facebook
+    @facebook ||= Koala::Facebook::API.new(self.user_access_token)
+    block_given? ? yield(@facebook) : @facebook
+  rescue Koala::Facebook::APIError => e
+    logger.info e.to_s
+    nil
+  end
+
+  def facebook_access_token!
+  end
 
   def follow(other_user)
     unless self == other_user
