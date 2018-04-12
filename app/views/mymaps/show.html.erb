@@ -26,5 +26,8 @@
   </tbody>
 </table>
 
-<%= link_to "編集", edit_mymap_path(@mymap) %>
-<%= link_to( "削除", @mymap, method: :delete, data: { confirm: "#{@mymap.name} の位置情報を削除します" }, :title => "delete" ) %>
+
+<% if @mymap.user == current_user %>
+  <%= link_to "編集", edit_mymap_path(@mymap) %>
+  <%= link_to( "削除", @mymap, method: :delete, data: { confirm: "#{@mymap.name} の位置情報を削除します" }, :title => "delete" ) %>
+<% end %>

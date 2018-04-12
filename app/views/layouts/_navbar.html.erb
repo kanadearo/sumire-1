@@ -20,6 +20,8 @@
             <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             <li><%= link_to '新しいマイマップを作成', new_mymap_path %><li>
             <li><%= link_to '新規スポット検索', places_path %></li>
+            <li><%= link_to 'マイマップを検索', mymap_searchs_path %></li>
+            <li><%= link_to 'ユーザを検索', user_searchs_path %></li>
           <% else %>
             <li><%= link_to "Facebookで新規登録/ログイン", user_facebook_omniauth_authorize_path %></li>
           <% end %>

@@ -8,7 +8,7 @@ class CreatePlaces < ActiveRecord::Migration[5.0]
       t.text :address, null: false
       t.string :phone_number
       t.text :google_url
-      t.string :open_timing
+      t.text :open_timing, array: true
       t.string :placeId, null: false
       t.text :memo
 

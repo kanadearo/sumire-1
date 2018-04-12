@@ -1,0 +1,17 @@
+<h1>マイマップを検索</h1>
+<%= form_tag mymap_searchs_path, :method => 'get' do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag 'Search', :name => nil %>
+<% end %>
+
+<ul>
+  <% if @mymaps %>
+    <% @mymaps.each do |mymap| %>
+    <li><%= mymap.name %></li>
+    <% end %>
+  <% else %>
+    <% @following_user_mymaps.each do |mymap| %>
+    <li><%= mymap.name %></li>
+    <% end %>
+  <% end %>
+</ul>

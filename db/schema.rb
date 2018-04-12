@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20180319051509) do
     t.text     "address",      null: false
     t.string   "phone_number"
     t.text     "google_url"
-    t.string   "open_timing"
+    t.text     "open_timing"
     t.string   "placeId",      null: false
     t.text     "memo"
     t.datetime "created_at",   null: false

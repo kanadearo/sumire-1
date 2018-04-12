@@ -2,11 +2,45 @@ class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :destroy, :edit, :update]
   before_action :sign_in_required
 
+  DAY_OF_THE_WEEK={
+    0 => "日曜日",
+    1 => "月曜日",
+    2 => "火曜日",
+    3 => "水曜日",
+    4 => "木曜日",
+    5 => "金曜日",
+    6 => "土曜日"
+  }
+
   def index
   end
 
   def show
     @place_pictures = @place.place_pictures.all
+    if @place.open_timing
+      openings = @place.open_timing
+      @open_timing = openings.map do |opening|
+        if opening['close']
+          open_day = DAY_OF_THE_WEEK[opening['open']['day']]
+          open_time = opening['open']['time']
+          close_day = DAY_OF_THE_WEEK[opening['close']['day']]
+          close_time = opening['close']['time']
+          {
+            :open_day => open_day,
+            :open_time => open_time,
+            :close_day => close_day,
+            :close_time => close_time
+          }
+        else
+          {
+            :open_forever => "24時間営業中!"
+          }
+        end
+      end
+      if openings[0]['close']
+        @today_open = open_judge(openings)
+      end
+    end
   end
 
   def list
@@ -82,21 +116,21 @@ class PlacesController < ApplicationController
     place = client.spot(place_param[:placeId])
     place_param[:name] = place.name
 
-    if place.vicinity
-      place_param[:address] = place.vicinity
+    vicinity = place.vicinity
+    if vicinity
+      place_param[:address] = vicinity
     else
       place_param[:address] = place.formatted_address
     end
 
-    place_param[:phone_number] = place.formatted_phone_number if place.formatted_phone_number
-    place_param[:google_url] = place.url if place.url
+    formatted_phone_number = place.formatted_phone_number
+    place_param[:phone_number] = formatted_phone_number if formatted_phone_number
+    url = place.url
+    place_param[:google_url] = url if url
 
-    if place.opening_hours
-      if place.opening_hours['open_now']
-        place_param[:open_timing] = "true"
-      else
-        place_param[:open_timing] = "false"
-      end
+    open_timing = place.opening_hours
+    if open_timing
+      place_param[:open_timing] = open_timing['periods']
     else
       place_param[:open_timing] = nil
     end
@@ -116,6 +150,52 @@ class PlacesController < ApplicationController
 
   def update_place_params
     params.require(:place).permit(:name, :mymap_id, :memo, place_pictures: %i[picture])
+  end
+
+  def open_judge(openings)
+    today_open = []
+    openings.each do |opening|
+      if opening['open']['day'] == Time.now.wday
+        today_open.push opening
+      end
+    end
+    if today_open.any?
+      open_params = []
+      today_open.each do |today|
+        time = Time.now
+        open = today["open"]["time"]
+        close = today["close"]["time"]
+        if open >= close
+          open = open.scan(/.{1,2}/)
+          open_time = Time.local(time.year, time.month, time.day,open[0].to_i,open[1].to_i)
+          close = close.scan(/.{1,2}/)
+          close_time = Time.local(time.year, time.month, time.day+1 ,close[0].to_i,close[1].to_i)
+          if open_time <= time && time <= close_time
+            open_params.push true
+          else
+            open_params.push false
+          end
+        else
+          open = open.scan(/.{1,2}/)
+          open_time = Time.local(time.year, time.month, time.day,open[0].to_i,open[1].to_i)
+          close = close.scan(/.{1,2}/)
+          close_time = Time.local(time.year, time.month, time.day,close[0].to_i,close[1].to_i)
+          if open_time <= time && time <= close_time
+            open_params.push true
+          else
+            open_params.push false
+          end
+        end
+      end
+
+      if open_params.include?(true)
+        return "只今営業中!"
+      else
+        return "営業時間外です..."
+      end
+    else
+      return "定休日です..."
+    end
   end
 
   def client

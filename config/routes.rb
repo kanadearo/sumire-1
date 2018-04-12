@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   root to: 'homes#index'
   resources :users do
     member do
-      get :friends
       get :followings
       get :followers
       get :profile
@@ -23,6 +22,8 @@ Rails.application.routes.draw do
       get :result
     end
   end
+  resources :mymap_searchs, only: [:index]
+  resources :user_searchs, only: [:index]
   resources :relationships, only: [:create, :destroy]
   resources :user_mymaps, only: [:create, :destroy]
 end

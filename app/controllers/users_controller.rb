@@ -2,10 +2,6 @@ class UsersController < ApplicationController
   before_action :sign_in_required
   before_action :set_user
 
-  def friends
-    @facebook_friends = @user.facebook.get_connection(@user.uid, "friends")
-  end
-
   def show
     @mymaps = mymap_type_sets(@user)
     @favorite_mymaps = favorite_mymap_type_sets(@user)
