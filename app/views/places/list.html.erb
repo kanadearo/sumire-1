@@ -1,44 +1,22 @@
-<h1>気になるスポットは見つかったかな？</h1>
-
-<div class="col-md-12">
+<%= stylesheet_link_tag "places/list", :media => "all" %>
+<%= stylesheet_link_tag "places/list-rspnsv", :media => "all" %>
+<content>
 <%= form_for @place do |f| %>
-  <%= render 'layouts/error_messages', model: f.object %>
+    <%= render 'layouts/error_messages', model: f.object %>
+            <h1 align="center" id="search-word"><%= "#{@keyword}" %> の検索結果</h1>
+            <% @places.each do |place| %>
+            <div class="line">
+                <%= f.radio_button :placeId, place.place_id, id: "line1"%><label for="line1"><%= place.name %></label>
+                <p class="adress"><%= place.formatted_address %></p>
+            </div>
+            <% end %>
+            <div class="view-map">
+                <%= image_tag "arrow2.png", id: "arrow" %>
+                <p id="map-text"><%= link_to "Google mapで表示", :action => "place_map",  :array_param => @hash %></p>
+            </div>
+            <%= f.collection_select :mymap_id, current_user.mymaps.all, :id, :name, {:prompt => true}, {:class => "mymap-select"} %>
+            <%= f.text_area :memo, id: "textarea-2", rows: "10", cols: "60", placeholder: "メモ" %>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Address</th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @places.each do |place| %>
-        <tr>
-          <td><%= place.name %></td>
-          <td><%= place.formatted_address %></td>
-          <td><label><%= f.radio_button :placeId, place.place_id %></label></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <div class="form-group">
-    <%= f.label :memo, "メモ" %>
-    <%= f.text_area :memo %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :mymap_id, "登録するマイマップ" %>
-    <%= f.collection_select :mymap_id, current_user.mymaps.all, :id, :name, :prompt => true %>
-  </div>
-
-  <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
+            <input type="submit" name="commit" value="このマイマップに登録" class="enter" data-disable-with="このマイマップに登録">
 <% end %>
-
-  <button type="button" class="btn pull-right btn-lg btn-default">
-    <%= link_to 'Back', places_path %>
-  </button>
-</div>
-
+</content>

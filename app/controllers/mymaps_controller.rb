@@ -3,10 +3,15 @@ class MymapsController < ApplicationController
   before_action :sign_in_required
 
   def show
-    @places = @mymap.places.all
-    place = @mymap.places.first
-    if place
-      @place_picture = place.place_pictures.first
+    if @mymap
+      @user = @mymap.user
+      @places = @mymap.places.all
+      place = @mymap.places.first
+      if place
+        @place_picture = place.place_pictures.first
+      end
+    else
+      redirect_to current_user
     end
   end
 
@@ -51,12 +56,11 @@ class MymapsController < ApplicationController
   def create
     @mymap = current_user.mymaps.new(create_mymap_params)
 
-    respond_to do |format|
-      if @mymap.save
-        format.html { redirect_to places_path, notice: "#{@mymap.name}を保存しました"}
-      else
-        format.html { render :new, notice: "マイマップを保存できませんでした"}
-      end
+    if @mymap.save
+      flash[:success] = "#{@mymap.name}を保存しました"
+      redirect_to places_path
+    else
+      render :new
     end
   end
 
@@ -64,21 +68,20 @@ class MymapsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
       if @mymap.update(update_mymap_params)
-        format.html { redirect_to @mymap, notice: "#{@mymap.name}の情報を更新しました"}
+        flash[:success] = "#{@mymap.name}の情報を更新しました"
+        redirect_to @mymap
       else
-        format.html { redirect_to edit_mymap_path, notice: "#{@mymap.name}の情報を更新できませんでした"}
+        flash[:warning] = "マイマップ名を入力してください。"
+        redirect_to edit_mymap_path
       end
-    end
   end
 
   def destroy
     @mymap.destroy
 
-    respond_to do |format|
-      format.html { redirect_to current_user, notice: "#{@mymap.name}を削除しました"}
-    end
+    flash[:success] = "#{@mymap.name}を削除しました"
+    redirect_to current_user
   end
 
   private
@@ -185,11 +188,11 @@ class MymapsController < ApplicationController
   end
 
   def set_mymap
-    @mymap = Mymap.find(params[:id])
+    @mymap = Mymap.find_by(id: params[:id])
   end
 
   def create_mymap_params
-    params.require(:mymap).permit(:name, :comment, :status)
+    params.require(:mymap).permit(:name, :comment, :tag_list, :status)
   end
 
   def update_mymap_params

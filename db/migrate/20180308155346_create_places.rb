@@ -11,6 +11,8 @@ class CreatePlaces < ActiveRecord::Migration[5.0]
       t.text :open_timing, array: true
       t.string :placeId, null: false
       t.text :memo
+      t.float :latitude
+      t.float :longitude
 
       t.timestamps
     end

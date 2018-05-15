@@ -5,7 +5,7 @@ class MymapSearchsController < ApplicationController
     following_user_mymaps = []
     if following_users.any?
       following_users.each do |u|
-        user_mymap = u.mymaps.all
+        user_mymap = u.mymaps.where("(status = ?) OR (status = ?)", 0, 1)
         user_mymap.each do |m|
           following_user_mymaps.push m
         end
@@ -18,7 +18,7 @@ class MymapSearchsController < ApplicationController
 
   def search(search)
     if search
-      search_result = Mymap.where("name LIKE :text OR comment LIKE :text", text: "%#{search}%")
+      search_result = Mymap.where("name LIKE :text OR comment LIKE :text", text: "%#{search}%").includes(:user)
       mymaps = []
       search_result.each do |mymap|
         unless mymap.user_id == current_user.id

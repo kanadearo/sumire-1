@@ -1,7 +1,6 @@
-<h1>スポット情報編集</h1>
-
 <%= form_for @place do |f| %>
   <%= render 'layouts/error_messages', model: f.object %>
+  <h1>スポット情報編集</h1>
 
   <div class="form-group">
     <%= f.label :name, "スポット名" %>

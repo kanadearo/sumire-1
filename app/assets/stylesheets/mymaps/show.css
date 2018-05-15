@@ -1,0 +1,263 @@
+.logo-set{
+    height: 30px;
+    width: 130px;
+    top: 0px;
+    left: 122px;
+    position: absolute;
+}
+
+.logo2{
+    display: inline;
+    float: left;
+    height: 30px;
+    width: 30px;
+}
+
+.text{
+    display: inline;
+    float: left;
+    height: 30px;
+    width: 100px;
+}
+
+.prof{
+    height: 50px;
+    margin: 20px auto;
+    margin-left: 70px;
+    width: 355px;
+}
+
+.prof-icon{
+    border-radius: 50px;
+    cursor: pointer;
+    cursor: hand;
+    float: left;
+    height: 50px;
+    width: 50px;
+}
+
+.prof-name{
+    color: #9B9B9B;
+    cursor: pointer;
+    cursor: hand;
+    font-size: 20px;
+    float: left;
+    line-height: 50px;
+    margin-left: 20px;
+    height: 50px;
+    width: 180px;
+}
+
+.detailBox{
+    background-color: #cccccc;
+    border-radius: 5px;
+    color: white;
+    display: block;
+    font-size: 12px;
+    height: 157px;
+    margin: 0px auto;
+    margin-top: 20px;
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 335px; 
+}
+
+.dotBoxInDetail{
+    height: 10px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.detailBox:hover{
+    background-color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    cursor: hand;
+    opacity: none;
+}
+
+.detailTitle{
+    color: white;
+    font-size: 22px;
+    height: 50px;
+    line-height: 25px;
+    margin: 0px auto;
+    position: absolute;
+    text-align: left;
+    top: 10px;
+    left: 10px;
+    width: 250px;    
+}
+
+.detailPic{
+    border-radius: 5px;
+    height: 157px;
+    object-fit: cover;
+    width: 335px;
+    opacity: 0.65;
+}
+
+.nameBox{
+    background-color: white;
+    border-radius: 5px;
+    bottom: 10px;
+    height: 20px;
+    left: 10px;
+    padding: 3px;
+    position: absolute;
+    width: 154px;
+}
+
+.userIcon{
+    border-radius: 18px;
+    float: left;
+    height: 20px;
+    width: 20px;
+}
+
+.userName{
+    color: #4C4C4C;
+    font-size: 12px;
+    float: left;
+    margin: 0px 4px;
+    text-align: center;
+}
+
+.hrtBox{
+    background-color: white;
+    border-radius: 5px;
+    bottom: 10px;
+    color: #4C4C4C;
+    height: 26px;
+    left: 180px;
+    position: absolute;
+    width: 44px;
+}
+
+.editBox{
+    background-color: #9B9B9B;
+    border-radius: 5px;
+    bottom: 10px;
+    color: white;
+    height: 20px;
+    padding: 3px;
+    position: absolute;
+    right: 10px;
+    width: 44px;
+}
+
+.fa-pencil-alt{
+    color: white;
+}
+
+.editName{
+    color: white;
+    font-size: 12px;
+    float: left;
+    margin: 0px 4px;
+    text-align: center;
+}
+
+.boxContainer{
+    display: block;
+    margin-left: 20px;
+    height: auto;
+    min-height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 355px;
+}
+
+.enter{
+    background-color: #70CADF;
+    border-radius: 40px;
+    color: white;
+    cursor: pointer;
+    cursor: hand;
+    height: 50px;
+    line-height: 50px;
+    margin: 0px auto;
+    margin-top: 30px;
+    text-align: center;
+    width: 375px;
+}
+
+.box{
+    background-color: #cccccc
+    border-radius: 5px;
+    color: white;
+    display: block;
+    font-size: 12px;
+    line-height: 163px;
+    float: left;
+    height: 157px;
+    text-align: center;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    width: 157px; 
+}
+
+.box:hover{
+    background-color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    cursor: hand;
+    opacity: none;
+}
+
+.box-pic{
+    border-radius: 5px;
+    height: 157px;
+    object-fit: cover;
+    width: 157px;
+    opacity: 0.65;
+}
+
+.title{
+    color: white;
+    font-size: 18px;
+    height: 50px;
+    line-height: 25px;
+    margin: 0px auto;
+    position: absolute;
+    text-align: center;
+    top: 36px;
+    left: 18px;
+    width: 120px;
+}
+
+.dot-box{
+    height: 10px;
+    left: 10px;
+    position: absolute;
+    top: 10px;
+}
+
+.dot{
+    background-color: #FAAC2A;
+    border-radius: 10px;
+    display: inline-block;
+    float: left;
+    height: 10px;
+    margin-right: 5px;
+    width: 10px;
+}
+
+#eat{
+    background-color: #FAAC2A;
+}
+
+#see{
+    background-color: #21BE3A;
+}
+
+#buy{
+    background-color: #F8537D;
+}
+
+#stay{
+    background-color: #2038B3;
+}

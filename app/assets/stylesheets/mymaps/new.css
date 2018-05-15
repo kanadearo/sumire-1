@@ -1,0 +1,50 @@
+.new_mymap{
+  width:375px;
+}
+
+#new_mymap{
+  width:375px;
+}
+
+.spot-name{
+    border: solid thin #9B9B9B;
+    border-radius: 8px;
+    border: solid thin #9B9B9B;
+    color: #4C4C4C;
+    height: 40px;
+    margin: 10px 20px;
+    padding: 0px 10px;
+    width: 335px;
+}
+
+.check{
+    color: #4C4C4C;
+    font-size: 12px;
+    height: 40px;
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 335px;
+}
+
+.textarea-1{
+    border-radius: 8px;
+    border: solid thin #9B9B9B;
+    color: #4C4C4C;
+    font-size: 12px;
+    height: 50px;
+    margin: 10px 20px;
+    padding: 10px 10px;
+    width: 335px;
+}
+
+.textarea-2{
+    border-radius: 8px;
+    border: solid thin #9B9B9B;
+    color: #4C4C4C;
+    font-size: 12px;
+    height: 120px;
+    margin: 10px 20px;
+    padding: 10px 10px;
+    width: 335px;
+}
+

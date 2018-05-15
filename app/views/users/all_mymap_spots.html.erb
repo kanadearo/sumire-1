@@ -1,0 +1,59 @@
+<%= stylesheet_link_tag "mymaps/show", :media => "all" %>
+<%= stylesheet_link_tag "mymaps/show-rspnsv", :media => "all" %>
+        <content>
+            <div class="detailBox">
+                <%= image_tag "logo2.png", class: "box-pic" %>
+                <p class="detailTitle">すべてのスポット</p>
+                <div class="dotBoxInDetail">
+                  <% @all_types.each do |type| %>
+                    <% if type == 0 %>
+                      <div class="dot" id="eat"></div>
+                    <% elsif type == 1 %>
+                      <div class="dot" id="see"></div>
+                    <% elsif type == 2 %>
+                      <div class="dot" id="buy"></div>
+                    <% elsif type == 3 %>
+                      <div class="dot" id="stay"></div>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="nameBox">
+                    <% if @user.picture.url %>
+                      <%= link_to profile_user_path(@user) do%>
+                        <%= image_tag @user.picture.url, class: "userIcon" %>
+                      <% end %>
+                    <% else %>
+                      <%= link_to profile_user_path(@user) do%>
+                        <%= image_tag "no-picture.png", class: "userIcon" %>
+                      <% end %>
+                    <% end %>
+                    <p class="userName"><%= link_to @user.name, profile_user_path(@user) %></p>
+                </div>
+            </div>
+
+            <div class="boxContainer">
+                <% @places.each do |place| %>
+                <% place_picture = place.place_pictures.first %>
+                <div class="box">
+                    <% if place_picture %>
+                      <%= image_tag place_picture.picture.url, class: "box-pic" %>
+                    <% else %>
+                      <%= image_tag "no-picture.png", class: "box-pic" %>
+                    <% end %>
+                    <p class="title"><%= link_to place.name, place, class: "place_title" %></p>
+                    <div class="dot-box">
+                       <% if place.types_number == 0 %>
+                        <div class="dot" id="eat"></div>
+                       <% elsif place.types_number == 1 %>
+                        <div class="dot" id="see"></div>
+                       <% elsif place.types_number == 2 %>
+                        <div class="dot" id="buy"></div>
+                       <% elsif place.types_number == 3 %>
+                        <div class="dot" id="stay"></div>
+                       <% end %>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </content>
+        <a href="/mymaps/search?user_id=<%= @user.id %>" id="hoge" class="enter">マイマップからスポットを検索</a>

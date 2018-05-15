@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_action :set_place, only: [:show, :destroy, :edit, :update]
+  before_action :set_place, only: [:show, :destroy, :edit, :update, :plus_place, :plus_place_create]
   before_action :sign_in_required
 
   DAY_OF_THE_WEEK={
@@ -16,37 +16,92 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @place_pictures = @place.place_pictures.all
-    if @place.open_timing
-      openings = @place.open_timing
-      @open_timing = openings.map do |opening|
-        if opening['close']
-          open_day = DAY_OF_THE_WEEK[opening['open']['day']]
-          open_time = opening['open']['time']
-          close_day = DAY_OF_THE_WEEK[opening['close']['day']]
-          close_time = opening['close']['time']
-          {
-            :open_day => open_day,
-            :open_time => open_time,
-            :close_day => close_day,
-            :close_time => close_time
-          }
-        else
-          {
-            :open_forever => "24時間営業中!"
-          }
+    if @place
+      @place_pictures = @place.place_pictures.all
+      @place_type = @place.types_number
+      if @place.open_timing
+        openings = @place.open_timing
+        @open_timing = openings.map do |opening|
+          if opening['close']
+            open_day = DAY_OF_THE_WEEK[opening['open']['day']]
+            open_time = opening['open']['time']
+            close_day = DAY_OF_THE_WEEK[opening['close']['day']]
+            close_time = opening['close']['time']
+            {
+              :open_day => open_day,
+              :open_time => open_time,
+              :close_day => close_day,
+              :close_time => close_time
+            }
+          else
+            {
+              :open_forever => "24時間営業中!"
+            }
+          end
+        end
+        if openings[0]['close']
+          @today_open = open_judge(openings)
         end
       end
-      if openings[0]['close']
-        @today_open = open_judge(openings)
+    else
+      redirect_to current_user
+    end
+  end
+
+  def plus_place
+    @plus_place = Place.new
+  end
+
+  def plus_place_create
+    begin
+      ActiveRecord::Base.transaction do
+        place = @place.dup
+        place.mymap_id = params['place']['mymap_id']
+        place.save!
+        if @place.place_pictures.any?
+          place_pictures = @place.place_pictures.all
+          place_pictures.each do |p|
+            new_place_picture = place.place_pictures.new
+            new_place_picture.picture = p.picture
+            new_place_picture.save!
+          end
+        end
       end
+      mymap = Mymap.find_by(id: params['place']['mymap_id'])
+      flash[:success] = "「#{@place.name}」を「#{mymap.name}」に追加しました。"
+      redirect_to mymap
+    rescue
+      flash[:warning] = "追加するマイマップを選択してください。"
+      redirect_to plus_place_place_path
     end
   end
 
   def list
-    keyword = params[:search]
-    @places = client.spots_by_query( keyword )
+    @keyword = params[:search]
+    @places = client.spots_by_query( @keyword, :language => 'ja' )
+    @hash = Gmaps4rails.build_markers(@places) do |place, marker|
+      marker.lat place.lat
+      marker.lng place.lng
+      marker.infowindow place.name
+    end
     @place = Place.new
+  end
+
+  def place_map
+    a = params[:array_param]
+    c = a.map do |b|
+    {
+      :infowindow => b['infowindow'],
+      :picture => {
+        url: "#{ view_context.image_path("sumire.ico")}",
+        width: 35,
+        height: 35
+      },
+      :lat => b['lat'],
+      :lng => b['lng']
+    }
+    end
+    @hash = c
   end
 
   def new
@@ -54,19 +109,24 @@ class PlacesController < ApplicationController
 
   def create
     place_param, place_photo = create_place_params
-    @place = Place.new(place_param)
+    if place_param != nil
+      @place = Place.new(place_param)
 
-    respond_to do |format|
-      if @place.save
-        if place_photo
-          place_picture = @place.place_pictures.new
-          place_picture.remote_picture_url = place_photo.gsub('http://','https://')
-          place_picture.save!
+        if @place.save
+          if place_photo
+            place_picture = @place.place_pictures.new
+            place_picture.remote_picture_url = place_photo.gsub('http://','https://')
+            place_picture.save!
+          end
+          flash[:success] = "#{@place.name}の位置情報を保存しました。"
+          redirect_to @place
+        else
+          flash[:warning] = "#{@place.name}の位置情報を保存できませんでした。"
+          redirect_to places_path
         end
-        format.html { redirect_to @place, notice: "#{@place.name}の位置情報を保存しました"}
-      else
-        format.html { redirect_to places_path, notice: "#{@place.name}の位置情報を保存できませんでした"}
-      end
+    else
+      flash[:warning] = "「スポット」と「マイマップ」を選択してください。"
+      redirect_to places_path
     end
   end
 
@@ -88,10 +148,10 @@ class PlacesController < ApplicationController
           place_picture.save!
         end
       end
-      flash[:notice] = "#{@place.name}の位置情報を更新しました"
+      flash[:success] = "#{@place.name}の位置情報を更新しました。"
       redirect_to @place
     rescue
-      flash[:notice] = "#{@place.name}の位置情報を更新できませんでした"
+      flash[:warning] = "スポット名を入力してください。"
       redirect_to edit_place_path
     end
   end
@@ -99,52 +159,57 @@ class PlacesController < ApplicationController
   def destroy
     @place.destroy
 
-    respond_to do |format|
-      format.html { redirect_to places_path, notice: "#{@place.name}の位置情報を削除しました"}
-    end
+    flash[:success] = "#{@place.name}の位置情報を削除しました。"
+    redirect_to places_path
   end
 
   private
 
   def set_place
-    @place = Place.find(params[:id])
+    @place = Place.find_by(id: params[:id])
   end
 
   def create_place_params
     place_param = params.require(:place).permit(:mymap_id, :placeId, :memo, :types_name, :types_number)
 
-    place = client.spot(place_param[:placeId])
-    place_param[:name] = place.name
+    if place_param[:placeId] && (place_param[:mymap_id] != "")
+      place = client.spot(place_param[:placeId], :language => "ja")
+      place_param[:name] = place.name
+      place_param[:latitude] = place.lat
+      place_param[:longitude] = place.lng
 
-    vicinity = place.vicinity
-    if vicinity
-      place_param[:address] = vicinity
+      vicinity = place.vicinity
+      if vicinity
+        place_param[:address] = vicinity
+      else
+        place_param[:address] = place.formatted_address
+      end
+
+      formatted_phone_number = place.formatted_phone_number
+      place_param[:phone_number] = formatted_phone_number if formatted_phone_number
+      url = place.url
+      place_param[:google_url] = url if url
+
+      open_timing = place.opening_hours
+      if open_timing
+        place_param[:open_timing] = open_timing['periods']
+      else
+        place_param[:open_timing] = nil
+      end
+
+      types_name = place.types[0]
+      place_param[:types_name] = types_name
+      types_number = PlaceTypeSets.new.execute(types_name)
+      place_param[:types_number] = types_number
+
+      place_photo = place.photos[0]
+      if place_photo
+        return place_param, place_photo.fetch_url(600)
+      else
+        return place_param
+      end
     else
-      place_param[:address] = place.formatted_address
-    end
-
-    formatted_phone_number = place.formatted_phone_number
-    place_param[:phone_number] = formatted_phone_number if formatted_phone_number
-    url = place.url
-    place_param[:google_url] = url if url
-
-    open_timing = place.opening_hours
-    if open_timing
-      place_param[:open_timing] = open_timing['periods']
-    else
-      place_param[:open_timing] = nil
-    end
-
-    types_name = place.types[0]
-    place_param[:types_name] = types_name
-    types_number = PlaceTypeSets.new.execute(types_name)
-    place_param[:types_number] = types_number
-
-    place_photo = place.photos[0]
-    if place_photo
-      return place_param, place_photo.fetch_url(600)
-    else
-      return place_param
+      nil
     end
   end
 
@@ -189,12 +254,12 @@ class PlacesController < ApplicationController
       end
 
       if open_params.include?(true)
-        return "只今営業中!"
+        return "（只今営業中!）"
       else
-        return "営業時間外です..."
+        return "（今は営業時間外です）"
       end
     else
-      return "定休日です..."
+      return "（今日は定休日です）"
     end
   end
 

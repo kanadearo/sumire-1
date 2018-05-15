@@ -1,4 +1,28 @@
-<% @places.each do |place| %>
-  <li><%= place.name %>
-  <%= link_to "詳細", place%></li>
-<% end %>
+<%= stylesheet_link_tag "users/show", :media => "all" %>
+<%= stylesheet_link_tag "users/show-rspnsv", :media => "all" %>
+<content>
+<div class="boxContainer">
+  <% @places.each do |place| %>
+    <% place_picture = place.place_pictures.first %>
+    <div class="box">
+      <% if place_picture %>
+        <%= image_tag place_picture.picture.url, class: "box-pic" %>
+      <% else %>
+        <%= image_tag "no-picture.png", class: "box-pic" %>
+      <% end %>
+      <p class="title"><%= link_to place.name, place, class: "mymaps_title" %></p>
+      <div class="dot-box">
+        <% if place.types_number == 0 %>
+          <div class="dot" id="eat"></div>
+        <% elsif place.types_number == 1 %>
+          <div class="dot" id="see"></div>
+        <% elsif place.types_number == 2 %>
+          <div class="dot" id="buy"></div>
+        <% elsif place.types_number == 3 %>
+          <div class="dot" id="stay"></div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+</content>

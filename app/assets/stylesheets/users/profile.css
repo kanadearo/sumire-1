@@ -1,0 +1,163 @@
+.user-icon{
+    border-radius: 200px;
+    height: 200px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 85px;
+    width: 200px;
+}
+
+.user-name{
+    color: #4C4C4C;
+    font-size: 26px;
+    margin: 0px auto;
+    text-align: center;
+}
+
+.nums{
+    height: 50px;
+    margin: 0px auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 350px;
+}
+
+.num{
+    display: inline-block;
+    color: #9B9B9B;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 110px;
+}
+
+.num h2{
+    font-size: 26px;
+    line-height: 26px;
+    margin: 0px;
+}
+
+.num p{
+    font-size: 13px;
+    line-height: 0px;
+}
+
+.prof-sent{
+    color: #4C4C4C;
+    text-align: center;
+}
+
+#follow-num{
+    border-left: solid thin #4C4C4C;
+    border-right: solid thin #4C4C4C;
+}
+
+.sns-bar{
+    font-size: 18px;
+    color: #9B9B9B;
+    height: 30px;
+    margin: 0px auto;
+    margin-left: 20px;
+    text-align: left;
+    width: 375px;
+}
+
+.sns-bar p{
+    display: inline;
+    margin-left: 5px;
+}
+
+.twtr{
+    color: #00aced;
+    height: 10px;
+    width: 10px;
+}
+
+.fcbk{
+    color: #305097;
+    height: 10px;
+    width: 10px;
+}
+
+.edit{
+    background-color: #9B9B9B;
+    border-radius: 5px;
+    color: white;
+    display: inline;
+    float: right;
+    height: 16px;
+    margin-right: 20px;
+    text-align:center;
+    line-height: 20px;
+    padding: 2px 6px;
+    width: 50px;
+}
+
+.edit p{
+    color: white;
+    float: right;
+    line-height: 16px;
+    margin: 0px;
+}
+
+.fa-pen-square{
+    color: white;
+    float: left;
+}
+
+
+
+.follow-btn{
+    display: inline-block;
+    height: 30px;
+    margin-top: 30px;
+    text-align: center;
+    width: 375px;
+}
+
+.edit{
+    background-color: #9B9B9B;
+    border-radius: 5px;
+    color: white;
+    display: inline;
+    float: right;
+    height: 16px;
+    margin-right: 20px;
+    text-align:center;
+    line-height: 20px;
+    padding: 2px 6px;
+    width: 50px;
+}
+
+.edit p{
+    color: white;
+    float: right;
+    line-height: 16px;
+    margin: 0px;
+}
+
+.btn{
+    display: none;
+}
+
+.btn + label{
+    background-color: white;
+    border: solid thin #70CADF;
+    border-radius: 50px;
+    color: #70CADF;
+    cursor: pointer;
+    cursor: hand;
+    display: inline-block;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 100px;
+    right: 0px;
+}
+
+#btn1:checked + label{
+    background-color: #70CADF;
+    color: white;
+}
+

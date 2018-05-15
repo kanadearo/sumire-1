@@ -29,11 +29,13 @@ class User < ApplicationRecord
                          user_access_token: auth.credentials.token
                        )
         user.remote_picture_url = process_uri(auth.info.image + "?type=large")
-        user.save!
         return user
       end
     end
   end
+
+  validates :name, presence: true
+  validates :profile_text, length: { maximum: 200 }
 
   has_many :mymaps, dependent: :destroy
   has_many :user_mymaps

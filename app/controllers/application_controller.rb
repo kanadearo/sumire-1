@@ -11,10 +11,6 @@ class ApplicationController < ActionController::Base
     @count_followers = user.followers.count
   end
 
-  def mymap_counts(mymap)
-    @count_favoriters = mymap.favoriters.count
-  end
-
   private
 
   def sign_in_required

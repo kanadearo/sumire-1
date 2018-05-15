@@ -1,8 +1,7 @@
-<h1>マイマップを編集</h1>
-
 <div class="col-md-12">
   <%= form_for @mymap do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
+    <h1>マイマップを編集</h1>
 
     <div class="form-group">
       <%= f.label :name, "マイマップ名" %>

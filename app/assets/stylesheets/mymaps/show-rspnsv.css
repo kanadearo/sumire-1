@@ -1,0 +1,275 @@
+@media(max-width: 320px){
+    body{
+    width: 320px;
+    margin:10px auto;
+    }
+
+    .logo-set{
+        height: 30px;
+        width: 130px;
+        left: 95px;
+    }
+    .prof{
+        height: 50px;
+        margin: 20px auto;
+        margin-left: 30px;
+        width: 280px;
+    }
+    .discription{
+        color: #9B9B9B;
+        font-size: 12px;
+        height: 60px;
+        line-height: 20px;
+        margin:30px auto;
+        text-align: center;
+        width: 320px;
+    }
+    .disc-1{
+        border-bottom: solid medium #70CADF; 
+        color: #696969;
+
+        cursor: pointer;
+        cursor: hand;
+        display: inline-block;
+        float: left;
+        margin-left: 25px;
+        margin-right: 25px;
+        padding: 5px;
+        width: 100px;
+    }
+
+    .disc-2{
+        cursor: pointer;
+        cursor: hand;
+        display: inline-block;
+        margin-left: 25px;
+        margin-right: 25px;
+        float: left;
+        padding: 5px;
+        width: 100px;
+    }
+
+    .boxContainer{
+        display: block;
+        margin-left: 10px;
+        height: auto;
+        min-height: 100%;
+        overflow: hidden;
+        position: relative;
+        width: 310px;
+    }
+
+    .detailBox{
+        background-color: #cccccc;
+        border-radius: 5px;
+        color: white;
+        display: block;
+        font-size: 12px;
+        height: 145px;
+        margin: 0px auto;
+        position: relative;
+        text-align: center;
+        margin: 0px auto;
+        margin-bottom: 20px;
+        width: 300px; 
+    }
+
+    .dotBoxInDetail{
+        height: 10px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+
+    .detailTitle{
+        color: white;
+        font-size: 18px;
+        height: 50px;
+        line-height: 25px;
+        margin: 0px auto;
+        position: absolute;
+        text-align: left;
+        top: 10px;
+        left: 10px;
+        width: 215px;    
+    }
+
+    .detailPic{
+        border-radius: 5px;
+        height: 145px;
+        object-fit: cover;
+        width: 300px;
+        opacity: 0.65;
+    }
+
+    .nameBox{
+        background-color: white;
+        border-radius: 5px;
+        bottom: 10px;
+        height: 20px;
+        left: 10px;
+        padding: 3px;
+        position: absolute;
+        width: 160px;
+    }
+
+    .userIcon{
+        border-radius: 18px;
+        float: left;
+        height: 20px;
+        width: 20px;
+    }
+
+    .userName{
+        color: #4C4C4C;
+        font-size: 12px;
+        float: left;
+        margin: 0px 4px;
+        text-align: center;
+    }
+
+    .hrtBox{
+        background-color: white;
+        border-radius: 5px;
+        bottom: 10px;
+        color: #4C4C4C;
+        height: 26px;
+        left: 186px;
+        position: absolute;
+        width: 44px;
+    }
+
+    .editBox{
+        background-color: #9B9B9B;
+        border-radius: 5px;
+        bottom: 10px;
+        color: white;
+        height: 20px;
+        padding: 3px;
+        position: absolute;
+        right: 10px;
+        width: 44px;
+    }
+
+    .fa-pencil-alt{
+        color: white;
+    }
+
+    .editName{
+        color: white;
+        font-size: 12px;
+        float: left;
+        margin: 0px 4px;
+        text-align: center;
+    }
+
+    .enter{
+        background-color: #70CADF;
+        border-radius: 40px;
+        color: white;
+        cursor: pointer;
+        cursor: hand;
+        height: 50px;
+        line-height: 50px;
+        margin: 0px auto;
+        margin-top: 30px;
+        bottom: 20px;
+        text-align: center;
+        width: 280px;
+    }
+
+    .title{
+        color: white;
+        font-size: 16px;
+        height: 50px;
+        line-height: 25px;
+        margin: 0px auto;
+        position: absolute;
+        text-align: center;
+        top: 36px;
+        left: 18px;
+        width: 112px;
+    }
+
+    #navContent {
+        display: none;
+        overflow: auto;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -165px;
+        margin-left: -120px;
+        z-index: 9999;/*最前面に*/
+        height: 330px;
+        width: 240px;
+        border-radius: 15px;
+        border: solid thin #9B9B9B;
+        background: #fff;/*背景色*/
+        box-shadow:15px;
+    }
+
+    #logoInContent{
+        margin-left: 105px;
+        margin-top: 20px;
+    }
+
+    #navContent ul{
+        color:  #4C4C4C;
+        font-size: 15px;
+        list-style: none;
+        margin: 0px auto;
+        padding: 0px 0px;
+        padding-top: 60px;
+        padding-bottom: 6px;
+        text-align: center;
+    }
+
+    #navContent li{
+        margin-bottom: 17px;
+    }
+
+    .box:hover{
+        background-color: black;
+        border-radius: 5px;
+        cursor: pointer;
+        cursor: hand;
+        opacity: none;
+
+    }
+
+    .boxContainer{
+        display: block;
+        margin-left: 10px;
+        height: auto;
+        min-height: 100%;
+        overflow: hidden;
+        position: relative;
+        width: 310px;
+    }
+
+    .box{
+        background-color: #cccccc
+        border-radius: 5px;
+        color: white;
+        display: block;
+        font-size: 12px;
+        line-height: 145px;
+        float: left;
+        height: 145px;
+        text-align: center;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        position: relative;
+        width: 145px; 
+    }
+
+    .box-pic{
+        border-radius: 5px;
+        height: 145px;
+        object-fit: cover;
+        width: 145px;
+        opacity: 0.65;
+    }
+
+
+}

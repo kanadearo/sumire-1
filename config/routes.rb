@@ -8,12 +8,21 @@ Rails.application.routes.draw do
     member do
       get :followings
       get :followers
+      get :like_mymaps
+      get :self_mymaps
       get :profile
+      get :all_mymap_spots
     end
   end
   resources :places do
     collection do
       get :list
+      get :place_map
+    end
+
+    member do
+      get :plus_place
+      post :plus_place_create
     end
   end
   resources :mymaps, except: [:index] do
@@ -26,4 +35,10 @@ Rails.application.routes.draw do
   resources :user_searchs, only: [:index]
   resources :relationships, only: [:create, :destroy]
   resources :user_mymaps, only: [:create, :destroy]
+
+  resources :env_selections, only: [:index]
+  resources :browser_selections, only: [:index]
+  resources :select_safaris, only: [:index]
+  resources :select_chromes, only: [:index]
+  resources :select_pcs, only: [:index]
 end
