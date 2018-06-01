@@ -2,7 +2,7 @@
 <%= stylesheet_link_tag "places/index-rspnsv", :media => "all" %>
 <content>
 <%= form_tag list_places_path, :role => "form", :method => :get do %>
-  <%= text_field_tag :search, params[:search], { :class => "form-control", :id => "search-box", :required => true, :placeholder => "登録したいスポット名やキーワードを入力"} %>
+  <%= text_field_tag :search, params[:search], { :class => "form-control", :id => "search-box", :required => true, :placeholder => "例： 新宿　カフェ"} %>
   <%= button_tag( {:type => "submit", :name => nil, :class => "btn btn-default"} ) do %>
     <span class="glyphicon glyphincon-search">検索</span>
   <% end %>

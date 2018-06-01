@@ -4,19 +4,20 @@
 <%= form_for @place do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
             <h1 align="center" id="search-word"><%= "#{@keyword}" %> の検索結果</h1>
-            <% @places.each do |place| %>
+            <% @places.each_with_index do |place, i| %>
             <div class="line">
-                <%= f.radio_button :placeId, place.place_id, id: "line1"%><label for="line1"><%= place.name %></label>
+                <% i = "#{i+1}" %>
+                <%= f.radio_button :placeId, place.place_id, id: "line#{i}"%><label for="line<%= i %>"><%= place.name %></label>
                 <p class="adress"><%= place.formatted_address %></p>
             </div>
             <% end %>
             <div class="view-map">
                 <%= image_tag "arrow2.png", id: "arrow" %>
-                <p id="map-text"><%= link_to "Google mapで表示", :action => "place_map",  :array_param => @hash %></p>
+                <p id="map-text"><%= link_to "Googleマップで表示", :action => "place_map",  :array_param => @hash %></p>
             </div>
             <%= f.collection_select :mymap_id, current_user.mymaps.all, :id, :name, {:prompt => true}, {:class => "mymap-select"} %>
             <%= f.text_area :memo, id: "textarea-2", rows: "10", cols: "60", placeholder: "メモ" %>
 
-            <input type="submit" name="commit" value="このマイマップに登録" class="enter" data-disable-with="このマイマップに登録">
+            <input type="submit" name="commit" value="このマイマップに登録" class="enter">
 <% end %>
 </content>

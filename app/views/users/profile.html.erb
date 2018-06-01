@@ -7,9 +7,7 @@
                 <%= image_tag "no-picture.png", class: "user-icon" %>
             <% end %>
             <h1 class="user-name"><%= @user.name %></h1>
-            <div class="follow-btn">
-              <%= render 'relationships/follow_button', user: @user %>
-            </div>
+            <%= render 'relationships/follow_button', user: @user %>
             <div class="nums">
                 <div class="num" id="map-num">
                     <h2><%= @count_mymaps %></h2>
@@ -26,7 +24,7 @@
             </div>
             <p class="prof-sent"><%= text_url_to_link(h(@text)).html_safe %></p>
             <div class="sns-bar">
-                <p><%= @user.own_url %></p>
+                <p><%= text_url_to_link(h(@user.own_url)).html_safe %></p>
             </div>
             <% if @user == current_user %>
             <div class="edit">

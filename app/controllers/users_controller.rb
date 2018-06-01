@@ -85,18 +85,18 @@ class UsersController < ApplicationController
 
   def mymap_type_sets(user)
     if user == current_user
-      return user.mymaps.all
+      return user.mymaps.all.order("id DESC")
     elsif user != current_user
       if current_user.following?(user)
-        return user.mymaps.where(status: [0,1])
+        return user.mymaps.where(status: [0,1]).order("id DESC")
       else
-        return user.mymaps.where(status: 0)
+        return user.mymaps.where(status: 0).order("id DESC")
       end
     end
   end
 
   def favorite_mymap_type_sets(user)
-    favorites = user.favoritings.all.includes(:user)
+    favorites = user.favoritings.all.includes(:user).order("id DESC")
     favorite_mymaps = []
     if favorites
       favorites.each do |favorite|

@@ -49,7 +49,7 @@
 }
 
 .detailBox{
-    background-color: #cccccc;
+    background-color: black;
     border-radius: 5px;
     color: white;
     display: block;
@@ -71,11 +71,7 @@
 }
 
 .detailBox:hover{
-    background-color: black;
     border-radius: 5px;
-    cursor: pointer;
-    cursor: hand;
-    opacity: none;
 }
 
 .detailTitle{
@@ -91,19 +87,25 @@
     width: 250px;    
 }
 
+.nameBox:hover{
+    cursor:pointer;
+    cursor:hand;
+}
+
 .detailPic{
+    background-color:black;
     border-radius: 5px;
     height: 157px;
     object-fit: cover;
     width: 335px;
-    opacity: 0.65;
+    opacity: 0.6;
 }
 
 .nameBox{
     background-color: white;
     border-radius: 5px;
     bottom: 10px;
-    height: 20px;
+    height: 26px;
     left: 10px;
     padding: 3px;
     position: absolute;
@@ -136,17 +138,57 @@
     width: 44px;
 }
 
+.hrtBox:hover{
+    cursor:pointer;
+    cursor:hand;
+ }
+#numCount{
+    width:16px;
+    height:16px;
+}
+.hrt-box a {
+    height:16px;
+    width:33px;
+    float:left;
+}
+
+.hrt-box img{
+    height:17px;
+    width: 17px;
+    position:absolute;
+    top:20%;
+    left:12%;
+    z-index: 999;
+}
+
+#numCount{
+    display: inline-block;
+    width:20px;
+    float:right;
+    font-size:13px;
+    line-height:13px;
+    position:absolute;
+    right:0;
+    top:25%;
+    z-index: 999;
+}
+
 .editBox{
-    background-color: #9B9B9B;
+    background-color: white;
     border-radius: 5px;
     bottom: 10px;
     color: white;
-    height: 20px;
+    height: 26px;
     padding: 3px;
     position: absolute;
     right: 10px;
     width: 44px;
 }
+
+.editBox:hover{
+    cursor:pointer;
+    cursor:hand;
+  }
 
 .fa-pencil-alt{
     color: white;
@@ -170,22 +212,8 @@
     width: 355px;
 }
 
-.enter{
-    background-color: #70CADF;
-    border-radius: 40px;
-    color: white;
-    cursor: pointer;
-    cursor: hand;
-    height: 50px;
-    line-height: 50px;
-    margin: 0px auto;
-    margin-top: 30px;
-    text-align: center;
-    width: 375px;
-}
-
 .box{
-    background-color: #cccccc
+    background-color: black;
     border-radius: 5px;
     color: white;
     display: block;
@@ -196,19 +224,40 @@
     text-align: center;
     margin-right: 20px;
     margin-bottom: 20px;
+    opacity:0.7;
     position: relative;
-    width: 157px; 
+    width: 157px;
 }
 
+.label{
+  margin: 20px 0px 0px 7px;
+  float:left;
+  }
+
+.memo{
+  text-align:center;
+  margin:60px 10px 30px 10px;
+}
+
+
 .box:hover{
-    background-color: black;
     border-radius: 5px;
     cursor: pointer;
     cursor: hand;
-    opacity: none;
 }
 
 .box-pic{
+    border-radius: 5px;
+    height: 157px;
+    object-fit: cover;
+    width: 157px;
+    position: absolute;
+    top: 0;
+    left:0;
+    opacity: 0.65;
+}
+
+.box-mymap-pic{
     border-radius: 5px;
     height: 157px;
     object-fit: cover;

@@ -65,7 +65,5 @@
               <p><%= text_url_to_link(h(@place.memo)).html_safe %></p>
             <% end %>
 
-            <% if @place.mymap.user == current_user %>
-              <a href="<%= @place.google_url %>" class="enter" id="hoge" target="_blank">地図アプリで見る</a>
-            <% end %>
+            <a href="<%= @place.google_url %>" class="enter" id="hoge" target="_blank">Googleマップで見る</a>
         </content>

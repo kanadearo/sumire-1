@@ -1,6 +1,16 @@
 class UserSearchsController < ApplicationController
   def index
     @users = search(params[:search])
+  end
+
+  def recomend_users
+  end
+
+  def following_users
+    @following_users = current_user.followings.all
+  end
+
+  def facebook_users
     facebook_friends = current_user.facebook.get_connection(current_user.uid, "friends")
     friends = []
     if facebook_friends.any?
@@ -13,8 +23,7 @@ class UserSearchsController < ApplicationController
         end
       end
     end
-    @facebook_friends = friends
-    @following_users = current_user.followings.all
+    @facebook_users = friends
   end
 
   private

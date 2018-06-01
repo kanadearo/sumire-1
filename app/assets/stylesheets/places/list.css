@@ -34,7 +34,9 @@
     margin: 0px;
     position: absolute;
     top: 60%;
-    left: 105
+    left: 105;
+    height:24px;
+    line-height:12px;
 }
 
 .view-map{

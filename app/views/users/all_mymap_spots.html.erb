@@ -2,7 +2,7 @@
 <%= stylesheet_link_tag "mymaps/show-rspnsv", :media => "all" %>
         <content>
             <div class="detailBox">
-                <%= image_tag "logo2.png", class: "box-pic" %>
+                <%= image_tag "logo2.png", class: "box-mymap-pic" %>
                 <p class="detailTitle">すべてのスポット</p>
                 <div class="dotBoxInDetail">
                   <% @all_types.each do |type| %>
@@ -35,12 +35,13 @@
                 <% @places.each do |place| %>
                 <% place_picture = place.place_pictures.first %>
                 <div class="box">
+                  <a class="place_title" href="/places/<%= place.id %>">
                     <% if place_picture %>
                       <%= image_tag place_picture.picture.url, class: "box-pic" %>
                     <% else %>
                       <%= image_tag "no-picture.png", class: "box-pic" %>
                     <% end %>
-                    <p class="title"><%= link_to place.name, place, class: "place_title" %></p>
+                    <p class="title"><%= place.name %></p>
                     <div class="dot-box">
                        <% if place.types_number == 0 %>
                         <div class="dot" id="eat"></div>
@@ -52,6 +53,7 @@
                         <div class="dot" id="stay"></div>
                        <% end %>
                     </div>
+                  </a>
                 </div>
                 <% end %>
             </div>

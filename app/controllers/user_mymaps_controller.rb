@@ -9,7 +9,7 @@ class UserMymapsController < ApplicationController
   end
 
   def destroy
-    mymap = Mymap.find(params[:mymap_id])
+    mymap = Mymap.find_by(id: params[:id])
     current_user.unfavorite(mymap)
     flash[:success] = "「#{mymap.name}」のお気に入りを解除しました。"
     redirect_to user_path(current_user.id)

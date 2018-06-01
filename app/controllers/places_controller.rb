@@ -13,6 +13,10 @@ class PlacesController < ApplicationController
   }
 
   def index
+    if current_user.mymaps.first == nil
+      flash[:warning] = "先にマイリストの作成をお願いします。"
+      redirect_to new_mymap_path
+    end
   end
 
   def show
@@ -119,7 +123,7 @@ class PlacesController < ApplicationController
             place_picture.save!
           end
           flash[:success] = "#{@place.name}の位置情報を保存しました。"
-          redirect_to @place
+          redirect_to @place.mymap
         else
           flash[:warning] = "#{@place.name}の位置情報を保存できませんでした。"
           redirect_to places_path
@@ -142,14 +146,14 @@ class PlacesController < ApplicationController
         @place.mymap_id = place_params['mymap_id'] if place_params['mymap_id']
         @place.memo = place_params['memo'] if place_params['memo']
         @place.save!
-        if place_params['place_picture']
-          place_picture = @place.place_pictures.new
+        if place_params['place_pictures']
+          place_picture = @place.place_pictures.first
           place_picture.picture = place_params['place_pictures'][:picture]
           place_picture.save!
         end
       end
       flash[:success] = "#{@place.name}の位置情報を更新しました。"
-      redirect_to @place
+      redirect_to @place.mymap
     rescue
       flash[:warning] = "スポット名を入力してください。"
       redirect_to edit_place_path
@@ -197,6 +201,7 @@ class PlacesController < ApplicationController
         place_param[:open_timing] = nil
       end
 
+      p place.types
       types_name = place.types[0]
       place_param[:types_name] = types_name
       types_number = PlaceTypeSets.new.execute(types_name)
@@ -232,9 +237,20 @@ class PlacesController < ApplicationController
         close = today["close"]["time"]
         if open >= close
           open = open.scan(/.{1,2}/)
-          open_time = Time.local(time.year, time.month, time.day,open[0].to_i,open[1].to_i)
+          open_time = Time.local(time.year, time.month, time.day, open[0].to_i, open[1].to_i)
           close = close.scan(/.{1,2}/)
-          close_time = Time.local(time.year, time.month, time.day+1 ,close[0].to_i,close[1].to_i)
+
+          next_day = time.tomorrow
+          if next_day.month == time.month
+            close_time = Time.local(time.year, time.month, time.day+1, close[0].to_i, close[1].to_i)
+          elsif next_day.month != time.month
+            if next_day.year != time.year
+              close_time = Time.local(time.year+1, 1, 1, close[0].to_i, close[1].to_i)
+            else
+              close_time = Time.local(time.year, time.month+1, 1, close[0].to_i, close[1].to_i)
+            end
+          end
+
           if open_time <= time && time <= close_time
             open_params.push true
           else

@@ -1,28 +1,42 @@
-<div class="col-md-12">
-  <%= form_for @user do |f| %>
-    <%= render 'layouts/error_messages', model: f.object %>
-    <h1>プロフィールを編集</h1>
-
-    <div class="form-group">
-      <%= f.label :name, "名前" %>
-      <%= f.text_field :name %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :profile_text, "プロフィール文" %>
-      <%= f.text_area :profile_text %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :own_url, "URL" %>
-      <%= f.text_field :own_url %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :picture, "プロフィール画像" %>
-      <%= f.file_field :picture %>
-    </div>
-
-    <%= f.submit "更新", class: 'btn btn-primary btn-block' %>
-  <% end %>
-</div>
+<%= stylesheet_link_tag "users/edit", :media => "all" %>
+<%= stylesheet_link_tag "users/edit-rspnsv", :media => "all" %>
+        <content>
+          <%= form_for @user do |f| %>
+            <%= render 'layouts/error_messages', model: f.object %>
+            <div class="user">
+                <% if @user.picture.url %>
+                  <%= image_tag @user.picture.url, class: "user-icon", id: "img_prev" %>
+                <% else %>
+                  <%= image_tag "no-picture.png", class: "user-icon", id: "img_prev" %>
+                <% end %>
+                <div class="edit-icon-btn">
+                    <p>
+                    <label for="user_picture">
+                      <i class="fa fa-camera"></i>
+                      写真を選択
+                      <%= f.file_field :picture, style: "display:none;" %>
+                    </label>
+                    </p>
+                </div>
+                    <script type="text/javascript">
+                      $(function() {
+                        function readURL(input) {
+                          if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                              $('#img_prev').attr('src', e.target.result);
+                            }
+                            reader.readAsDataURL(input.files[0]);
+                          }
+                        }
+                        $("#user_picture").change(function() {
+                          readURL(this);
+                        });
+                      });
+                    </script>
+            </div>
+            <input type="text" name="user[name]" value="<%= @user.name %>" id="user_name" class="textbox" placeholder="自分の名前やニックネーム">
+            <textarea name="user[profile_text]" id="user_profile_text" class="textarea" rows="10" cols="60"  placeholder="あなたのことを紹介することを書きましょう。SNSのリンクを貼るのもいいかもしれません。"><%= @user.profile_text %></textarea>
+            <input type="submit" name="commit" value="プロフィールを更新" class="enter">
+          <% end %>
+        </content>

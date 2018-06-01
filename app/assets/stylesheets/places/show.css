@@ -114,6 +114,11 @@ content p{
     width: 15px;
 }
 
+#btnsDrawer:hover{
+    cursor:pointer;
+    cursor:hand;
+}
+
 .fa-ellipsis-h{
     color: #9B9B9B;
 }

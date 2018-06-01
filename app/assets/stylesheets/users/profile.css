@@ -4,6 +4,7 @@
     margin-top: 30px;
     margin-bottom: 30px;
     margin-left: 85px;
+    object-fit:cover;
     width: 200px;
 }
 
@@ -39,7 +40,9 @@
 
 .num p{
     font-size: 13px;
-    line-height: 0px;
+    line-height: 16px;
+    margin-top:8px;
+    height:16px;
 }
 
 .prof-sent{
@@ -121,7 +124,7 @@
     color: white;
     display: inline;
     float: right;
-    height: 16px;
+    height: 20px;
     margin-right: 20px;
     text-align:center;
     line-height: 20px;
@@ -135,6 +138,13 @@
     line-height: 16px;
     margin: 0px;
 }
+
+.edit a {
+  text-align:center;
+  color:white;
+  text-decoration:none;
+  }
+
 
 .btn{
     display: none;
@@ -161,3 +171,8 @@
     color: white;
 }
 
+
+.enter a{
+  color:white;
+  text-decoration:none;
+  }

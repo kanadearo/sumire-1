@@ -51,18 +51,21 @@
                     <i class="fas fa-pencil-alt"></i>
                     <p class="editName"><%= link_to "編集", edit_mymap_path(@mymap) %></p>
                 </div>
+                <p><%= render 'tag_list', tag_list: @mymap.tag_list %></p>
             </div>
+            <p class="memo"><%= text_url_to_link(h(@mymap.comment)).html_safe %></p>
 
             <div class="boxContainer">
                 <% @places.each do |place| %>
                 <% place_picture = place.place_pictures.first %>
                 <div class="box">
+                  <a class="place_title" href="/places/<%= place.id %>">
                     <% if place_picture %>
                       <%= image_tag place_picture.picture.url, class: "box-pic" %>
                     <% else %>
                       <%= image_tag "no-picture.png", class: "box-pic" %>
                     <% end %>
-                    <p class="title"><%= link_to place.name, place, class: "place_title" %></p>
+                    <p class="title"><%= place.name %></p>
                     <div class="dot-box">
                        <% if place.types_number == 0 %>
                         <div class="dot" id="eat"></div>
@@ -74,8 +77,9 @@
                         <div class="dot" id="stay"></div>
                        <% end %>
                     </div>
+                  </a>
                 </div>
                 <% end %>
             </div>
         </content>
-        <a href="/mymaps/search?user_id=<%= @user.id %>" id="hoge" class="enter">マイマップからスポットを検索</a>
+        <a href="/places" id="hoge" class="enter">新しいスポットを追加</a>

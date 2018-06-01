@@ -21,11 +21,13 @@
 
             <div class="boxContainer">
                 <div class="box">
+                  <a href="/users/<%= @user.id %>/all_mymap_spots", class="all_mymaps_title" >
                     <%= image_tag "logo2.png", class: "box-pic" %>
                     <p class="title">
-                      <a href="/users/<%= @user.id %>/all_mymap_spots", class="all_mymaps_title" >すべての<br>スポット</a>
+                      すべての<br>スポット
                     </p>
                     <div class="dot-box">
+                      <% @all_types.sort! %>
                       <% @all_types.each do |type| %>
                         <% if type == 0 %>
                           <div class="dot" id="eat"></div>
@@ -38,9 +40,11 @@
                         <% end %>
                       <% end %>
                     </div>
+                  </a>
                 </div>
                 <% @mymaps.each do |mymap| %>
                   <div class="box">
+                    <a class="mymaps_title" href="/mymaps/<%= mymap.id %>">
                       <% if mymap.picture.url %>
                         <%= image_tag mymap.picture.url, class: "box-pic" %>
                       <% else %>
@@ -56,11 +60,12 @@
                           <%= image_tag "no-picture.png", class: "box-pic" %>
                         <% end %>
                       <% end %>
-                      <p class="title"><%= link_to mymap.name, mymap, class: "mymaps_title" %></p>
+                      <p class="title"><%= mymap.name %></p>
                       <div class="dot-box">
                         <% places = mymap.places.all %>
                         <% place_type = places.map{|place| place.types_number} %>
                         <% place_type.uniq! %>
+                        <% place_type.sort! %>
                         <% place_type.each do |type| %>
                           <% if type == 0 %>
                             <div class="dot" id="eat"></div>
@@ -77,14 +82,15 @@
                       <div class="name-box">
                           <p><%= mymap.user.name %></p>
                       </div>
+                    </a>
                   </div>
                 <% end %>
                 <% if @user == current_user %>
                   <div class="box">
+                    <a class="mymaps_title" href="/mymaps/new" value="">
                     <%= image_tag "logo2.png", class: "box-pic" %>
-                    <p class="title">
-                      <%= link_to "新しいマイマップを作成", new_mymap_path, class: "mymaps_title" %>
-                    </p>
+                    <p class="title">新しいマイマップを作成</p>
+                    </a>
                   </div>
                 <% end %>
             </div>

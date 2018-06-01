@@ -24,6 +24,7 @@
             <div class="boxContainer">
                 <% @favorite_mymaps.each do |mymap| %>
                   <div class="box">
+                    <a class="mymap-title" href="/mymaps/<%= mymap.id %>">
                       <% if mymap.picture.url %>
                         <%= image_tag mymap.picture.url, class: "box-pic" %>
                       <% else %>
@@ -39,7 +40,7 @@
                           <%= image_tag "no-picture.png", class: "box-pic" %>
                         <% end %>
                       <% end %>
-                      <p class="title"><%= link_to mymap.name, mymap, class: "mymaps_title" %></p>
+                      <p class="title"><%= mymap.name %></p>
                       <div class="dot-box">
                         <% places = mymap.places.all %>
                         <% place_type = places.map{|place| place.types_number} %>
@@ -60,6 +61,7 @@
                       <div class="name-box">
                           <p><%= mymap.user.name %></p>
                       </div>
+                    </a>
                   </div>
                 <% end %>
             </div>

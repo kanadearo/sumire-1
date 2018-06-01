@@ -92,3 +92,5 @@ end
 gem 'bullet', :group => :development
 gem 'remodal-rails'
 gem 'font-awesome-rails'
+gem 'gon'
+gem 'activeadmin'

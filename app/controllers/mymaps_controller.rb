@@ -5,7 +5,7 @@ class MymapsController < ApplicationController
   def show
     if @mymap
       @user = @mymap.user
-      @places = @mymap.places.all
+      @places = @mymap.places.all.order("id DESC")
       place = @mymap.places.first
       if place
         @place_picture = place.place_pictures.first
@@ -45,6 +45,7 @@ class MymapsController < ApplicationController
         place_sets = place_data_set(mymap, types_number, open_timing)
         place_sets.each{|f| places.push f}
       end
+      p places
       @places = places
     end
   end
@@ -192,10 +193,18 @@ class MymapsController < ApplicationController
   end
 
   def create_mymap_params
-    params.require(:mymap).permit(:name, :comment, :tag_list, :status)
+    mymap_params = params.require(:mymap).permit(:name, :comment, :tag_list, :status)
+    if mymap_params[:tag_list].include?("、")
+      mymap_params[:tag_list] = mymap_params[:tag_list].split("、")
+    end
+    mymap_params
   end
 
   def update_mymap_params
-    params.require(:mymap).permit(:name, :comment, :status, :picture)
+    mymap_params = params.require(:mymap).permit(:name, :comment, :status, :tag_list, :picture)
+    if mymap_params[:tag_list].include?("、")
+      mymap_params[:tag_list] = mymap_params[:tag_list].split("、")
+    end
+    mymap_params
   end
 end

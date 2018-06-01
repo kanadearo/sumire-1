@@ -1,6 +1,21 @@
 class MymapSearchsController < ApplicationController
   def index
     @mymaps = search(params[:search])
+  end
+
+  def recomend_mymaps
+    users = User.where(id: [1,2,3])
+    all_mymaps = []
+    users.each do |user|
+      mymaps = user.mymaps.all
+      mymaps.each do |mymap|
+        all_mymaps.push mymap
+      end
+    end
+    @mymaps = all_mymaps
+  end
+
+  def following_mymaps
     following_users = current_user.followings.all
     following_user_mymaps = []
     if following_users.any?
@@ -19,6 +34,14 @@ class MymapSearchsController < ApplicationController
   def search(search)
     if search
       search_result = Mymap.where("name LIKE :text OR comment LIKE :text", text: "%#{search}%").includes(:user)
+      tag_search = Mymap.tagged_with(search).includes(:user)
+      if tag_search
+        search_result = search_result.to_a
+        tag_search = tag_search.to_a
+        tag_search.each do |tag|
+          search_result.insert(0,tag)
+        end
+      end
       mymaps = []
       search_result.each do |mymap|
         unless mymap.user_id == current_user.id

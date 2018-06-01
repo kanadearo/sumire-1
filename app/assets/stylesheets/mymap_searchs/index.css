@@ -22,9 +22,6 @@
 }
 
 .disc-1{
-    border-bottom: solid medium #70CADF; 
-    color: #696969;
-    
     display: inline-block;
     margin-right: 45px;
     padding: 5px;
@@ -63,9 +60,10 @@
 }
 
 .box{
-    background-color: #cccccc;
+    background-color: black;
     border-radius: 5px;
     color: white;
+    font-weight:bold;
     display: block;
     font-size: 12px;
     line-height: 163px;
@@ -74,16 +72,15 @@
     text-align: center;
     margin-right: 20px;
     margin-bottom: 20px;
+    opacity:0.7;
     position: relative;
     width: 157px; 
 }
 
 .box:hover{
-    background-color: black;
     border-radius: 5px;
     cursor: pointer;
     cursor: hand;
-    opacity: 0.5;
 }
 
 .box-pic{
@@ -159,7 +156,6 @@
     height:16px;
     width:33px;
     float:left;
-    position: relative;
 }
 
 .hrt-box img{
@@ -171,6 +167,18 @@
     z-index: 999;
 }
 
+#numCount{
+    display: inline-block;
+    width:20px;
+    float:right;
+    font-size:8px;
+    line-height:13px;
+    position:absolute;
+    right:0;
+    top:15%;
+    z-index: 999;
+}
+
 .name-box{
     bottom: 6px;
     color: white;
@@ -178,4 +186,8 @@
     line-height: 8px;
     position: absolute;
     width: 163px;
+}
+
+.name-box p{
+  font-size: 13px;
 }
