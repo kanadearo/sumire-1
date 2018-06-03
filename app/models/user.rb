@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   mount_uploader :picture, PictureUploader
 
+  enum role: { user: 0, admin: 1 }
+
   def self.from_omniauth(auth)
     user = User.where(provider: auth.provider, uid: auth.uid).first
     if user

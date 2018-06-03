@@ -201,7 +201,6 @@ class PlacesController < ApplicationController
         place_param[:open_timing] = nil
       end
 
-      p place.types
       types_name = place.types[0]
       place_param[:types_name] = types_name
       types_number = PlaceTypeSets.new.execute(types_name)
