@@ -11,13 +11,19 @@ class ApplicationController < ActionController::Base
     @count_followers = user.followers.count
   end
 
-  def mymap_counts(mymap)
-    @count_favoriters = mymap.favoriters.count
-  end
-
   private
 
   def sign_in_required
     redirect_to root_path unless user_signed_in?
+  end
+
+  rescue_from SecurityError do |exception|
+    redirect_to root_url
+  end
+
+  protected
+
+  def authenticate_admin_user!
+    raise SecurityError unless current_user.try(:admin?)
   end
 end

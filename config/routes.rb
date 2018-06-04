@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   devise_for :users,
   path: '',
   path_names: {sign_in: 'login', sign_out: 'logout', edit: 'profile'},
@@ -6,16 +7,23 @@ Rails.application.routes.draw do
   root to: 'homes#index'
   resources :users do
     member do
-      get :friends
-      get :friends_result
       get :followings
       get :followers
+      get :like_mymaps
+      get :self_mymaps
       get :profile
+      get :all_mymap_spots
     end
   end
   resources :places do
     collection do
       get :list
+      get :place_map
+    end
+
+    member do
+      get :plus_place
+      post :plus_place_create
     end
   end
   resources :mymaps, except: [:index] do
@@ -24,6 +32,25 @@ Rails.application.routes.draw do
       get :result
     end
   end
+  resources :mymap_searchs, only: [:index] do
+    collection do
+      get :recomend_mymaps
+      get :following_mymaps
+    end
+  end
+  resources :user_searchs, only: [:index] do
+    collection do
+      get :recomend_users
+      get :following_users
+      get :facebook_users
+    end
+  end
   resources :relationships, only: [:create, :destroy]
   resources :user_mymaps, only: [:create, :destroy]
+
+  resources :env_selections, only: [:index]
+  resources :browser_selections, only: [:index]
+  resources :select_safaris, only: [:index]
+  resources :select_chromes, only: [:index]
+  resources :select_pcs, only: [:index]
 end

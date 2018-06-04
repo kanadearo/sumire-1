@@ -65,6 +65,7 @@ PLACE_TYPE_NUMBER_SETS={
   university: 1,
   veterinary_care: 1,
   zoo: 1,
+  natural_feature: 1,
   bakery: 2,
   bicycle_store: 2,
   book_store: 2,

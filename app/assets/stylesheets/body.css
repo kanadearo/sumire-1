@@ -1,0 +1,33 @@
+body{
+  width: 375px;
+  margin:10px auto;
+  font-family: HiraginoSans;
+}
+
+content{
+  display: block;
+}
+
+.enter{
+    background-color: #70CADF;
+    border-radius: 40px;
+    color: white;
+    cursor: pointer;
+    cursor: hand;
+    height: 50px;
+    line-height: 50px;
+    margin: 30px auto;
+    text-align: center;
+    width: 355px;
+    display: block;
+    border: none;
+}
+
+#hoge:hover{
+  text-decoration:none;
+  color:white;
+}
+
+textarea{
+  resize:none;
+}

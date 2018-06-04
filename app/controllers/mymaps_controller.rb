@@ -3,11 +3,25 @@ class MymapsController < ApplicationController
   before_action :sign_in_required
 
   def show
+    if @mymap
+      @user = @mymap.user
+      @places = @mymap.places.all.order("id DESC")
+      place = @mymap.places.first
+      if place
+        @place_picture = place.place_pictures.first
+      end
+    else
+      redirect_to current_user
+    end
   end
 
   def search
     @user = User.find(params[:user_id])
-    @mymaps = @user.feed_mymaps
+    if @user == current_user
+      @mymaps = @user.feed_mymaps
+    else
+      @mymaps = feed_secure_mymaps(@user)
+    end
   end
 
   def result
@@ -22,11 +36,16 @@ class MymapsController < ApplicationController
       @places = places
     else
       user = User.find(params[:user_id].to_i)
-      mymaps = user.feed_mymaps
+      if user == current_user
+        mymaps = user.feed_mymaps
+      else
+        mymaps = feed_secure_mymaps(user)
+      end
       mymaps.each do |mymap|
         place_sets = place_data_set(mymap, types_number, open_timing)
         place_sets.each{|f| places.push f}
       end
+      p places
       @places = places
     end
   end
@@ -36,14 +55,13 @@ class MymapsController < ApplicationController
   end
 
   def create
-    @mymap = current_user.mymaps.new(mymap_params)
+    @mymap = current_user.mymaps.new(create_mymap_params)
 
-    respond_to do |format|
-      if @mymap.save
-        format.html { redirect_to places_path, notice: "#{@mymap.name}を保存しました"}
-      else
-        format.html { render :new, notice: "マイマップを保存できませんでした"}
-      end
+    if @mymap.save
+      flash[:success] = "#{@mymap.name}を保存しました"
+      redirect_to places_path
+    else
+      render :new
     end
   end
 
@@ -51,14 +69,20 @@ class MymapsController < ApplicationController
   end
 
   def update
+      if @mymap.update(update_mymap_params)
+        flash[:success] = "#{@mymap.name}の情報を更新しました"
+        redirect_to @mymap
+      else
+        flash[:warning] = "マイマップ名を入力してください。"
+        redirect_to edit_mymap_path
+      end
   end
 
   def destroy
     @mymap.destroy
 
-    respond_to do |format|
-      format.html { redirect_to current_user, notice: "#{@mymap.name}を削除しました"}
-    end
+    flash[:success] = "#{@mymap.name}を削除しました"
+    redirect_to current_user
   end
 
   private
@@ -66,16 +90,30 @@ class MymapsController < ApplicationController
   def place_data_set(mymap, types_number, open_timing)
     if types_number
       if open_timing == "true"
-        place_sets = mymap.places.where(types_number: types_number).where(open_timing: open_timing)
-        return place_sets
+        place_sets = mymap.places.where(types_number: types_number)
+        place_set = []
+        place_sets.each do |place|
+          open_place = open_judge(place)
+          if open_place
+            place_set.push open_place
+          end
+        end
+        return place_set
       else
         place_sets = mymap.places.where(types_number: types_number)
         return place_sets
       end
     else
       if open_timing == "true"
-        place_sets = mymap.places.where(open_timing: open_timing)
-        return place_sets
+        place_sets = mymap.places.all
+        place_set = []
+        place_sets.each do |place|
+          open_place = open_judge(place)
+          if open_place
+            place_set.push open_place
+          end
+        end
+        return place_set
       else
         place_sets = mymap.places.all
         return place_sets
@@ -83,11 +121,90 @@ class MymapsController < ApplicationController
     end
   end
 
-  def set_mymap
-    @mymap = Mymap.find(params[:id])
+  def feed_secure_mymaps(user)
+    user_all_mymaps = user.feed_mymaps
+    user_mymaps = []
+    if user_all_mymaps
+      user_all_mymaps.each do |mymap|
+        if mymap.status == 1
+          mymap_user = User.find(mymap.user_id)
+          if current_user.following?(mymap_user)
+            user_mymaps.push mymap
+          end
+        elsif mymap.status == 0
+          user_mymaps.push mymap
+        end
+      end
+    end
+
+    return user_mymaps
   end
 
-  def mymap_params
-    params.require(:mymap).permit(:name, :comment, :status)
+  def open_judge(place)
+    if place.open_timing
+      if place.open_timing[0]['close']
+        today_open = []
+        place.open_timing.each do |opening|
+          if opening['open']['day'] == Time.now.wday
+            today_open.push opening
+          end
+        end
+        if today_open.any?
+          open_params = []
+          today_open.each do |today|
+            time = Time.now
+            open = today["open"]["time"]
+            close = today["close"]["time"]
+            if open >= close
+              open = open.scan(/.{1,2}/)
+              open_time = Time.local(time.year, time.month, time.day,open[0].to_i,open[1].to_i)
+              close = close.scan(/.{1,2}/)
+              close_time = Time.local(time.year, time.month, time.day+1 ,close[0].to_i,close[1].to_i)
+              if open_time <= time && time <= close_time
+                open_params.push true
+              else
+                open_params.push false
+              end
+            else
+              open = open.scan(/.{1,2}/)
+              open_time = Time.local(time.year, time.month, time.day,open[0].to_i,open[1].to_i)
+              close = close.scan(/.{1,2}/)
+              close_time = Time.local(time.year, time.month, time.day,close[0].to_i,close[1].to_i)
+              if open_time <= time && time <= close_time
+                open_params.push true
+              else
+                open_params.push false
+              end
+            end
+          end
+
+          if open_params.include?(true)
+            return place
+          end
+        end
+      else
+        return place
+      end
+    end
+  end
+
+  def set_mymap
+    @mymap = Mymap.find_by(id: params[:id])
+  end
+
+  def create_mymap_params
+    mymap_params = params.require(:mymap).permit(:name, :comment, :tag_list, :status)
+    if mymap_params[:tag_list].include?("、")
+      mymap_params[:tag_list] = mymap_params[:tag_list].split("、")
+    end
+    mymap_params
+  end
+
+  def update_mymap_params
+    mymap_params = params.require(:mymap).permit(:name, :comment, :status, :tag_list, :picture)
+    if mymap_params[:tag_list].include?("、")
+      mymap_params[:tag_list] = mymap_params[:tag_list].split("、")
+    end
+    mymap_params
   end
 end

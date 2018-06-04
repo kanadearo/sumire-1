@@ -1,13 +1,10 @@
-<h1>気になるスポットを検索してみよう</h1>
-
-<div class="col-md-6">
-  <%= form_tag list_places_path, :role => "form", :method => :get do %>
-    <div class="form-group">
-      <%= text_field_tag :search, params[:search], { :class => "form-control", :required => true, } %>
-      <%= button_tag( {:type => "submit", :name => nil, :class => "btn btn-default" } ) do %>
-        <span class="glyphicon glyphicon-search">キーワード検索</span>
-      <% end %>
-    </div>
+<%= stylesheet_link_tag "places/index", :media => "all" %>
+<%= stylesheet_link_tag "places/index-rspnsv", :media => "all" %>
+<content>
+<%= form_tag list_places_path, :role => "form", :method => :get do %>
+  <%= text_field_tag :search, params[:search], { :class => "form-control", :id => "search-box", :required => true, :placeholder => "例： 新宿　カフェ"} %>
+  <%= button_tag( {:type => "submit", :name => nil, :class => "btn btn-default"} ) do %>
+    <span class="glyphicon glyphincon-search">検索</span>
   <% end %>
-</div>
-
+<% end %>
+</content>

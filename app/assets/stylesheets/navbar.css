@@ -1,0 +1,131 @@
+header{
+    display: block;
+    height: 50px;
+    margin-top: 20px;
+    border-bottom: solid #9B9B9B thin;
+    position: relative;
+}
+
+#navDrawer {
+    margin-left: 15px;
+    position: relative;
+    width: 30px;
+}
+
+
+.navUnshown {
+  display:none;
+}
+
+#navOpen {
+    cursor: pointer;
+    cursor: hand;
+    display: inline-block;
+    margin-top: 6px;
+    width: 30px;
+    height: 22px;
+    vertical-align: middle;
+}
+
+#navOpen span, #navOpen span:before, #navOpen span:after {
+  position: absolute;
+  height: 3px;/*線の太さ*/
+  width: 25px;/*長さ*/
+  border-radius: 3px;
+  background: #555;
+  display: block;
+  content: '';
+  cursor: pointer;
+}
+
+#navOpen span:before {
+  bottom: -8px;
+}
+#navOpen span:after {
+  bottom: -16px;
+}
+
+#navClose {
+  display: none;/*はじめは隠しておく*/
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0;
+  transition: .3s ease-in-out;
+}
+
+#navContent {
+    display: none;
+    overflow: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -234px;
+    margin-left: -140px;
+    z-index: 9999;/*最前面に*/
+    height: 468px;
+    width: 280px;
+    border-radius: 15px;
+    border: solid thin #9B9B9B;
+    background: #fff;/*背景色*/
+    box-shadow:15px;
+}
+
+#logoInContent{
+    margin-left: 125px;
+    margin-top: 30px;
+}
+
+#navContent ul{
+    color:  #4C4C4C;
+    font-size: 20px;
+    list-style: none;
+    margin: 0px auto;
+    padding: 0px 0px;
+    padding-top: 85px;
+    padding-bottom: 6px;
+    text-align: center;
+}
+
+#navContent li{
+    margin-bottom: 27px;
+}
+
+#navInput:checked ~ #navClose {
+  display: block;/*カバーを表示*/
+  opacity: .5;
+}
+
+#navInput:checked ~ #navContent {
+  display: block;
+  box-shadow: 6px 0 25px rgba(0,0,0,.15);
+}
+
+
+
+.logo-set{
+    height: 30px;
+    width: 130px;
+    top: 0px;
+    left: 122px;
+    position: absolute;
+}
+
+.logo2{
+    display: inline;
+    float: left;
+    height: 30px;
+    width: 30px;
+}
+
+.text{
+    display: inline;
+    float: left;
+    height: 30px;
+    width: 100px;
+}
+
