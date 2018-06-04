@@ -1,5 +1,25 @@
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>sumire<h2>
-  </div>
-</div>
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Sumire</title>
+        <meta name="description" content="web application that redefines the communication">
+        <meta name="author" content="futae">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <%= stylesheet_link_tag "homes/index", :media => "all" %>
+        <%= stylesheet_link_tag "homes/index-rspnsv", :media => "all" %>
+        <%= favicon_link_tag("sumire.ico")%>
+    </head>
+    <body>
+        <%= image_tag "logo2.png", class: "logo2" %>
+        <%= image_tag "text.png", class: "text" %>
+        <p>"行きたいところリスト"を作って<br>友達とシェアしよう</p>
+        <a href="/auth/facebook" class="enter" id="facebook">Facebookで新規登録</a>
+        <a href="/auth/facebook" class="enter" id="log-in">ログイン</a>
+        <p class="note note-1">sumireが自動でFacebookに投稿することはありません</p>
+        <p class="note note-2">利用規約とプライバシーポリシー</p>
+    </body>
+</html>

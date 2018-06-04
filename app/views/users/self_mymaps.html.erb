@@ -1,0 +1,95 @@
+<%= stylesheet_link_tag "users/show", :media => "all" %>
+<%= stylesheet_link_tag "users/show-rspnsv", :media => "all" %>
+        <content>
+            <div class="prof">
+                <% if @user.picture.url %>
+                  <%= link_to profile_user_path(@user) do%>
+                    <%= image_tag @user.picture.url, class: "prof-icon" %>
+                  <% end %>
+                <% else %>
+                  <%= link_to profile_user_path(@user) do%>
+                    <%= image_tag "no-picture.png", class: "prof-icon" %>
+                  <% end %>
+                <% end %>
+                <div class="prof-name"><%= link_to @user.name, profile_user_path(@user) %></div>
+            </div>
+            <%= render 'relationships/follow_button', user: @user %>
+            <div class="discription">
+                <p class="disc-2"><a href="/users/<%= @user.id %>/self_mymaps">作成した<br>マイマップ</a></p>
+                <p class="disc-1"><a href="/users/<%= @user.id %>/like_mymaps">お気に入り<br>マイマップ</a></p>
+            </div>
+
+            <div class="boxContainer">
+                <div class="box">
+                  <a href="/mymaps/all_mymap_spots?user_id=<%= @user.id %>", class="all_mymaps_title" >
+                    <%= image_tag "logo2.png", class: "box-pic" %>
+                    <p class="title">すべての<br>スポット</p>
+                    <div class="dot-box">
+                      <% @all_types.each do |type| %>
+                        <% if type == 0 %>
+                          <div class="dot" id="eat"></div>
+                        <% elsif type == 1 %>
+                          <div class="dot" id="see"></div>
+                        <% elsif type == 2 %>
+                          <div class="dot" id="buy"></div>
+                        <% elsif type == 3 %>
+                          <div class="dot" id="stay"></div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </a>
+                </div>
+                <% @mymaps.each do |mymap| %>
+                  <div class="box">
+                    <a class="mymap-title" href="/mymaps/<%= mymap.id %>">
+                      <% if mymap.picture.url %>
+                        <%= image_tag mymap.picture.url, class: "box-pic" %>
+                      <% else %>
+                        <% place = mymap.places.first %>
+                        <% if place %>
+                          <% place_picture = place.place_pictures.first %>
+                          <% if place_picture %>
+                            <%= image_tag place_picture.picture.url, class: "box-pic" %>
+                          <% else %>
+                            <%= image_tag "no-picture.png", class: "box-pic" %>
+                          <% end %>
+                        <% else %>
+                          <%= image_tag "no-picture.png", class: "box-pic" %>
+                        <% end %>
+                      <% end %>
+                      <p class="title"><%= mymap.name %></p>
+                      <div class="dot-box">
+                        <% places = mymap.places.all %>
+                        <% place_type = places.map{|place| place.types_number} %>
+                        <% place_type.uniq! %>
+                        <% place_type.each do |type| %>
+                          <% if type == 0 %>
+                            <div class="dot" id="eat"></div>
+                          <% elsif type == 1 %>
+                            <div class="dot" id="see"></div>
+                          <% elsif type == 2 %>
+                            <div class="dot" id="buy"></div>
+                          <% elsif type == 3 %>
+                            <div class="dot" id="stay"></div>
+                          <% end %>
+                        <% end %>
+                      </div>
+                      <%= render 'user_mymaps/favorite_button', mymap: mymap %>
+                      <div class="name-box">
+                          <p><%= mymap.user.name %></p>
+                      </div>
+                    </a>
+                  </div>
+                <% end %>
+                <% if @user == current_user %>
+                  <div class="box">
+                    <a class="mymaps_title" href="/mymaps/new" value="">
+                    <%= image_tag "logo2.png", class: "box-pic"%>
+                    <p class="title">新しいマイマップを作成</p>
+                    </a>
+                  </div>
+                <% end %>
+            </div>
+        </content>
+        <a href="/mymaps/search?user_id=<%= @user.id %>" id="hoge" class="enter">マイマップからスポットを検索</a>
+

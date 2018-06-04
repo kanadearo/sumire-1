@@ -1,0 +1,85 @@
+<%= stylesheet_link_tag "mymaps/show", :media => "all" %>
+<%= stylesheet_link_tag "mymaps/show-rspnsv", :media => "all" %>
+        <content>
+            <div class="detailBox">
+                <% if @mymap.picture.url %>
+                  <%= image_tag @mymap.picture.url, class: "detailPic" %>
+                <% else %>
+                  <% place = @mymap.places.first %>
+                  <% if place %>
+                    <% place_picture = place.place_pictures.first %>
+                    <% if place_picture %>
+                      <%= image_tag place_picture.picture.url, class: "detailPic" %>
+                    <% else %>
+                      <%= image_tag "no-picture.png", class: "detailPic" %>
+                    <% end %>
+                  <% else %>
+                    <%= image_tag "no-picture.png", class: "detailPic" %>
+                  <% end %>
+                <% end %>
+                <p class="detailTitle"><%= @mymap.name %></p>
+                <div class="dotBoxInDetail">
+                  <% places = @mymap.places.all %>
+                  <% place_type = places.map{|place| place.types_number} %>
+                  <% place_type.uniq! %>
+                  <% place_type.each do |type| %>
+                    <% if type == 0 %>
+                      <div class="dot" id="eat"></div>
+                    <% elsif type == 1 %>
+                      <div class="dot" id="see"></div>
+                    <% elsif type == 2 %>
+                      <div class="dot" id="buy"></div>
+                    <% elsif type == 3 %>
+                      <div class="dot" id="stay"></div>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="nameBox">
+                    <% if @user.picture.url %>
+                      <%= link_to profile_user_path(@user) do%>
+                        <%= image_tag @user.picture.url, class: "userIcon" %>
+                      <% end %>
+                    <% else %>
+                      <%= link_to profile_user_path(@user) do%>
+                        <%= image_tag "no-picture.png", class: "userIcon" %>
+                      <% end %>
+                    <% end %>
+                    <p class="userName"><%= link_to @user.name, profile_user_path(@user) %></p>
+                </div>
+                <%= render 'user_mymaps/favorite_button', mymap: @mymap %>
+                <div class="editBox">
+                    <i class="fas fa-pencil-alt"></i>
+                    <p class="editName"><%= link_to "編集", edit_mymap_path(@mymap) %></p>
+                </div>
+                <p><%= render 'tag_list', tag_list: @mymap.tag_list %></p>
+            </div>
+            <p class="memo"><%= text_url_to_link(h(@mymap.comment)).html_safe %></p>
+
+            <div class="boxContainer">
+                <% @places.each do |place| %>
+                <% place_picture = place.place_pictures.first %>
+                <div class="box">
+                  <a class="place_title" href="/places/<%= place.id %>">
+                    <% if place_picture %>
+                      <%= image_tag place_picture.picture.url, class: "box-pic" %>
+                    <% else %>
+                      <%= image_tag "no-picture.png", class: "box-pic" %>
+                    <% end %>
+                    <p class="title"><%= place.name %></p>
+                    <div class="dot-box">
+                       <% if place.types_number == 0 %>
+                        <div class="dot" id="eat"></div>
+                       <% elsif place.types_number == 1 %>
+                        <div class="dot" id="see"></div>
+                       <% elsif place.types_number == 2 %>
+                        <div class="dot" id="buy"></div>
+                       <% elsif place.types_number == 3 %>
+                        <div class="dot" id="stay"></div>
+                       <% end %>
+                    </div>
+                  </a>
+                </div>
+                <% end %>
+            </div>
+        </content>
+        <a href="/places" id="hoge" class="enter">新しいスポットを追加</a>

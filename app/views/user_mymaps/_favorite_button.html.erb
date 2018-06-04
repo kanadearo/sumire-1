@@ -1,0 +1,19 @@
+  <% if current_user.favoriting?(mymap) %>
+      <div class="hrt-box hrtBox">
+      <%= link_to user_mymap_path(mymap.id), method: :delete do%>
+        <%= image_tag("heart_blue.png") %>
+        <span id="numCount">
+          <div><%= mymap_counts(mymap) %></div>
+        </span>
+      <% end %>
+      </div>
+  <% else %>
+      <div class="hrt-box hrtBox">
+      <%= link_to user_mymaps_path(mymap), method: :post do %>
+        <%= image_tag("heart_gray.png") %>
+        <span id="numCount">
+          <div><%= mymap_counts(mymap) %></div>
+        </span>
+      <% end %>
+      </div>
+  <% end %>

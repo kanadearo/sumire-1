@@ -18,7 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+ gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -70,3 +70,27 @@ gem 'kaminari'
 gem 'rake'
 gem 'reek'
 gem 'rubocop'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'google_places'
+gem 'dotenv-rails'
+gem 'carrierwave'
+gem 'rmagick'
+gem 'koala'
+gem 'typhoeus'
+gem 'fb_graph2'
+gem 'will_paginate'
+gem 'gmaps4rails'
+gem 'acts-as-taggable-on'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap'
+  gem 'rails-assets-bootstrap-tagsinput'
+end
+
+gem 'bullet', :group => :development
+gem 'remodal-rails'
+gem 'font-awesome-rails'
+gem 'gon'
+gem 'activeadmin'

@@ -1,0 +1,24 @@
+<%= stylesheet_link_tag "mymaps/new", :media => "all" %>
+<%= stylesheet_link_tag "mymaps/new-rspnsv", :media => "all" %>
+<content>
+<%= form_for @mymap do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+  <input class="spot-name" id="mymap-name" type="text" name="mymap[name]" placeholder="マイマップ名" >
+
+  <div class="check">
+    <label><input type="radio" value="0" checked="checked" name="mymap[status]" id="mymap_status_0">全体に公開</label>
+  </div>
+  <div class="check">
+    <label><input type="radio" value="1" name="mymap[status]" id="mymap_status_1">フォロワーにのみ公開</label>
+  </div>
+  <div class="check">
+    <label><input type="radio" value="2" name="mymap[status]" id="mymap_status_2">非公開（自分のみ）</label>
+  </div>
+
+  <%= text_field_tag 'mymap[tag_list]', @mymap.tag_list.join(','), class: "textarea-1", placeholder: "タグ  例： 中野、カフェ、行きつけ" %>
+  <p id="tag_desc">※「、」で区切ってタグを作成できます。</p>
+  <textarea name="mymap[comment]" id="mymap_comment" class="textarea-2" rows="10" cols="60" placeholder="メモ"></textarea>
+
+  <input type="submit" name="commit" value="マイマップを作成" class="enter">
+<% end %>
+</content>
