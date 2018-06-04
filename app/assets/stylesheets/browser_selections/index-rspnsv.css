@@ -1,0 +1,38 @@
+@media(max-width: 320px){
+    body{
+        width: 320px;
+        margin:10px auto;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .enter{
+        background-color: #70CADF;
+        border-radius: 40px;
+        color: white;
+        cursor: pointer;
+        cursor: hand;
+        height: 50px;
+        line-height: 50px;
+        margin: 0px auto;
+        margin-top: 10px;
+        bottom: 20px;
+        text-align: center;
+        width: 280px;
+    }
+
+    .enter-chunk{
+        height: 70px;
+        margin: 0 auto;
+        margin-top: 10px;
+        width: 320px;
+    }
+    .enter-sentence{
+        color:#70CADF;
+        font-size: 10px;
+        line-height: 0px;
+        text-align: left;
+    }
+} 

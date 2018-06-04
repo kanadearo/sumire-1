@@ -1,0 +1,84 @@
+body{
+    width: 375px;
+    margin:10px auto;
+}
+
+.logo2{
+    height: 70px;
+    display: block;
+    margin: 0px auto;
+    margin-top: 60px;
+    width: 70px;
+}
+
+.text{
+    height:40px;
+    display: block;
+    margin: 0px auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: 130px;
+}
+
+p{
+    font-family: HiraginoSans-W3;;
+    font-size: 20px;
+    color: #4C4C4C;
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 26px;
+}
+
+a:link{color:white;}
+a:visited{color:white;}
+a:hover{color:white;}
+a:active{color:white;}
+a{text-decoration:none;}
+
+.enter{
+    background-color: #70CADF;
+    border-radius: 40px;
+    color: white;
+    cursor: pointer;
+    cursor: hand;
+    height: 50px;
+    line-height: 50px;
+    margin: 0px auto;
+    bottom: 20px;
+    text-align: center;
+    width: 300px;
+    z-index: 999;
+    display: block;
+}
+
+#facebook{
+    background: #3E549C;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+#log-in{
+    background: #70CADF;
+}
+
+.note{
+    color: #838383;
+    font-family: HiraginoSans-W3;;
+    font-size: 10px;
+    line-height: 8px;
+    text-align: center;
+}
+
+.note-1{
+    margin-top: 30px;
+}
+
+.note-2{
+    margin-bottom: 30px;
+    text-decoration: underline;
+}
+
+.note-2:hover{
+    cursor: pointer;
+    cursor: hand;
+}

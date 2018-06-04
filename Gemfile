@@ -75,3 +75,22 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'google_places'
 gem 'dotenv-rails'
+gem 'carrierwave'
+gem 'rmagick'
+gem 'koala'
+gem 'typhoeus'
+gem 'fb_graph2'
+gem 'will_paginate'
+gem 'gmaps4rails'
+gem 'acts-as-taggable-on'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap'
+  gem 'rails-assets-bootstrap-tagsinput'
+end
+
+gem 'bullet', :group => :development
+gem 'remodal-rails'
+gem 'font-awesome-rails'
+gem 'gon'
+gem 'activeadmin'

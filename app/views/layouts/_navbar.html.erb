@@ -1,21 +1,24 @@
 <header>
-  <nav class="navbar navbar-inverse navbar-static-top ">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">sumire</a>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Signup</a></li>
-          <li><a href="#">Login</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+            <div id="navDrawer">
+                <input id="navInput" class="navUnshown" type="checkbox">
+                <label id="navOpen" for="navInput"><span></span></label>
+                <label id="navClose" class="navUnshown" for="navInput"></label>
+                <div id="navContent">
+                    <%= image_tag "logo2.png", class: "logo2", id: "logoInContent" %>
+                    <ul>
+                        <li><%= link_to "ホーム", current_user %></li>
+                        <li><%= link_to "新しいスポットを登録", places_path %></li>
+                        <li><%= link_to "マイマップを作成", new_mymap_path %></li>
+                        <li><%= link_to "ユーザーを検索", following_users_user_searchs_path %></li>
+                        <li><%= link_to "マイマップを検索", recomend_mymaps_mymap_searchs_path %></li>
+                        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete%></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="logo-set">
+              <%= link_to current_user do %>
+                <%= image_tag "logo2.png", class: "logo2" %>
+                <%= image_tag "text.png", class: "text" %>
+              <% end %>
+            </div>
 </header>

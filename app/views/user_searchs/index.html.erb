@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag "user_searchs/index", :media => "all" %>
+<%= stylesheet_link_tag "user_searchs/index-rspnsv", :media => "all" %>
+        <content>
+            <h1>検索結果</h1>
+            <%= form_tag({action: 'index'}, {method: :get}) do %>
+              <input type="text" name="search" id="search" class="search-box" placeholder="探したいユーザ名を入力">
+              <%= submit_tag '検索', :name => nil %>
+            <% end %>
+            <div class="discription">
+                <p class="disc-1"><a href="/user_searchs/recomend_users">おすすめの<br>ユーザー</a></p>
+                <p class="disc-2"><a href="/user_searchs/following_users">フォロー済みの<br>ユーザー</a></p>
+                <p class="disc-3"><a href="/user_searchs/facebook_users">Facebookの<br>友達</a></p>
+            </div>
+            <% if @users %>
+              <% @users.each do |user| %>
+                <div class="user-box">
+                  <% if user.picture.url %>
+                    <%= link_to profile_user_path(user) do%>
+                      <%= image_tag user.picture.url, class: "user-icon" %>
+                    <% end %>
+                  <% else %>
+                    <%= link_to profile_user_path(user) do%>
+                      <%= image_tag "no-picture.png", class: "user-icon" %>
+                    <% end %>
+                  <% end %>
+                  <div class="user-name"><%= link_to user.name, profile_user_path(user) %></div>
+                  <%= render 'relationships/follow_button', user: user %>
+                </div>
+              <% end %>
+            <% end %>
+        </content>
+
