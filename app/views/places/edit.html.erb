@@ -1,29 +1,53 @@
-<h1>スポット情報編集</h1>
+<%= stylesheet_link_tag "places/edit.css", :media => "all" %>
+<%= stylesheet_link_tag "places/edit-rspnsv.css", :media => "all" %>
+        <content>
+          <%= form_for @place do |f| %>
+            <%= render 'layouts/error_messages', model: f.object %>
+            <div class="detailbox">
+                <% place_picture = @place.place_pictures.first %>
+                <% if place_picture %>
+                  <%= image_tag place_picture.picture.url, class: "box-pic", id: "img_prev" %>
+                <% else %>
+                  <%= image_tag "no-picture.png", class: "box-pic", id: "img_prev" %>
+                <% end %>
+            </div>
+            <div class="buttons">
+                <div class="mini-enter" id="add-pic">
+                        <p>
+                        <%= f.fields_for :place_pictures, @place.place_pictures do |m| %>
+                        <label for="place_place_pictures_picture">
+                          <i class="fa fa-camera"></i>
+                          写真を設定
+                          <%= m.file_field :picture, style: "display:none;" %>
+                        </label>
+                        <% end %>
+                        </p>
+                </div>
+            </div>
+                <script type="text/javascript">
+                  $(function() {
+                    function readURL(input) {
+                      if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                          $('#img_prev').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                      }
+                    }
+                    $("#place_place_pictures_picture").change(function() {
+                      readURL(this);
+                    });
+                  });
+                </script>
 
-<%= form_for @place do |f| %>
-  <%= render 'layouts/error_messages', model: f.object %>
+            <input type="text" value="<%= @place.name %>" name="place[name]" id="spot-name" placeholder="スポット名を入力">
 
-  <div class="form-group">
-    <%= f.label :name, "スポット名" %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :mymap_id, "登録するマイマップ" %>
-    <%= f.collection_select :mymap_id, current_user.mymaps.all, :id, :name, :prompt => true %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :memo, "メモ" %>
-    <%= f.text_area :memo %>
-  </div>
-
-  <div class="form-group">
-  <%= f.fields_for :place_pictures, @place.place_pictures do |m| %>
-      <%= m.label :picture, "写真を編集" %>
-      <%= m.file_field :picture %>
-  <% end %>
-  </div>
-
-  <%= f.submit '更新', class: 'btn btn-primary btn-block' %>
-<% end %>
+            <%= f.collection_select :mymap_id, current_user.mymaps.all, :id, :name, {:prompt => true}, {:class => "mymap-select"} %>
+            <textarea id="textarea-2" rows="10" rows="60" placeholder="メモ" name="place[memo]"><%= @place.memo %></textarea>
+            <div id="text-3">
+              <p>設定はあとから変更できます</p>
+            </div>
+            <input type="submit" name="commit" value="この内容でを更新" class="enter">
+          <% end %>
+        </content>

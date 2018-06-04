@@ -1,30 +1,74 @@
-<h1>マイマップを編集</h1>
+<%= stylesheet_link_tag "mymaps/new", :media => "all" %>
+<%= stylesheet_link_tag "mymaps/new-rspnsv", :media => "all" %>
+        <content>
+          <%= form_for @mymap do |f| %>
+            <%= render 'layouts/error_messages', model: f.object %>
+              <div class="detailbox">
+                <% if @mymap.picture.url %>
+                  <%= image_tag @mymap.picture.url, class: "detailPic", id: "img_prev" %>
+                <% else %>
+                  <% place = @mymap.places.first %>
+                  <% if place %>
+                    <% place_picture = place.place_pictures.first %>
+                    <% if place_picture %>
+                      <%= image_tag place_picture.picture.url, class: "detailPic", id: "img_prev" %>
+                    <% else %>
+                      <%= image_tag "no-picture.png", class: "detailPic", id: "img_prev" %>
+                    <% end %>
+                  <% else %>
+                    <%= image_tag "no-picture.png", class: "detailPic", id: "img_prev"%>
+                  <% end %>
+                <% end %>
+              </div>
+                <div class="buttons">
+                    <div class="mini-enter" id="add-pic">
+                        <p>
+                        <label for="mymap_picture">
+                          <i class="fa fa-camera"></i>
+                          写真を設定
+                          <%= f.file_field :picture, style: "display:none;" %>
+                        </label>
+                        </p>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                  $(function() {
+                    function readURL(input) {
+                      if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                          $('#img_prev').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                      }
+                    }
+                    $("#mymap_picture").change(function() {
+                      readURL(this);
+                    });
+                  });
+                </script>
 
-<div class="col-md-12">
-  <%= form_for @mymap do |f| %>
-    <%= render 'layouts/error_messages', model: f.object %>
+                <input class="spot-name" id="mymap-name" type="text" value="<%= @mymap.name%>" name="mymap[name]" placeholder="マイマップ名" >
 
-    <div class="form-group">
-      <%= f.label :name, "マイマップ名" %>
-      <%= f.text_field :name %>
-    </div>
+                <div class="check">
+                  <label><input type="radio" value="0" checked="checked" name="mymap[status]" id="mymap_status_0">全体に公開</label>
+                </div>
+                <div class="check">
+                  <label><input type="radio" value="1" name="mymap[status]" id="mymap_status_1">フォロワーにのみ公開</label>
+                </div>
+                <div class="check">
+                  <label><input type="radio" value="2" name="mymap[status]" id="mymap_status_2">非公開（自分のみ）</label>
+                </div>
 
-    <div class="form-group">
-      <%= f.label :comment, "説明" %>
-      <%= f.text_area :comment %>
-    </div>
+                <%= text_field_tag 'mymap[tag_list]', @mymap.tag_list.join(','), class: "textarea-1", placeholder: "タグ　例：　中野、カフェ、行きつけ" %>
+                <textarea name="mymap[comment]" id="mymap_comment" class="textarea-2" rows="10" cols="60" placeholder="メモ"><%= @mymap.comment %></textarea>
 
-    <div class="form-group">
-      <label><%= f.radio_button :status, 0 %>全員に公開</label>
-      <label><%= f.radio_button :status, 1 %>フォロワーに公開</label>
-      <label><%= f.radio_button :status, 2 %>非公開</label>
-    </div>
+                <%= link_to "このマイマップを削除", @mymap, method: :delete, data: { confirm: "#{@mymap.name}を削除しますか？" }%>
 
-    <div class="form-group">
-      <%= f.label :picture, "写真を編集" %>
-      <%= f.file_field :picture %>
-    </div>
+                <div id="text-3">
+                    <p>設定はあとから変更できます</p>
+                </div>
 
-    <%= f.submit "更新", class: 'btn btn-primary btn-block' %>
-  <% end %>
-</div>
+                <input type="submit" name="commit" value="マイマップを更新" class="enter">
+          <% end %>
+        </content>

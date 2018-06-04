@@ -6,10 +6,10 @@ class User < ApplicationRecord
 
   mount_uploader :picture, PictureUploader
 
+  enum role: { user: 0, admin: 1 }
+
   def self.from_omniauth(auth)
     user = User.where(provider: auth.provider, uid: auth.uid).first
-    p Time.now.ago(1.month)
-    p User.where("last_sign_in_at <= ?", Time.now.ago(1.month))
     if user
       user.user_access_token = auth.credentials.token
       user.save!
@@ -31,11 +31,13 @@ class User < ApplicationRecord
                          user_access_token: auth.credentials.token
                        )
         user.remote_picture_url = process_uri(auth.info.image + "?type=large")
-        user.save!
         return user
       end
     end
   end
+
+  validates :name, presence: true
+  validates :profile_text, length: { maximum: 200 }
 
   has_many :mymaps, dependent: :destroy
   has_many :user_mymaps

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180319051509) do
+ActiveRecord::Schema.define(version: 20180601075458) do
 
   create_table "mymaps", force: :cascade do |t|
     t.string   "name",                   null: false
@@ -39,9 +39,11 @@ ActiveRecord::Schema.define(version: 20180319051509) do
     t.text     "address",      null: false
     t.string   "phone_number"
     t.text     "google_url"
-    t.string   "open_timing"
+    t.text     "open_timing"
     t.string   "placeId",      null: false
     t.text     "memo"
+    t.float    "latitude"
+    t.float    "longitude"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["mymap_id"], name: "index_places_on_mymap_id"
@@ -55,6 +57,31 @@ ActiveRecord::Schema.define(version: 20180319051509) do
     t.index ["follow_id"], name: "index_relationships_on_follow_id"
     t.index ["user_id", "follow_id"], name: "index_relationships_on_user_id_and_follow_id", unique: true
     t.index ["user_id"], name: "index_relationships_on_user_id"
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.string   "taggable_type"
+    t.integer  "taggable_id"
+    t.string   "tagger_type"
+    t.integer  "tagger_id"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+    t.index ["context"], name: "index_taggings_on_context"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string  "name"
+    t.integer "taggings_count", default: 0
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "user_mymaps", force: :cascade do |t|
@@ -86,9 +113,9 @@ ActiveRecord::Schema.define(version: 20180319051509) do
     t.string   "image"
     t.string   "picture"
     t.text     "user_access_token"
-    t.string   "facebook_url"
-    t.string   "twitter_url"
     t.string   "own_url"
+    t.text     "profile_text"
+    t.integer  "role",                   default: 0,           null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

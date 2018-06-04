@@ -1,0 +1,193 @@
+.search-box{
+    border: solid thin #9B9B9B;
+    border-radius: 8px;
+    color: #9B9B9B;
+    height: 40px;
+    margin: 30px 20px;
+    padding: 0px 10px;
+    width: 330px;
+}
+
+.discription{
+    color: #9B9B9B;
+    cursor: pointer;
+    cursor: hand;
+    font-size: 12px;
+    height: 60px;
+    line-height: 20px;
+    margin:0px auto;
+    margin-bottom: 30px;
+    text-align: center;
+    width: 375px;
+}
+
+.disc-1{
+    display: inline-block;
+    margin-right: 45px;
+    padding: 5px;
+    width: 120px;
+}
+
+.disc-2{
+    display: inline-block;
+    margin-left: 0px;
+    padding: 5px;
+    width: 120px;
+}
+
+.boxContainer{
+    display: block;
+    margin-left: 20px;
+    height: auto;
+    min-height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 355px;
+}
+
+.enter{
+    background-color: #70CADF;
+    border-radius: 40px;
+    color: white;
+    cursor: pointer;
+    cursor: hand;
+    height: 50px;
+    line-height: 50px;
+    margin: 0px auto;
+    margin-top: 30px;
+    text-align: center;
+    width: 375px;
+}
+
+.box{
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    font-weight:bold;
+    display: block;
+    font-size: 12px;
+    line-height: 163px;
+    float: left;
+    height: 157px;
+    text-align: center;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    opacity:0.7;
+    position: relative;
+    width: 157px; 
+}
+
+.box:hover{
+    border-radius: 5px;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.box-pic{
+    border-radius: 5px;
+    height: 157px;
+    object-fit: cover;
+    opacity: 0.65;
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 157px;
+}
+
+.title{
+    color: white;
+    font-size: 18px;
+    height: 50px;
+    line-height: 25px;
+    margin: 0px auto;
+    position: absolute;
+    text-align: center;
+    top: 36px;
+    left: 18px;
+    width: 120px;
+}
+
+.dot-box{
+    height: 10px;
+    left: 10px;
+    position: absolute;
+    top: 10px;
+}
+
+.dot{
+    background-color: #FAAC2A;
+    border-radius: 10px;
+    display: inline-block;
+    float: left;
+    height: 10px;
+    margin-right: 5px;
+    width: 10px;
+}
+
+#eat{
+    background-color: #FAAC2A;
+}
+
+#see{
+    background-color: #21BE3A;
+}
+
+#buy{
+    background-color: #F8537D;
+}
+
+#stay{
+    background-color: #2038B3;
+}
+
+.hrt-box{
+    background-color: white;
+    border-radius: 5px;
+    bottom: 36px;
+    color: #4C4C4C;
+    height: 16px;
+    left: 65px;
+    position: absolute;
+    width: 33px;
+    z-index: 99;
+}
+
+.hrt-box a {
+    height:16px;
+    width:33px;
+    float:left;
+}
+
+.hrt-box img{
+    height:13px;
+    width: 13px;
+    position:absolute;
+    top:15%;
+    left:12%;
+    z-index: 999;
+}
+
+#numCount{
+    display: inline-block;
+    width:20px;
+    float:right;
+    font-size:8px;
+    line-height:13px;
+    position:absolute;
+    right:0;
+    top:15%;
+    z-index: 999;
+}
+
+.name-box{
+    bottom: 6px;
+    color: white;
+    font-size: 8px;
+    line-height: 8px;
+    position: absolute;
+    width: 163px;
+}
+
+.name-box p{
+  font-size: 13px;
+}

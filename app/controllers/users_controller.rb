@@ -2,30 +2,67 @@ class UsersController < ApplicationController
   before_action :sign_in_required
   before_action :set_user
 
-  def friends
-    @facebook_friends = @user.facebook.get_connection(@user.uid, "friends")
-  end
-
   def show
     @mymaps = mymap_type_sets(@user)
-    @favorite_mymaps = favorite_mymap_type_sets(@user)
+    if @mymaps
+      all_types = []
+      @mymaps.each do |mymap|
+        places = mymap.places.all
+        places.each{|place| all_types.push place.types_number}
+      end
+      @all_types = all_types.uniq
+    end
   end
 
   def edit
   end
 
   def update
-    respond_to do |format|
       if @user.update(update_user_params)
-        format.html { redirect_to @user, notice: "#{@user.name}のプロフィールを更新しました"}
+        flash[:success] = "#{@user.name}のプロフィールを更新しました。"
+        redirect_to @user
       else
-        format.html { redirect_to edit_mymap_path, notice: "#{@user.name}のプロフィールを更新できませんでした"}
+        flash[:warning] = "名前を入力してください。"
+        redirect_to edit_user_path
       end
-    end
   end
 
   def profile
     counts(@user)
+    @text = @user.profile_text
+  end
+
+  def all_mymap_spots
+    @mymaps = mymap_type_sets(@user)
+    if @mymaps
+      all_places = []
+      all_types = []
+      @mymaps.each do |mymap|
+        places = mymap.places.all
+        places.each do |place|
+          all_places.push place
+          all_types.push place.types_number
+        end
+      end
+      @places = all_places
+      @all_types = all_types.uniq
+    end
+  end
+
+  def like_mymaps
+    @favorite_mymaps = favorite_mymap_type_sets(@user)
+  end
+
+  def self_mymaps
+    @mymaps = mymap_type_sets(@user)
+    if @mymaps
+      all_types = []
+      @mymaps.each do |mymap|
+        places = mymap.places.all
+        places.each{|place| all_types.push place.types_number}
+      end
+      @all_types = all_types.uniq
+    end
   end
 
   def followings
@@ -39,7 +76,7 @@ class UsersController < ApplicationController
   private
 
   def update_user_params
-    params.require(:user).permit(:name, :facebook_url, :twitter_url, :own_url, :picture)
+    params.require(:user).permit(:name, :profile_text, :own_url, :picture)
   end
 
   def set_user
@@ -48,18 +85,18 @@ class UsersController < ApplicationController
 
   def mymap_type_sets(user)
     if user == current_user
-      return user.mymaps.all
+      return user.mymaps.all.order("id DESC")
     elsif user != current_user
       if current_user.following?(user)
-        return user.mymaps.where(status: [0,1])
+        return user.mymaps.where(status: [0,1]).order("id DESC")
       else
-        return user.mymaps.where(status: 0)
+        return user.mymaps.where(status: 0).order("id DESC")
       end
     end
   end
 
   def favorite_mymap_type_sets(user)
-    favorites = user.favoritings.all
+    favorites = user.favoritings.all.includes(:user).order("id DESC")
     favorite_mymaps = []
     if favorites
       favorites.each do |favorite|

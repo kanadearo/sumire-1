@@ -1,0 +1,59 @@
+<%= stylesheet_link_tag "mymap_searchs/index", :media => "all" %>
+<%= stylesheet_link_tag "mymap_searchs/index-rspnsv", :media => "all" %>
+<h1>検索結果</h1>
+        <content>
+            <%= form_tag({action: 'index'}, {method: 'get'}) do %>
+              <input type="text" name="search" id="search" class="search-box" placeholder="探したいマイマップ名やタグを検索" >
+              <%= submit_tag '検索', :name => nil %>
+            <% end %>
+            <div class="discription">
+                <p class="disc-1"><a href="/mymap_searchs/recomend_mymaps">おすすめの<br>マイマップ</a></p>
+                <p class="disc-2"><a href="/mymap_searchs/following_mymaps">フォローユーザーの<br>新着マイマップ</a></p>
+            </div>
+        </content>
+        <% if @mymaps %>
+            <div class="boxContainer">
+                <% @mymaps.each do |mymap| %>
+                  <div class="box">
+                    <a class="mymap_title" href="/mymaps/<%= mymap.id %>">
+                      <% if mymap.picture.url %>
+                        <%= image_tag mymap.picture.url, class: "box-pic" %>
+                      <% else %>
+                        <% place = mymap.places.first %>
+                        <% if place %>
+                          <% place_picture = place.place_pictures.first %>
+                          <% if place_picture %>
+                            <%= image_tag place_picture.picture.url, class: "box-pic" %>
+                          <% else %>
+                            <%= image_tag "no-picture.png", class: "box-pic" %>
+                          <% end %>
+                        <% else %>
+                          <%= image_tag "no-picture.png", class: "box-pic" %>
+                        <% end %>
+                      <% end %>
+                      <p class="title"><%= mymap.name %></p>
+                      <div class="dot-box">
+                        <% places = mymap.places.all %>
+                        <% place_type = places.map{|place| place.types_number} %>
+                        <% place_type.uniq! %>
+                        <% place_type.each do |type| %>
+                          <% if type == 0 %>
+                            <div class="dot" id="eat"></div>
+                          <% elsif type == 1 %>
+                            <div class="dot" id="see"></div>
+                          <% elsif type == 2 %>
+                            <div class="dot" id="buy"></div>
+                          <% elsif type == 3 %>
+                            <div class="dot" id="stay"></div>
+                          <% end %>
+                        <% end %>
+                      </div>
+                      <%= render 'user_mymaps/favorite_button', mymap: mymap %>
+                      <div class="name-box">
+                          <p><%= mymap.user.name %></p>
+                      </div>
+                    </a>
+                  </div>
+                <% end %>
+            </div>
+        <% end %>

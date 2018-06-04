@@ -1,15 +1,69 @@
-<h1><%= @place.name %></h1>
-<p><%= @place.address %></p>
-<p><%= @place.phone_number %></p>
-<p><%= @place.google_url %></p>
-<p><%= @place.types_name %></p>
-<p><%= @place.types_number %></p>
-<% if @place_pictures %>
-  <% @place_pictures.each do |place_picture| %>
-    <%= image_tag place_picture.picture.thumb.url %>
-  <% end %>
-<% end %>
+<%= stylesheet_link_tag "places/show.css", :media => "all" %>
+<%= stylesheet_link_tag "places/show-rspnsv.css", :media => "all" %>
+        <content>
+            <% unless @place_pictures.empty? %>
+              <% @place_pictures.each do |place_picture| %>
+                <%= image_tag place_picture.picture.url, class: "trimmed-pic" %>
+              <% end %>
+            <% else %>
+              <%= image_tag "no-picture.png", class: "trimmed-pic" %>
+            <% end %>
 
-<%= link_to "編集", edit_place_path(@place) %>
+            <% if @place_type == 0 %>
+              <div class="color-dot"></div>
+            <% elsif @place_type == 1 %>
+              <div class="color-dot1"></div>
+            <% elsif @place_type == 2 %>
+              <div class="color-dot2"></div>
+            <% elsif @place_type == 3 %>
+              <div class="color-dot3"></div>
+            <% end %>
 
-<%= link_to "このスポットをGoogleMapで見る", @place.google_url %>
+            <div id="btnsDrawer">
+              <input type="checkbox" name="checkbox" id="btnsIcon">
+              <label for="btnsIcon"><i class="fa fa-ellipsis-h fa-lg"></i></label>
+              <label id="layer" for="btnsIcon"></label>
+              <div id="btnsList" for="btnsIcon">
+                <%= image_tag "logo2.png", id: "logoInList", class: "logo2"%>
+                <ul>
+                  <% if @place.mymap.user == current_user %>
+                    <li class="btn"><%= link_to "他のマイマップにも追加", plus_place_place_path(@place) %></li>
+                    <li class="btn"><%= link_to "このスポットを編集", edit_place_path(@place) %></li>
+                    <li class="btn"><%= link_to "このスポットを削除", @place, method: :delete, data: { confirm: "#{@place.name}を削除しますか？" } %></li>
+                  <% else %>
+                    <li class="btn"><%= link_to "自分のマイマップにも追加", plus_place_place_path(@place) %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+
+            <h1><%= @place.name %></h1>
+            <p>住所： <%= @place.address %></p>
+            <p>電話番号： <%= @place.phone_number %></p>
+
+            <input id="openHour" type="checkbox" name="checkbox">
+            <label id="openHourLabel"for="openHour">
+            営業時間：<% if @today_open %><%= @today_open %><% end %>
+            <i class="fa fa-angle-down"></i>
+            </label>
+
+            <ul id="openHourList">
+              <% if @open_timing %>
+                <% if @open_timing[0][:open_forever] %>
+                  <li><%= @open_timing[0][:open_forever] %></li>
+                <% else %>
+                  <% @open_timing.each do |a| %>
+                    <li><%= "#{a[:open_day]} #{a[:open_time].insert(2, "時").insert(5, "分")} 〜 #{a[:close_time].insert(2, "時").insert(5, "分")}" %></li>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <li>不明</li>
+              <% end %>
+            </ul>
+
+            <% if @place.memo %>
+              <p><%= text_url_to_link(h(@place.memo)).html_safe %></p>
+            <% end %>
+
+            <a href="<%= @place.google_url %>" class="enter" id="hoge" target="_blank">Googleマップで見る</a>
+        </content>

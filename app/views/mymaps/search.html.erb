@@ -1,35 +1,33 @@
-<h1>登録したスポットの検索</h1>
+<%= stylesheet_link_tag "mymaps/search.css", :media => "all" %>
+<%= stylesheet_link_tag "mymaps/search-rspnsv", :media => "all" %>
+        <content>
+        <h1><%= @user.name %>さんの<br>マイマップからスポットを検索</h1>
+        <%= form_tag({ action: 'result' }, :method => :get, remote: true) do %>
+            <div class="buttons">
+                <input type="checkbox" name="types_number[]" class="not-check eat" id="types_number_0" value="0"><label for="types_number_0">食べる</label>
+                <input type="checkbox" name="types_number[]" class="not-check see" id="types_number_1" value="1"><label for="types_number_1">見る 遊ぶ</label>
+                <input type="checkbox" name="types_number[]" class="not-check buy" id="types_number_2" value="2"><label for="types_number_2">買う</label>
+                <input type="checkbox" name="types_number[]" class="not-check stay" id="types_number_3" value="3"><label for="types_number_3">泊まる</label>
+            </div>
 
-<div class="col-md-6">
-  <%= form_tag({ action: 'result' }, :method => :get, remote: true) do %>
-    <div class="form-group">
-      <label><%= check_box_tag 'types_number[]', 0 %>食べる</label>
-      <label><%= check_box_tag 'types_number[]', 1 %>見る・遊ぶ</label>
-      <label><%= check_box_tag 'types_number[]', 2 %>買う</label>
-      <label><%= check_box_tag 'types_number[]', 3 %>泊まる</label>
-    </div>
+            <%= collection_select :mymap_id, :id, @mymaps, :id, :name, {:prompt => "すべてのマイマップ"}, {:class => "mymap-select"} %>
 
-    <div class="form-group">
-      <%= label_tag :mymap, "登録するマイマップ" %>
-      <%= collection_select :mymap_id, :id, @mymaps, :id, :name, :prompt => "すべてのマイマップ" %>
-    </div>
+            <div class="switch-column">
+                <p>この時間に営業中のスポットのみ</p>
+                <div class="switch">
+                    <label class="switch__label">
+                        <%= check_box :place, :open_timing, {class: "switch__input"}, "true", "false" %>
+                        <span class="switch__content"></span>
+                        <span class="switch__circle"></span>
+                    </label>
+                </div>
+            </div>
 
-    <div class="form-group">
-      <p>この時間に営業中のスポットのみ</p>
-      <label class="switch_label">
-        <%= check_box :place, :open_timing, {}, "true", "false" %>
-        <span class="switch__content"></span>
-        <span class="switch__circle"></span>
-      </label>
-    </div>
+            <div>
+              <%= hidden_field_tag :user_id, @user.id %>
+              <%= button_tag( "マイマップからスポットを選択", {:type => "submit", :name => nil, :class => "enter search_mymap" } ) %>
+            </div>
+        <% end %>
 
-    <div class="form-group">
-      <%= hidden_field_tag :user_id, @user.id %>
-      <%= button_tag( {:type => "submit", :name => nil, :class => "btn btn-default" } ) do %>
-        <span class="glyphicon glyphicon-search">検索</span>
-      <% end %>
-    </div>
-  <% end %>
-
-  <ul id="result"></ul>
-</div>
+        <div id="result"></div>
+        </content>

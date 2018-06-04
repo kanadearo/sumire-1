@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Sumire</title>
+        <meta name="description" content="web application that redefines the communication">
+        <meta name="author" content="futae">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <%= stylesheet_link_tag "env_selections/index", :media => "all" %>
+        <%= stylesheet_link_tag "env_selections/index-rspnsv", :media => "all" %>
+        <%= favicon_link_tag("sumire.ico")%>
+    </head>
+    <body>
+        <%= image_tag "logo2.png", class: "logo2" %>
+        <%= image_tag "text.png", class: "text" %>
+        <p>sumireへようこそ！<br>使用環境を選んでください</p>
+        <a href="/browser_selections" class="enter" id="smtphone">スマートフォン・タブレット</a>
+        <a href="/select_pcs" class="enter">PC</a>
+        <div class="dot-box">
+            <div class="dot" id="one"></div>
+            <div class="dot" id="two"></div>
+            <div class="dot" id="three"></div>
+        </div>
+
+    </body>
+</html>

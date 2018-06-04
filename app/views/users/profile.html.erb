@@ -1,3 +1,36 @@
-<h1><%= @user.name %></h1>
-
-<%= link_to "編集", edit_user_path(@user) %>
+<%= stylesheet_link_tag "users/profile", :media => "all" %>
+<%= stylesheet_link_tag "users/profile-rspnsv", :media => "all" %>
+        <content>
+            <% if @user.picture.url %>
+                <%= image_tag @user.picture.url, class: "user-icon" %>
+            <% else %>
+                <%= image_tag "no-picture.png", class: "user-icon" %>
+            <% end %>
+            <h1 class="user-name"><%= @user.name %></h1>
+            <%= render 'relationships/follow_button', user: @user %>
+            <div class="nums">
+                <div class="num" id="map-num">
+                    <h2><%= @count_mymaps %></h2>
+                    <p>マイマップ</p>
+                </div>
+                <div class="num" id="follow-num">
+                    <h2><%= @count_followings %></h2>
+                    <p>フォロー</p>
+                </div>
+                <div class="num" id="follower-num">
+                    <h2><%= @count_followers %></h2>
+                    <p>フォロワー</p>
+                </div>
+            </div>
+            <p class="prof-sent"><%= text_url_to_link(h(@text)).html_safe %></p>
+            <div class="sns-bar">
+                <p><%= text_url_to_link(h(@user.own_url)).html_safe %></p>
+            </div>
+            <% if @user == current_user %>
+            <div class="edit">
+                <i class="fa fa-pen-square"></i>
+                <p><%= link_to "編集", edit_user_path(current_user) %></p>
+            </div>
+            <% end %>
+            <div class="enter"><%= link_to "このユーザーのマイマップを見る", @user %></div>
+        </content>

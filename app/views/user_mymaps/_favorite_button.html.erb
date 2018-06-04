@@ -1,13 +1,19 @@
-<% unless current_user.mymaps.include?(mymap) %>
   <% if current_user.favoriting?(mymap) %>
-    <%= form_for(current_user.user_mymaps.find_by(mymap_id: mymap.id), html: { method: :delete }) do |f| %>
-      <%= hidden_field_tag :mymap_id, mymap.id %>
-      <%= f.submit '♥', class: 'btn btn-danger btn-block' %>
-    <% end %>
+      <div class="hrt-box hrtBox">
+      <%= link_to user_mymap_path(mymap.id), method: :delete do%>
+        <%= image_tag("heart_blue.png") %>
+        <span id="numCount">
+          <div><%= mymap_counts(mymap) %></div>
+        </span>
+      <% end %>
+      </div>
   <% else %>
-    <%= form_for(current_user.user_mymaps.build) do |f| %>
-      <%= hidden_field_tag :mymap_id, mymap.id %>
-      <%= f.submit '♡', class: 'btn btn-primary btn-block' %>
-    <% end %>
+      <div class="hrt-box hrtBox">
+      <%= link_to user_mymaps_path(mymap), method: :post do %>
+        <%= image_tag("heart_gray.png") %>
+        <span id="numCount">
+          <div><%= mymap_counts(mymap) %></div>
+        </span>
+      <% end %>
+      </div>
   <% end %>
-<% end %>

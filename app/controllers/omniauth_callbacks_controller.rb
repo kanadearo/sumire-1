@@ -7,10 +7,19 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.persisted?
       flash[:notice] = I18n.t('devise.omniauth_callbacks.success', :kind => "Facebook")
       remember_me(@user)
-      sign_in_and_redirect @user, :event => :authentication
+#      sign_in_and_redirect @user, :event => :authentication
+      sign_in @user
+      redirect_to @user
     else
-      session["devise.facebook_data"] = request.env["omniauth.auth"]
-      redirect_to root_path
+      @user.save!
+      if @user.persisted?
+        remember_me(@user)
+        sign_in @user
+        redirect_to env_selections_path
+      else
+        session["devise.facebook_data"] = request.env["omniauth.auth"]
+        redirect_to root_path
+      end
     end
   end
 
