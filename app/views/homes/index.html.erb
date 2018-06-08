@@ -14,12 +14,96 @@
         <%= favicon_link_tag("sumire.ico")%>
     </head>
     <body>
-        <%= image_tag "logo2.png", class: "logo2" %>
-        <%= image_tag "text.png", class: "text" %>
-        <p>"行きたいところリスト"を作って<br>友達とシェアしよう</p>
-        <a href="/auth/facebook" class="enter" id="facebook">Facebookで新規登録</a>
-        <a href="/auth/facebook" class="enter" id="log-in">ログイン</a>
-        <p class="note note-1">sumireが自動でFacebookに投稿することはありません</p>
-        <p class="note note-2">利用規約とプライバシーポリシー</p>
+        <div class="headerContainer">
+            <div class="logo-set">
+                <%= image_tag "logo2.png", class: "logo2" %>
+                <%= image_tag "text.png", class: "text"%>
+            </div>
+        </div>
+        
+        <div class="descContainer">
+            <div class="desc">
+                <h1>「ここ行きたい」を増やそう</h1>
+                <p>sumireは、"行きたいとこリスト"を作って友達とシェアできるサービスです</p>
+                <a href="/auth/facebook" id="upperEnter" class="enter">Facebookでログイン</a>
+            </div>
+        </div>
+        
+        <div class="canContainer">
+            <h1>sumireができる、こんなこと</h1>
+            <div class="canBoxContainer">
+                <div class="canBox" id="leftCan">
+                    <%= image_tag "smt1.png", class: "smt" %>
+                    <h3>"行きたいとこリスト"が<br>簡単に作れます</h3>
+                </div>
+                <div class="canBox" id="centerCan">
+                    <%= image_tag "smt2.png", class: "smt" %>
+                    <h3>友達が作ったリストを<br>見ることができます</h3>
+                </div>
+                <div  class="canBox" id="rightCan">
+                    <%= image_tag "smt3.png", class: "smt" %>
+                    <h3>リストから行きたい場所を<br>絞り込み検索できます</h3>
+                </div>
+            </div>
+
+            <div class="featureBox">
+                <div class="feature">
+                    <%= image_tag "pin.png", class: "pic" %>
+                    <p>位置情報</p>
+                </div>
+                <div class="feature">
+                    <%= image_tag "clock.png", class: "pic" %>
+                    <p>営業時間</p>
+                </div>
+                <div class="feature">
+                    <%= image_tag "calen.png", class: "pic" %>
+                    <p>営業日</p>
+                </div>
+                <div class="feature" id="fourthBox">
+                    <%= image_tag "bag.png", class: "pic" %>
+                    <p>ジャンル</p>
+                </div>
+                <p>行きたい場所の名称を検索→登録するだけ！<br>あとはその場所の情報をsumireが自動で取得します</p>
+            </div>
+        </div>
+        
+        <div class="useCaseContainer">
+            <h1>たとえばこんな"行きたいとこリスト"</h1>
+            <div class="useBoxContainer">
+                <div class="useBox" id="leftUse">
+                    <%= image_tag "cafe.png", class: "useCase" %>
+                    <h3>たとえば...<br>「お気に入りカフェ」リスト</h3>
+                    <p>よく行くお店を<br>リスト化できます。<br>
+                </div>
+                <div class="useBox" id="centerUse">
+                    <%= image_tag "used.png", class: "useCase" %>
+                    <h3>たとえば...<br>「高円寺 好きな服屋」リスト</h3>
+                    <p>飲食店以外の場所も<br>登録できます。</p>
+                </div>
+                <div  class="useBox" id="rightUse">
+                    <%= image_tag "kyoto.png", class: "useCase" %>
+                    <h3>たとえば...<br>「京都旅行 行きたいとこ」リスト</h3>
+                    <p>お気に入りの場所だけでなく<br>行ったことがない場所でも<br>登録できます。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="remindContainer">
+            <h1>さあ、sumireをはじめよう。</h1>
+            <div class="enterBox">
+                <p id="mess1">登録完了まで8秒！</p>
+                <a href="/auth/facebook" class="enter" id="bottomEnter">ログイン</a>
+                <p id="mess2">登録・利用は一切無料です。利用規約同意の上ご利用ください。</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footerLinks">
+                <span>利用規約</span>
+                <span>プライバシーポリシー</span>
+                <span>Facebook</span>
+                <span>ブログ</span>
+            </div>
+        </div>
     </body>
 </html>

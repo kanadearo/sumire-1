@@ -7,6 +7,34 @@
         width:320px;
     }
 
+    .edit_mymap{
+      width:320px;
+    }
+
+    #edit_mymap{
+      width:320px;
+    }
+
+.detailbox{
+    background-color: #cccccc;
+    border-radius: 5px;
+    color: white;
+    display: block;
+    font-size: 12px;
+    height: 157px;
+    position: relative;
+    text-align: center;
+    margin: 0;
+    width: 320px;
+}
+
+.detailPic{
+    border-radius: 5px;
+    height: 157px;
+    object-fit: cover;
+    width: 320px;
+}
+
     .enter{
         background-color: #70CADF;
         border-radius: 40px;

@@ -1,25 +1,788 @@
-@media(max-width: 320px){
-    body{
-        width: 320px;
-        margin:10px auto;
+@media screen and ( max-width:320px){
+
+    .headerContainer{
+        height: 30px;
+        padding: 2px 95px 10px 95px;
     }
 
-    p {
-        font-size: 18px;
+    .logo-set{
+        height: 30px;
+        width: 130px;
+        margin: 0px auto;
+    }
+    
+    .descContainer{
+        height: 390px;
+        padding: 50px 10px 10px 10px;
+        background-image: url("/images/girl.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .descContainer h1{
+        color: #323232;
+        font-size: 34px;
+        font-family: HiraginoSans;
+        line-height: 1.2;
+        margin: 30px 0px 30px 0px;
+        text-align: center;
+    }
+
+    .descContainer p{
+        color: #323232;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: center;
+        margin: 0px auto;
+        margin-top: 40px;
+        width: 280px;
+    }
+
+    #upperEnter{
+        margin-top: 100px;
+        background-color: #3E549C;
+    }
+
+    #bottomEnter{
+        background-color: #3E549C;
     }
 
     .enter{
-        background-color: #70CADF;
-        border-radius: 40px;
+        border-radius: 100px;
+        background-color: #3E549C;
         color: white;
         cursor: pointer;
         cursor: hand;
+        display: block;
+        font-family: HiraginoSans;
+        font-size: 14px;
+        font-weight: 50;
         height: 50px;
         line-height: 50px;
         margin: 0px auto;
-        margin-top: 30px;
-        bottom: 20px;
+        margin-top: 44px;
         text-align: center;
+        width: 300px;
+    }
+
+    .canContainer{
+        height: 1500px;
+        padding: 40px 10px;
+    }
+
+    .canBoxContainer{
+        height: 1280px;
+        margin: 0px auto;
+        padding: auto;
+        width: 300px;
+    }
+
+    .canContainer h1{
+        font-size: 20px;
+        text-align: center;
+        margin: 0px 0px 60px 0px;
+    }
+
+    .canBox{
+        float: left;
+        height: 400px;
+        width: 270px;
+        margin-bottom: 30px;
+    }
+
+    .smt{
+        height: 320px;
+        margin: 10px 50px 0px 50px;
+        width: 200px;
+    }
+
+    .canBox h3{
+        font-size: 17px;
+        width: 300px;
+        margin: 10px 0px;
+        text-align: center;
+    }
+
+    .featureBox{
+        background-color: white;
+        border: thin solid #9B9B9B;
+        border-radius: 20px;
+        font-weight: bold;
+        height: 100px;
+        margin: 0 auto;
+        margin-top: 30px;
+        width: 300px;
+    }
+
+    .feature{
+        float: left;
+        height: 60px;
+        margin-top: 5px;
+        width: 75px;
+        position: relative;
+    }
+    .pic{
+        display: block;
+        height: 35px;
+        margin: 0px auto;
+        margin-bottom: 0px;
+        width: 35px;
+    }
+
+    .featureBox p{
+        font-size: 10px;
+        margin: 0px;
+        bottom: 5px;
+        text-align: center;
+    }
+
+    .feature p{
+        margin: 0px;
+        text-align: center;
+    }
+
+    #rightCan{
+        margin-right: 0px;
+    }
+
+    .useCaseContainer{
+        background-color: #deb887;
+        height: 1500px;
+        padding: 20px 10px 20px 10px;
+        background-image: url("/images/book.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .useCaseContainer h1{
+        font-size: 20px;
+        text-align: center;
+        margin: 0px 0px 60px 0px;
+    }
+
+    .useBoxContainer{
+        height: 1500px;
+        margin: 0px auto;
+        padding: auto;
+        width: 270px;
+        margin: 0px auto;
+    }
+
+    .useBox{
+        border-radius: 15px;
+        background-color: white;
+        float: left;
+        height: 400px;
+        margin-bottom: 30px;
+        width: 270px;
+    }
+
+    .useBox img{
+        margin-top: 35px;
+    }
+
+    .useBox h3{
+        font-size: 17px;
+        width: 270px;
+        margin: 20px 0px 0px 0px;
+        text-align: center;
+    }
+
+    .useBox p{
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .useCase{
+        height: 200px;
+        margin: 10px 35px 0px 35px;
+        width: 200px;
+    }
+
+    #rightUse{
+        margin-right: 0px;
+    }
+
+    .remindContainer{
+        height: 178px;
+        padding: 90px 16px 90px 16px;
+    }
+
+    .remindContainer h1{
+        font-size: 20px;
+        font-family: HiraginoSans;
+        line-height: 1.2;
+        margin: 0px;
+        text-align: center;
+    }
+
+    .enterBox{
+        height: 90px;
+        margin-top: 60px;
+    }
+
+    #mess1{
+        color: #3E549C;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    #mess2 {
+        font-size: 10px;
+        text-align: center;
+    }
+
+    #bottomEnter{
+        margin: 0px auto;
+    }
+
+    .footer{
+        background-color: #70CADF;
+        height: 60px;
+        text-align: center;
+    }
+
+    .footerLinks{
+        margin: 0 auto;
+        padding-top: 10px;
+        width: 320px;
+    }
+
+    .footerLinks span{
+        color: white;
+        display: inline-block;
+        font-size: 10px;
+        margin: 0px 5px; 
+    }
+
+}
+
+@media screen and (min-width: 321px) and (max-width: 415px){
+    
+    .headerContainer{
+        height: 30px;
+        padding: 10px 122.5px;
+    }
+
+    .logo-set{
+        height: 30px;
+        width: 130px;
+        margin: 0px auto;
+    }
+    
+    .descContainer{
+        height: 390px;
+        padding: 50px 10px 10px 10px;
+        background-image: url("/images/girl.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .descContainer h1{
+        color: #323232;
+        font-size: 42px;
+        font-family: HiraginoSans;
+        line-height: 1.2;
+        margin: 30px 0px 30px 0px;
+        text-align: center;
+    }
+
+    .descContainer p{
+        color: #323232;
+        font-size: 19px;
+        font-weight: bold;
+        text-align: center;
+        margin: 0px auto;
+        margin-top: 40px;
         width: 280px;
     }
-} 
+
+    #upperEnter{
+        margin-top: 60px;
+        background-color: #3E549C;
+    }
+
+    #bottomEnter{
+        background-color: #3E549C;
+    }
+
+    .enter{
+        border-radius: 100px;
+        background-color: #3E549C;
+        color: white;
+        cursor: pointer;
+        cursor: hand;
+        font-family: HiraginoSans;
+        font-size: 14px;
+        font-weight: 50;
+        height: 50px;
+        line-height: 50px;
+        margin: 0px auto;
+        margin-top: 44px;
+        text-align: center;
+        width: 300px;
+    }
+
+    .canContainer{
+        height: 1500px;
+        padding: 40px 10px;
+    }
+
+    .canBoxContainer{
+        height: 1280px;
+        margin: 0px auto;
+        padding: auto;
+        width: 300px;
+    }
+
+    .canContainer h1{
+        font-size: 20px;
+        text-align: center;
+        margin: 0px 0px 60px 0px;
+    }
+
+    .canBox{
+        float: left;
+        height: 400px;
+        width: 270px;
+        margin-bottom: 30px;
+    }
+
+    .smt{
+        height: 320px;
+        margin: 10px 50px 0px 50px;
+        width: 200px;
+    }
+
+    .canBox h3{
+        font-size: 17px;
+        width: 300px;
+        margin: 10px 0px;
+        text-align: center;
+    }
+
+    .featureBox{
+        background-color: white;
+        border: thin solid #9B9B9B;
+        border-radius: 20px;
+        font-weight: bold;
+        height: 100px;
+        margin: 0 auto;
+        margin-top: 30px;
+        width: 300px;
+    }
+
+    .feature{
+        float: left;
+        height: 60px;
+        margin-top: 5px;
+        width: 75px;
+        position: relative;
+    }
+    .pic{
+        display: block;
+        height: 35px;
+        margin: 0px auto;
+        margin-bottom: 0px;
+        width: 35px;
+    }
+
+    .featureBox p{
+        font-size: 10px;
+        margin: 0px;
+        bottom: 5px;
+        text-align: center;
+    }
+
+    .feature p{
+        margin: 0px;
+        text-align: center;
+    }
+
+    #rightCan{
+        margin-right: 0px;
+    }
+
+    .useCaseContainer{
+        background-color: #deb887;
+        height: 1500px;
+        padding: 20px 10px 20px 10px;
+        background-image: url("/images/book.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .useCaseContainer h1{
+        font-size: 20px;
+        text-align: center;
+        margin: 0px 0px 60px 0px;
+    }
+
+    .useBoxContainer{
+        height: 1500px;
+        margin: 0px auto;
+        padding: auto;
+        width: 270px;
+        margin: 0px auto;
+    }
+
+    .useBox{
+        border-radius: 15px;
+        background-color: white;
+        float: left;
+        height: 400px;
+        margin-bottom: 30px;
+        width: 270px;
+    }
+
+    .useBox img{
+        margin-top: 35px;
+    }
+
+    .useBox h3{
+        font-size: 17px;
+        width: 270px;
+        margin: 20px 0px 0px 0px;
+        text-align: center;
+    }
+
+    .useBox p{
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .useCase{
+        height: 200px;
+        margin: 10px 35px 0px 35px;
+        width: 200px;
+    }
+
+    #rightUse{
+        margin-right: 0px;
+    }
+
+    .remindContainer{
+        height: 178px;
+        padding: 90px 16px 90px 16px;
+    }
+
+    .remindContainer h1{
+        font-size: 20px;
+        font-family: HiraginoSans;
+        line-height: 1.2;
+        margin: 0px;
+        text-align: center;
+    }
+
+    .enterBox{
+        height: 90px;
+        margin-top: 60px;
+    }
+
+    #mess1{
+        color: #3E549C;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    #mess2 {
+        font-size: 10px;
+        text-align: center;
+    }
+
+    #bottomEnter{
+        margin: 0px auto;
+    }
+
+    .footer{
+        background-color: #70CADF;
+        height: 60px;
+        text-align: center;
+    }
+
+    .footerLinks{
+        margin: 0 auto;
+        padding-top: 10px;
+        width: 320px;
+    }
+
+    .footerLinks span{
+        color: white;
+        display: inline-block;
+        font-size: 10px;
+        margin: 0px 5px; 
+    }
+
+
+}
+
+@media screen and (min-width:600px) and ( max-width:960px) {
+
+    .headerContainer{
+        height: 30px;
+        padding-top: 18px;
+        padding-right: 10px;
+    }
+
+    .logo-set{
+        height: 30px;
+        width: 130px;
+        margin: 0px auto;
+    }
+    
+    .descContainer{
+        height: 390px;
+        padding: 50px 10px 10px 10px;
+        background-image: url("/images/girl.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .descContainer h1{
+        color: #323232;
+        font-size: 42px;
+        font-family: HiraginoSans;
+        line-height: 1.2;
+        margin: 30px 0px 30px 0px;
+        text-align: center;
+    }
+
+    .descContainer p{
+        color: #323232;
+        font-size: 19px;
+        font-weight: bold;
+        text-align: center;
+        margin: 0px auto;
+        margin-top: 40px;
+        width: 400px;
+    }
+
+    #upperEnter{
+        margin-top: 100px;
+        background-color: #3E549C;
+    }
+
+    #bottomEnter{
+        background-color: #3E549C;
+    }
+
+    .enter{
+        border-radius: 100px;
+        background-color: #3E549C;
+        color: white;
+        cursor: pointer;
+        cursor: hand;
+        font-family: HiraginoSans;
+        font-size: 14px;
+        font-weight: 50;
+        height: 50px;
+        line-height: 50px;
+        margin: 0px auto;
+        margin-top: 44px;
+        text-align: center;
+        width: 300px;
+    }
+
+    .canContainer{
+        height: 740px;
+        padding: 40px 10px;
+    }
+
+    .canBoxContainer{
+        height: 440px;
+        margin: 0px auto;
+        padding: auto;
+        width: 760px;
+        margin: 0px auto;
+    }
+
+    .canContainer h1{
+        font-size: 28px;
+        text-align: center;
+        margin: 0px 0px 60px 0px;
+    }
+
+    .canBox{
+        float: left;
+        height: 400px;
+        width: 200px;
+        margin: 10px 25px 0px 25px;
+    }
+
+    .smt{
+        height: 320px;
+        width: 200px;
+        margin: 0px;
+    }
+
+    .canBox h3{
+        font-size: 15px;
+        width: 200px;
+        margin: 10px 0px;
+        text-align: center;
+    }
+
+    .featureBox{
+        background-color: white;
+        border: thin solid #9B9B9B;
+        border-radius: 20px;
+        font-weight: bold;
+        height: 170px;
+        margin: 0 auto;
+        margin-top: 30px;
+        width: 600px;
+    }
+
+    .feature{
+        float: left;
+        height: 100px;
+        margin-top: 5px;
+        width: 150px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .pic{
+        display: block;
+        height: 60px;
+        margin: 0px auto;
+        margin-top: 20px;
+        width: 60px;
+    }
+
+    .featureBox p{
+        font-size: 12px;
+        margin: 0px;
+        bottom: 5px;
+        text-align: center;
+    }
+
+    .feature p{
+        margin: 0px;
+        text-align: center;
+    }
+
+    #rightCan{
+        margin-right: 0px;
+    }
+
+    .useCaseContainer{
+        background-color: #deb887;
+        height: 520px;
+        padding: 40px 10px 40px 10px;
+        background-image: url("/images/book.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .useCaseContainer h1{
+        font-size: 28px;
+        text-align: center;
+        margin: 0px 0px 60px 0px;
+    }
+
+    .useBoxContainer{
+        height: 300px;
+        margin: 0px auto;
+        padding: auto;
+        width: 100%;
+        margin: 0px auto;
+    }
+
+    .useBox{
+        border-radius: 15px;
+        background-color: white;
+        float: left;
+        height: 370px;
+        margin-bottom: 30px;
+        width: 200px;
+        margin: 0px 25px;
+    }
+
+    .useBox img{
+        margin-top: 35px;
+    }
+
+    .useBox h3{
+        font-size: 15px;
+        width: 180px;
+        margin: 10px;
+        text-align: center;
+    }
+
+    .useBox p{
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .useCase{
+        height: 180px;
+        margin: 10px 10px 0px 10px;
+        width: 180px;
+    }
+
+    #rightUse{
+        margin-right: 0px;
+    }
+
+    .remindContainer{
+        height: 178px;
+        padding: 50px 16px 70px 16px;
+    }
+
+    .remindContainer h1{
+        font-size: 28px;
+        font-family: HiraginoSans;
+        line-height: 1.2;
+        margin: 0px;
+        text-align: center;
+    }
+
+    .enterBox{
+        height: 90px;
+        margin-top: 60px;
+    }
+
+    #mess1{
+        color: #3E549C;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    #mess2 {
+        font-size: 10px;
+        text-align: center;
+    }
+
+    #bottomEnter{
+        margin: 0px auto;
+    }
+
+    .footer{
+        background-color: #70CADF;
+        height: 60px;
+        text-align: center;
+    }
+
+    .footerLinks{
+        margin: 0 auto;
+        padding-top: 20px;
+        width: 320px;
+    }
+
+    .footerLinks span{
+        color: white;
+        display: inline-block;
+        font-size: 12px;
+        margin: 0px 5px; 
+    }
+}

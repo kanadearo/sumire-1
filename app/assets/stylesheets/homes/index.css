@@ -1,84 +1,270 @@
 body{
-    width: 375px;
-    margin:10px auto;
+  padding: 0;
+  margin: 0;
+  color: #4C4C4C;
 }
 
-.logo2{
-    height: 70px;
-    display: block;
-    margin: 0px auto;
-    margin-top: 60px;
-    width: 70px;
+.headerContainer{
+    height: 40px;
+    padding: 20px 16px;
 }
 
-.text{
-    height:40px;
-    display: block;
-    margin: 0px auto;
-    margin-top: 30px;
-    margin-bottom: 20px;
+.logo-set{
+    height: 30px;
+    float: left;
     width: 130px;
 }
 
-p{
-    font-family: HiraginoSans-W3;;
-    font-size: 20px;
-    color: #4C4C4C;
-    letter-spacing: 0;
-    text-align: center;
-    line-height: 26px;
+.logo2{
+    display: inline;
+    float: left;
+    height: 30px;
+    width: 30px;
 }
 
-a:link{color:white;}
-a:visited{color:white;}
-a:hover{color:white;}
-a:active{color:white;}
-a{text-decoration:none;}
+.text{
+    display: inline;
+    float: left;
+    height: 30px;
+    width: 100px;
+}
+
+.descContainer{
+    height: 280px;
+    padding: 120px 16px 120px 16px;
+    background-image: url("/images/girl.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.descContainer h1{
+    color: #323232;
+    font-size: 62px;
+    font-family: HiraginoSans;
+    line-height: 1.2;
+    margin: 0px;
+    text-align: center;
+}
+
+.descContainer p{
+    color: #323232;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 24px;
+}
+
+#upperEnter{
+    margin-top: 110px;
+}
+
+.featureBox{
+    background-color: white;
+    border: thin solid #9B9B9B;
+    border-radius: 20px;
+    font-weight: bold;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 60px;
+    width: 800px;
+}
+
+.feature{
+    float: left;
+    height: 110px;
+    margin-top: 20px;
+    width: 200px;
+    position: relative;
+}
+.pic{
+    display: block;
+    height: 65px;
+    margin: 0px auto;
+    margin-bottom: 10px;
+    width: 65px;
+}
 
 .enter{
-    background-color: #70CADF;
-    border-radius: 40px;
+    border-radius: 100px;
+    background: #3E549C;
     color: white;
     cursor: pointer;
     cursor: hand;
+    display: block;
+    font-family: HiraginoSans;
+    font-size: 14px;
+    font-weight: 50;
     height: 50px;
     line-height: 50px;
     margin: 0px auto;
-    bottom: 20px;
+    margin-top: 44px;
     text-align: center;
+    text-decoration:none;
     width: 300px;
-    z-index: 999;
-    display: block;
 }
 
-#facebook{
-    background: #3E549C;
-    margin-top: 100px;
-    margin-bottom: 30px;
+.canContainer{
+    height: 740px;
+    padding: 120px 16px;
 }
 
-#log-in{
-    background: #70CADF;
+.canBoxContainer{
+    height: 400px;
+    margin: 0px auto;
+    padding: auto;
+    width: 1000px;
 }
 
-.note{
-    color: #838383;
-    font-family: HiraginoSans-W3;;
-    font-size: 10px;
-    line-height: 8px;
+.canContainer h1{
+    font-size: 28px;
+    text-align: center;
+    margin: 0px 0px 60px 0px;
+}
+
+.canBox{
+    float: left;
+    height: 400px;
+    margin-right: 95px;
+    width: 270px;
+}
+
+.smt{
+    height: 320px;
+    margin: 10px 35px 0px 35px;
+    width: 200px;
+}
+
+.canBox h3{
+    font-size: 17px;
+    width: 270px;
+    margin: 40px 0px;
     text-align: center;
 }
 
-.note-1{
-    margin-top: 30px;
+.featureBox p{
+    margin: 0px;
+    bottom: 5px;
+    text-align: center;
 }
 
-.note-2{
-    margin-bottom: 30px;
-    text-decoration: underline;
+.feature p{
+    margin: 0px;
+    text-align: center;
 }
 
-.note-2:hover{
-    cursor: pointer;
-    cursor: hand;
+#rightCan{
+    margin-right: 0px;
+}
+
+.useCaseContainer{
+    background-color: #deb887;
+    height: 465px;
+    padding: 120px 16px 120px 16px;
+    background-image: url("/images/book.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.useCaseContainer h1{
+    font-size: 28px;
+    text-align: center;
+    margin: 0px 0px 60px 0px;
+}
+
+.useBoxContainer{
+    height: 365px;
+    margin: 0px auto;
+    padding: auto;
+    width: 1000px;
+}
+
+.useBox{
+    border-radius: 15px;
+    background-color: white;
+    float: left;
+    height: 400px;
+    margin-right: 95px;
+    width: 270px;
+}
+
+.useBox img{
+    margin-top: 35px;
+}
+
+.useBox h3{
+    font-size: 17px;
+    width: 270px;
+    margin: 20px 0px 0px 0px;
+    text-align: center;
+}
+
+.useBox p{
+    font-size: 14px;
+    text-align: center;
+}
+
+.useCase{
+    height: 200px;
+    margin: 10px 35px 0px 35px;
+    width: 200px;
+}
+
+#rightUse{
+    margin-right: 0px;
+}
+
+.remindContainer{
+    height: 178px;
+    padding: 90px 16px 90px 16px;
+}
+
+.remindContainer h1{
+    font-size: 28px;
+    font-family: HiraginoSans;
+    line-height: 1.2;
+    margin: 0px;
+    text-align: center;
+}
+
+.enterBox{
+    height: 90px;
+    margin-top: 60px;
+}
+
+#mess1{
+    color: #3E549C;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#mess2 {
+    font-size: 10px;
+    text-align: center;
+}
+
+#bottomEnter{
+    margin: 0px auto;
+}
+
+.footer{
+    background-color: #70CADF;
+    height: 60px;
+    text-align: center;
+}
+
+.footerLinks{
+    margin: 0 auto;
+    padding-top: 20px;
+    width: 350px;
+}
+
+.footerLinks span{
+    color: white;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0px 5px; 
 }

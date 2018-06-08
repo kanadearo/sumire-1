@@ -24,8 +24,16 @@
     height: 120px;
     margin: 10px 20px;
     padding: 10px 10px;
-    width: 300px;
+    width: 335px;
 }
+
+.box-pic{
+    height: 230px;
+    object-fit: cover;
+    width: 375px;
+    margin:0 auto;
+}
+
 
 .buttons{
     height: 100px;
@@ -45,6 +53,7 @@
     display: block;
     font-size: 12px;
     float: right;
+    height:40px;
     margin-right: 30px;
     margin-top: 10px;
     padding: 4px 4px;
@@ -99,7 +108,7 @@
     height: 40px;
     margin: 10px 20px;
     padding: 0px 10px;
-    width: 300px;
+    width: 335px;
 }
 
 .mymap-select{
@@ -108,7 +117,6 @@
     border: solid thin #9B9B9B;
     color: #4C4C4C;
     height: 50px;
-    margin: 30px auto;
-    margin-left: 20px;
-    width: 323px;
+    margin: 30px 20px;
+    width: 335px;
 }

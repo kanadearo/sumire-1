@@ -54,6 +54,7 @@
     cursor: hand;
     float: left;
     height: 50px;
+    object-fit:cover;
     margin-left: 20px;
     width: 50px;
 }

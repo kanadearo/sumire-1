@@ -14,14 +14,14 @@
   width:375px;
 }
 
-.detailBox{
+.detailbox{
     background-color: #cccccc;
     border-radius: 5px;
     color: white;
     display: block;
     font-size: 12px;
     height: 157px;
-    margin: 0px auto;
+    margin:0 20px;
     margin-top: 20px;
     position: relative;
     text-align: center;
@@ -34,6 +34,7 @@
     height: 157px;
     object-fit: cover;
     width: 335px;
+    margin:0 auto;
 }
 
 .spot-name{

@@ -18,7 +18,7 @@
         height: 120px;
         margin: 10px 10px;
         padding: 10px 10px;
-        width: 280px;
+        width: 300px;
     }
 
     .enter{
@@ -36,6 +36,11 @@
         width: 280px;
     }
 
+    .box-pic{
+      width: 320px;
+      height: 200px;
+    }
+
     #spot-name{
         border: solid thin #9B9B9B;
         border-radius: 8px;
@@ -44,15 +49,15 @@
         height: 40px;
         margin: 10px 10px;
         padding: 0px 10px;
-        width: 280px;
+        width: 300px;
     }
 
-    #mymap-select{
+    .mymap-select{
         border-radius: 10px;
         border: solid thin #9B9B9B;
         color: #4C4C4C;
         height: 50px;
-        margin: 30px 10px;
+        margin: 10px;
         width: 300px;
     }
 
