@@ -49,11 +49,8 @@ Rails.application.config.assets.precompile += %w( users/edit-rspnsv.css )
 Rails.application.config.assets.precompile += %w( user_searchs/index.css )
 Rails.application.config.assets.precompile += %w( user_searchs/index-rspnsv.css )
 Rails.application.config.assets.precompile += %w( user_searchs/recomend_users.css )
-Rails.application.config.assets.precompile += %w( user_searchs/recomend_users-rspnsv.css )
 Rails.application.config.assets.precompile += %w( user_searchs/following_users.css )
-Rails.application.config.assets.precompile += %w( user_searchs/following_users-rspnsv.css )
 Rails.application.config.assets.precompile += %w( user_searchs/facebook_users.css )
-Rails.application.config.assets.precompile += %w( user_searchs/facebook_users-rspnsv.css )
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 

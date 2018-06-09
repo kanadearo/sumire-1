@@ -20,34 +20,6 @@
     width: 100px;
 }
 
-.prof{
-    height: 50px;
-    margin: 20px auto;
-    margin-left: 70px;
-    width: 355px;
-}
-
-.prof-icon{
-    border-radius: 50px;
-    cursor: pointer;
-    cursor: hand;
-    float: left;
-    height: 50px;
-    width: 50px;
-}
-
-.prof-name{
-    color: #9B9B9B;
-    cursor: pointer;
-    cursor: hand;
-    font-size: 20px;
-    float: left;
-    line-height: 50px;
-    margin-left: 20px;
-    height: 50px;
-    width: 180px;
-}
-
 .detailBox{
     background-color: black;
     border-radius: 5px;
@@ -276,6 +248,7 @@
     top: 36px;
     left: 18px;
     width: 120px;
+    text-overflow: ellipsis;
 }
 
 .dot-box{

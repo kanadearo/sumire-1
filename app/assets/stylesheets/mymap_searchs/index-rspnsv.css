@@ -2,9 +2,9 @@
     .search-box{
         border: solid thin #9B9B9B;
         border-radius: 8px;
-        color: #9B9B9B;
+        color: #4c4c4c;
         height: 40px;
-        margin: 30px 10px;
+        margin: 30px auto;
         padding: 0px 10px;
         width: 300px;
     }
@@ -17,6 +17,11 @@
         text-align: center;
         width: 320px;
     }
+
+    .discription p{
+      font-size: 12px;
+    }
+
     .disc-1{
         cursor: pointer;
         cursor: hand;
@@ -104,6 +109,7 @@
         top: 36px;
         left: 18px;
         width: 112px;
+        text-overflow: ellipsis;
     }
 
     .enter{

@@ -2,13 +2,13 @@
   <% if current_user.following?(user) %>
     <div class="follow-btn">
       <%= link_to relationship_path(user.id), method: :delete do %>
-        <%= image_tag("follow_on.png")%>
+        <%= image_tag("follow_on.png", class: "flwBtn") %>
       <% end %>
     </div>
   <% else %>
     <div class="follow-btn">
       <%= link_to relationships_path(follow_id: user.id), method: :post do %>
-        <%= image_tag("follow_off.png")%>
+        <%= image_tag("follow_off.png", class: "flwBtn") %>
       <% end %>
     </div>
   <% end %>

@@ -48,7 +48,7 @@
                   });
                 </script>
 
-                <input class="spot-name" id="mymap-name" type="text" value="<%= @mymap.name%>" name="mymap[name]" placeholder="マイマップ名" >
+                <input class="spot-name" id="mymap-name" type="text" value="<%= @mymap.name%>" name="mymap[name]" placeholder="マイリスト名" >
 
                 <div class="check">
                   <label><input type="radio" value="0" checked="checked" name="mymap[status]" id="mymap_status_0">全体に公開</label>
@@ -63,12 +63,12 @@
                 <%= text_field_tag 'mymap[tag_list]', @mymap.tag_list.join(','), class: "textarea-1", placeholder: "タグ　例：　中野、カフェ、行きつけ" %>
                 <textarea name="mymap[comment]" id="mymap_comment" class="textarea-2" rows="10" cols="60" placeholder="メモ"><%= @mymap.comment %></textarea>
 
-                <%= link_to "このマイマップを削除", @mymap, method: :delete, data: { confirm: "#{@mymap.name}を削除しますか？" }%>
+                <%= link_to "このマイリストを削除", @mymap, method: :delete, data: { confirm: "#{@mymap.name}を削除しますか？" }%>
 
                 <div id="text-3">
                     <p>設定はあとから変更できます</p>
                 </div>
 
-                <input type="submit" name="commit" value="マイマップを更新" class="enter">
+                <input type="submit" name="commit" value="マイリストを更新" class="enter">
           <% end %>
         </content>

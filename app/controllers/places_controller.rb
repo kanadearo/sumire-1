@@ -155,7 +155,7 @@ class PlacesController < ApplicationController
       flash[:success] = "#{@place.name}の位置情報を更新しました。"
       redirect_to @place.mymap
     rescue
-      flash[:warning] = "スポット名を入力してください。"
+      flash[:warning] = "記入漏れを確認してください。"
       redirect_to edit_place_path
     end
   end

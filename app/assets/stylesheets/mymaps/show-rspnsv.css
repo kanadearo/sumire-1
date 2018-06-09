@@ -9,12 +9,7 @@
         width: 130px;
         left: 95px;
     }
-    .prof{
-        height: 50px;
-        margin: 20px auto;
-        margin-left: 30px;
-        width: 280px;
-    }
+
     .discription{
         color: #9B9B9B;
         font-size: 12px;
@@ -189,6 +184,7 @@
         top: 36px;
         left: 18px;
         width: 112px;
+        text-overflow: ellipsis;
     }
 
     #navContent {

@@ -6,6 +6,6 @@
 
   <%= f.collection_select :mymap_id, current_user.mymaps.all, :id, :name, {:prompt => true}, {:class => "mymap-select"} %>
 
-  <%= f.submit "このマイマップに登録", class: 'enter' %>
+  <%= f.submit "このマイリストに登録", class: 'enter' %>
 <% end %>
 </content>

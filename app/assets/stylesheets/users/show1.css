@@ -37,6 +37,11 @@
     width: 375px;
 }
 
+.flwBtn{
+    height: 30px;
+    width: 115px;
+}
+
 .disc-1{
     border-bottom: solid medium #70CADF;
     color: #696969;
@@ -118,6 +123,7 @@
     top: 36px;
     left: 18px;
     width: 120px;
+    text-overflow: ellipsis;
 }
 
 .dot-box{

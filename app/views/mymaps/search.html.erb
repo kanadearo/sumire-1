@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag "mymaps/search.css", :media => "all" %>
 <%= stylesheet_link_tag "mymaps/search-rspnsv", :media => "all" %>
         <content>
-        <h1><%= @user.name %>さんの<br>マイマップからスポットを検索</h1>
+        <h1><%= @user.name %>さんの<br>マイリストからスポットを検索</h1>
         <%= form_tag({ action: 'result' }, :method => :get, remote: true) do %>
             <div class="buttons">
                 <input type="checkbox" name="types_number[]" class="not-check eat" id="types_number_0" value="0"><label for="types_number_0">食べる</label>
@@ -10,7 +10,7 @@
                 <input type="checkbox" name="types_number[]" class="not-check stay" id="types_number_3" value="3"><label for="types_number_3">泊まる</label>
             </div>
 
-            <%= collection_select :mymap_id, :id, @mymaps, :id, :name, {:prompt => "すべてのマイマップ"}, {:class => "mymap-select"} %>
+            <%= collection_select :mymap_id, :id, @mymaps, :id, :name, {:prompt => "すべてのマイリスト"}, {:class => "mymap-select"} %>
 
             <div class="switch-column">
                 <p>この時間に営業中のスポットのみ</p>
@@ -25,7 +25,7 @@
 
             <div>
               <%= hidden_field_tag :user_id, @user.id %>
-              <%= button_tag( "マイマップからスポットを選択", {:type => "submit", :name => nil, :class => "enter search_mymap" } ) %>
+              <%= button_tag( "マイリストからスポットを選択", {:type => "submit", :name => nil, :class => "enter search_mymap" } ) %>
             </div>
         <% end %>
 

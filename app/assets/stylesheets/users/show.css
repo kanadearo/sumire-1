@@ -27,6 +27,11 @@
     width: 180px;
 }
 
+.flwBtn{
+    height: 30px;
+    width: 115px;
+}
+
 .discription{
     color: #9B9B9B;
     font-size: 12px;
@@ -118,6 +123,7 @@
     top: 36px;
     left: 18px;
     width: 120px;
+    text-overflow: ellipsis;
 }
 
 .dot-box{

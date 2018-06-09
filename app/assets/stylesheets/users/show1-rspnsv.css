@@ -127,6 +127,7 @@
         top: 36px;
         left: 18px;
         width: 112px;
+        text-overflow: ellipsis;
     }
 
 }
