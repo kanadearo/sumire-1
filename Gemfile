@@ -62,7 +62,6 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-puma'
   gem 'capistrano-nginx'
-  gem 'capistrano-sidekiq'
 end
 
 group :test do
