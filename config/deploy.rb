@@ -5,7 +5,7 @@
 # http://capistranorb.com/documentation/getting-started/configuration/
 #-----------------------------------------------------------------------
 
-lock '3.9'
+lock '3.11.0'
 
 #---------------------------------
 # ご自身の環境に合わせて修正が必要です。
@@ -17,14 +17,14 @@ set :application, 'sumire'
 set :branch, 'master'
 set :user, 'admin'
 set :deploy_to, "/opt/#{fetch(:application)}"
-set :rbenv_ruby, File.read('.ruby-version').strip
+set :rbenv_ruby, "2.3.1" #File.read('.ruby_version').strip
 set :pty,             false
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
 set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets',
                                                'vendor/bundle', 'public/system', 'public/assets', 'public/uploads')
-set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
+set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml', '.env')
 
 # puma
 set :puma_threads, [4, 16]
@@ -81,7 +81,7 @@ namespace :deploy do
 
       upload!('config/database.yml', "#{shared_path}/config/database.yml")
       upload!('config/secrets.yml', "#{shared_path}/config/secrets.yml")
-      upload!('config/secrets.yml.key', "#{shared_path}/config/secrets.yml.key")
+      upload!('.env', "#{shared_path}/.env")
     end
   end
 
