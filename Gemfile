@@ -56,6 +56,13 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-core'
   gem 'rspec-rails'
+  gem 'capistrano'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+  gem 'capistrano-nginx'
+  gem 'capistrano-sidekiq'
 end
 
 group :test do
@@ -95,3 +102,5 @@ gem 'font-awesome-rails'
 gem 'gon'
 gem 'activeadmin'
 gem 'fog-aws'
+
+
