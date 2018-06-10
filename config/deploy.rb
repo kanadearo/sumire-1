@@ -13,7 +13,7 @@ lock '3.11.0'
 set :repo_url, 'https://github.com/futae/sumire.git'
 
 # base
-set :application, 'sumire'
+set :application, 'SumireApp'
 set :branch, 'master'
 set :user, 'admin'
 set :deploy_to, "/opt/#{fetch(:application)}"
