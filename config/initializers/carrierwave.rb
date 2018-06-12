@@ -9,7 +9,7 @@ CarrierWave.configure do |config|
     }
 
     config.storage = :fog
-    config.assets_host = 'https://s3.amazonaws.com/su-mire'
+    config.asset_host = 'https://s3.amazonaws.com/su-mire'
     config.fog_directory = ENV["AWS_BUCKET_NAME"],
     config.cache_storage = :fog
   end
