@@ -22,8 +22,9 @@ test:
 
 production:
   <<: *default
-  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
-  host: <%= Rails.application.secrets.DB_HOST %>
-  database: <%= Rails.application.secrets.DB_NAME %>
-  username: <%= ENV["DB_USERNAME"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: sumire_production
+  username: sumire
+  password: <%= ENV['SUMIRE_DATABESE_PASSWORD'] %>
