@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180601075458) do
+ActiveRecord::Schema.define(version: 20180613215838) do
+
+  create_table "Places", force: :cascade do |t|
+    t.integer  "mymap_id",     null: false
+    t.string   "name",         null: false
+    t.integer  "types_number", null: false
+    t.string   "types_name",   null: false
+    t.text     "address",      null: false
+    t.string   "phone_number"
+    t.text     "google_url"
+    t.string   "open_timing"
+    t.string   "placeId",      null: false
+    t.text     "memo"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["mymap_id"], name: "index_places_on_mymap_id"
+  end
 
   create_table "mymaps", force: :cascade do |t|
     t.string   "name",                   null: false
@@ -29,24 +47,6 @@ ActiveRecord::Schema.define(version: 20180601075458) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["place_id"], name: "index_place_pictures_on_place_id"
-  end
-
-  create_table "places", force: :cascade do |t|
-    t.integer  "mymap_id",     null: false
-    t.string   "name",         null: false
-    t.integer  "types_number", null: false
-    t.string   "types_name",   null: false
-    t.text     "address",      null: false
-    t.string   "phone_number"
-    t.text     "google_url"
-    t.text     "open_timing"
-    t.string   "placeId",      null: false
-    t.text     "memo"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["mymap_id"], name: "index_places_on_mymap_id"
   end
 
   create_table "relationships", force: :cascade do |t|
