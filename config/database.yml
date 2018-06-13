@@ -25,5 +25,5 @@ production:
   encording: unicode
   pool: 5
   database: sumire_production
-  username: sumire
+  username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
