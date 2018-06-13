@@ -10,7 +10,6 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     user = User.where(provider: auth.provider, uid: auth.uid).first
-    p user
     if user
       user.user_access_token = auth.credentials.token
       user.save!
