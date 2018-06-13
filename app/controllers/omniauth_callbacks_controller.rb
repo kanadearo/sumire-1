@@ -4,6 +4,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
     @user = User.from_omniauth(request.env["omniauth.auth"])
 
+    p @user
     if @user.persisted?
       flash[:notice] = I18n.t('devise.omniauth_callbacks.success', :kind => "Facebook")
       remember_me(@user)
