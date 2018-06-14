@@ -91,7 +91,7 @@ class PlacesController < ApplicationController
       end
       @place = Place.new
     else
-      flash[:warning] = "該当するスポットが見つかりませんでした。/n 「場所名　＋　スポット名」での検索をおすすめします。"
+      flash[:warning] = "該当するスポットが見つかりませんでした。 「場所名+スポット名」での検索をおすすめします。"
       redirect_to places_path
     end
   end
