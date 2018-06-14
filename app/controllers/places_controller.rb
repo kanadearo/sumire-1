@@ -83,7 +83,7 @@ class PlacesController < ApplicationController
   def list
     @keyword = params[:search]
     @places = client.spots_by_query( @keyword, :language => 'ja' )
-    if @place
+    unless @places.empty?
       @hash = Gmaps4rails.build_markers(@places) do |place, marker|
         marker.lat place.lat
         marker.lng place.lng

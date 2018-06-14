@@ -7,6 +7,7 @@ h1{
     height: 70px;
     line-height: 40px;
     width: 355px;
+    margin:0 auto;
 }
 
 p{
@@ -153,12 +154,12 @@ overflow: hidden;
     background-color: #2038B3;
 }
 
-.mymap-select{
+#mymap_id_id{
     background-color:white;
     border-radius: 10px;
     height: 50px;
-    margin: 30px auto;
-    width: 365px;
+    margin: 30px 10px;
+    width: 355px;
 }
 
 .search_mymap{
