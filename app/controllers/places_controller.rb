@@ -83,12 +83,17 @@ class PlacesController < ApplicationController
   def list
     @keyword = params[:search]
     @places = client.spots_by_query( @keyword, :language => 'ja' )
-    @hash = Gmaps4rails.build_markers(@places) do |place, marker|
-      marker.lat place.lat
-      marker.lng place.lng
-      marker.infowindow place.name
+    if @place
+      @hash = Gmaps4rails.build_markers(@places) do |place, marker|
+        marker.lat place.lat
+        marker.lng place.lng
+        marker.infowindow place.name
+      end
+      @place = Place.new
+    else
+      flash[:warning] = "該当するスポットが見つかりませんでした。/n 「場所名　＋　スポット名」での検索をおすすめします。"
+      redirect_to places_path
     end
-    @place = Place.new
   end
 
   def place_map
