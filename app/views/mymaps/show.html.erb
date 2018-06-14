@@ -47,10 +47,12 @@
                     <p class="userName"><%= link_to @user.name, profile_user_path(@user) %></p>
                 </div>
                 <%= render 'user_mymaps/favorite_button', mymap: @mymap %>
-                <div class="editBox">
-                    <i class="fas fa-pencil-alt"></i>
-                    <p class="editName"><%= link_to "編集", edit_mymap_path(@mymap) %></p>
-                </div>
+                <% if @user == current_user %>
+                  <div class="editBox">
+                      <i class="fas fa-pencil-alt"></i>
+                      <p class="editName"><%= link_to "編集", edit_mymap_path(@mymap) %></p>
+                  </div>
+                <% end %>
                 <p><%= render 'tag_list', tag_list: @mymap.tag_list %></p>
             </div>
             <p class="memo"><%= text_url_to_link(h(@mymap.comment)).html_safe %></p>
