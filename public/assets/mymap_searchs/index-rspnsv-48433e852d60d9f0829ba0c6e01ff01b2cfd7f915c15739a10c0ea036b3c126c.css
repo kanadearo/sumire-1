@@ -1,0 +1,130 @@
+@media(max-width: 320px){
+    .search-box{
+        border: solid thin #9B9B9B;
+        border-radius: 8px;
+        color: #4c4c4c;
+        height: 40px;
+        margin: 30px auto;
+        padding: 0px 10px;
+        width: 300px;
+    }
+    .discription{
+        color: #9B9B9B;
+        font-size: 10px;
+        height: 60px;
+        line-height: 20px;
+        margin:30px auto;
+        text-align: center;
+        width: 320px;
+    }
+
+    .discription p{
+      font-size: 12px;
+    }
+
+    .disc-1{
+        cursor: pointer;
+        cursor: hand;
+        display: inline-block;
+        float: left;
+        margin-left: 25px;
+        margin-right: 25px;
+        padding: 5px;
+        width: 100px;
+    }
+
+    .disc-2{
+        cursor: pointer;
+        cursor: hand;
+        display: inline-block;
+        margin-left: 25px;
+        margin-right: 25px;
+        float: left;
+        padding: 5px;
+        width: 100px;
+    }
+
+    .boxContainer{
+        display: block;
+        margin-left: 10px;
+        height: auto;
+        min-height: 100%;
+        overflow: hidden;
+        position: relative;
+        width: 310px;
+    }
+    .box{
+        background-color: black;
+        border-radius: 5px;
+        color: white;
+        display: block;
+        font-size: 12px;
+        line-height: 145px;
+        float: left;
+        height: 145px;
+        text-align: center;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        opacity:0.8;
+        position: relative;
+        width: 145px; 
+    }
+
+    .box-pic{
+      border-radius: 5px;
+      height: 145px;
+      object-fit: cover;
+      opacity: 0.65;
+      width: 145px;
+    }
+
+    .hrt-box{
+        background-color: white;
+        border-radius: 5px;
+        bottom: 36px;
+        color: #4C4C4C;
+        height: 16px;
+        left: 56px;
+        position: absolute;
+        width: 33px;
+    }
+
+    .name-box{
+        bottom: 6px;
+        color: white;
+        font-size: 8px;
+        line-height: 8px;
+        position: absolute;
+        width: 145px;
+    }
+
+    .title{
+        color: white;
+        font-size: 16px;
+        height: 50px;
+        line-height: 25px;
+        margin: 0px auto;
+        position: absolute;
+        text-align: center;
+        top: 36px;
+        left: 18px;
+        width: 112px;
+        text-overflow: ellipsis;
+    }
+
+    .enter{
+        background-color: #70CADF;
+        border-radius: 40px;
+        color: white;
+        cursor: pointer;
+        cursor: hand;
+        height: 50px;
+        line-height: 50px;
+        margin: 0px auto;
+        margin-top: 30px;
+        bottom: 20px;
+        text-align: center;
+        width: 280px;
+    }
+
+}

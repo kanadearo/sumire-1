@@ -1,0 +1,74 @@
+@media(max-width: 320px){
+    body{
+    width: 320px;
+    margin:10px auto;
+    }
+
+    .logo-set{
+        height: 30px;
+        width: 130px;
+        left: 95px;
+    }
+    .enter{
+        background-color: #70CADF;
+        border-radius: 40px;
+        color: white;
+        cursor: pointer;
+        cursor: hand;
+        height: 50px;
+        line-height: 50px;
+        margin: 0px auto;
+        margin-top: 30px;
+        bottom: 20px;
+        text-align: center;
+        width: 280px;
+    }
+    .user-icon{
+        border-radius: 200px;
+        height: 200px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        margin-left: 60px;
+        width: 200px;
+    }
+
+    .user-name{
+        color: #4C4C4C;
+        font-size: 22px;
+        margin: 0px auto;
+        text-align: center;
+    }
+    .follow-btn{
+        display: inline-block;
+        height: 30px;
+        margin-top: 30px;
+        text-align: center;
+        width: 320px;
+    }
+    .nums{
+        height: 50px;
+        margin: 0px auto;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        width: 320px;
+    }
+
+    .num{
+        display: inline-block;
+        color: #9B9B9B;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        width: 100px;
+    }
+
+    .sns-bar{
+        font-size: 18px;
+        color: #9B9B9B;
+        height: 30px;
+        margin: 0px auto;
+        margin-left: 10px;
+        text-align: left;
+        width: 310px;
+    }
+}

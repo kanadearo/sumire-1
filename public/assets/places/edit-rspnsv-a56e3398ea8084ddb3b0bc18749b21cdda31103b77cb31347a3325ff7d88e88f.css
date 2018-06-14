@@ -1,0 +1,92 @@
+@media(max-width: 320px){
+    #textarea-1{
+        border-radius: 8px;
+        border: solid thin #9B9B9B;
+        color: #4C4C4C;
+        font-size: 12px;
+        height: 120px;
+        margin: 10px 10px;
+        padding: 10px 10px;
+        width: 280px;
+    }
+
+    #textarea-2{
+        border-radius: 8px;
+        border: solid thin #9B9B9B;
+        color: #4C4C4C;
+        font-size: 12px;
+        height: 120px;
+        margin: 10px 10px;
+        padding: 10px 10px;
+        width: 300px;
+    }
+
+    .enter{
+        background-color: #70CADF;
+        border-radius: 40px;
+        color: white;
+        cursor: pointer;
+        cursor: hand;
+        height: 50px;
+        line-height: 50px;
+        margin: 0px auto;
+        margin-top: 30px;
+        bottom: 20px;
+        text-align: center;
+        width: 280px;
+    }
+
+    .box-pic{
+      width: 320px;
+      height: 200px;
+    }
+
+    #spot-name{
+        border: solid thin #9B9B9B;
+        border-radius: 8px;
+        border: solid thin #9B9B9B;
+        color: #4C4C4C;
+        height: 40px;
+        margin: 10px 10px;
+        padding: 0px 10px;
+        width: 300px;
+    }
+
+    .mymap-select{
+        border-radius: 10px;
+        border: solid thin #9B9B9B;
+        color: #4C4C4C;
+        height: 50px;
+        margin: 10px;
+        width: 300px;
+    }
+
+    .buttons{
+        height: 100px;
+        width: 320px;
+    }
+
+    #add-pic{
+        background-color: #9B9B9B;
+        border-radius: 4px;
+        color: white;
+        display: block;
+        font-size: 12px;
+        float: right;
+        margin-right: 10px;
+        margin-top: 10px;
+        padding: 4px 4px;
+    }
+
+    #delete-map{ 
+        background-color: #9B9B9B;
+        border-radius: 4px;
+        color: white;
+        display: block;
+        font-size: 12px;
+        float: right;
+        margin-right: 10px;
+        margin-top: 30px;
+        padding: 4px 4px;
+    }
+}

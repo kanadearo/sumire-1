@@ -1,0 +1,74 @@
+.user{
+    height: 200px;
+    margin: 30px auto;
+    position: relative;
+    width: 375px;
+}
+
+
+.user-icon{
+    border:thin solid #9B9B9B;
+    border-radius: 200px;
+    height: 200px;
+    margin-bottom: 30px;
+    margin-left: 85px;
+    object-fit:cover;
+    opacity: 0.7;
+    width: 200px;
+}
+
+.edit-icon-btn{
+    background-color: #9B9B9B;
+    border-radius: 5px;
+    color: white;
+    height: 16px;
+    text-align:center;
+    line-height: 20px;
+    padding: 2px 6px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 100px;
+    z-index: 100;
+}
+
+.edit-icon-btn:hover{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.fa-camera{
+    color: white;
+    float: left;
+}
+
+.edit-icon-btn p{
+    color: white;
+    font-size: 12px;
+    margin: 0px;
+    line-height: 16px;
+}
+
+.textbox{
+    border-radius: 8px;
+    border: solid thin #9B9B9B;
+    color: #4C4C4C;
+    font-size: 12px;
+    height: 30px;
+    margin: 10px 20px;
+    padding: 10px 10px;
+    width: 300px;
+}
+
+.textarea{
+    border-radius: 8px;
+    border: solid thin #9B9B9B;
+    color: #4C4C4C;
+    font-size: 12px;
+    height: 120px;
+    margin: 10px 20px;
+    padding: 10px 10px;
+    width: 300px;
+}
+
