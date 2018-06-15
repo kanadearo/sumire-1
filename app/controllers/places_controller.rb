@@ -3,18 +3,18 @@ class PlacesController < ApplicationController
   before_action :sign_in_required
 
   DAY_OF_THE_WEEK={
-    0 => "日曜日",
-    1 => "月曜日",
-    2 => "火曜日",
-    3 => "水曜日",
-    4 => "木曜日",
-    5 => "金曜日",
-    6 => "土曜日"
+    0 => "日曜",
+    1 => "月曜",
+    2 => "火曜",
+    3 => "水曜",
+    4 => "木曜",
+    5 => "金曜",
+    6 => "土曜"
   }
 
   def index
     if current_user.mymaps.first == nil
-      flash[:warning] = "先にマイリストの作成をお願いします。"
+      flash[:warning] = "まずはリストを作ってみましょう！"
       redirect_to new_mymap_path
     end
   end
@@ -39,7 +39,7 @@ class PlacesController < ApplicationController
             }
           else
             {
-              :open_forever => "24時間営業中!"
+              :open_forever => "24時間営業"
             }
           end
         end
@@ -75,7 +75,7 @@ class PlacesController < ApplicationController
       flash[:success] = "「#{@place.name}」を「#{mymap.name}」に追加しました。"
       redirect_to mymap
     rescue
-      flash[:warning] = "追加するマイマップを選択してください。"
+      flash[:warning] = "追加するリストを選択してください。"
       redirect_to plus_place_place_path
     end
   end
@@ -91,7 +91,7 @@ class PlacesController < ApplicationController
       end
       @place = Place.new
     else
-      flash[:warning] = "該当するスポットが見つかりませんでした。 「場所名+スポット名」での検索をおすすめします。"
+      flash[:warning] = "該当するスポットが見つかりませんでした。 「スポット名　地域名」での検索をおすすめします。"
       redirect_to places_path
     end
   end
@@ -127,14 +127,14 @@ class PlacesController < ApplicationController
             place_picture.remote_picture_url = place_photo.gsub('http://','https://')
             place_picture.save!
           end
-          flash[:success] = "#{@place.name}の位置情報を保存しました。"
+          flash[:success] = "#{@place.name}を保存しました。"
           redirect_to @place.mymap
         else
-          flash[:warning] = "#{@place.name}の位置情報を保存できませんでした。"
+          flash[:warning] = "#{@place.name}を保存できませんでした。"
           redirect_to places_path
         end
     else
-      flash[:warning] = "「スポット」と「マイマップ」を選択してください。"
+      flash[:warning] = "「スポット」と「リスト」を選択してください。"
       redirect_to places_path
     end
   end
@@ -157,10 +157,10 @@ class PlacesController < ApplicationController
           place_picture.save!
         end
       end
-      flash[:success] = "#{@place.name}の位置情報を更新しました。"
+      flash[:success] = "#{@place.name}を更新しました。"
       redirect_to @place.mymap
     rescue
-      flash[:warning] = "記入漏れを確認してください。"
+      flash[:warning] = "未入力の項目があります。"
       redirect_to edit_place_path
     end
   end
@@ -168,7 +168,7 @@ class PlacesController < ApplicationController
   def destroy
     @place.destroy
 
-    flash[:success] = "#{@place.name}の位置情報を削除しました。"
+    flash[:success] = "#{@place.name}を削除しました。"
     redirect_to places_path
   end
 
@@ -274,12 +274,12 @@ class PlacesController < ApplicationController
       end
 
       if open_params.include?(true)
-        return "（只今営業中!）"
+        return "営業中"
       else
-        return "（今は営業時間外です）"
+        return "営業時間外"
       end
     else
-      return "（今日は定休日です）"
+      return "定休日"
     end
   end
 

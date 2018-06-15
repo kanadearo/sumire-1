@@ -19,10 +19,10 @@ class UsersController < ApplicationController
 
   def update
       if @user.update(update_user_params)
-        flash[:success] = "#{@user.name}のプロフィールを更新しました。"
+        flash[:success] = "プロフィールを更新しました。"
         redirect_to @user
       else
-        flash[:warning] = "名前を入力してください。"
+        flash[:warning] = "ユーザー名を入力してください。"
         redirect_to edit_user_path
       end
   end

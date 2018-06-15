@@ -58,7 +58,7 @@ class MymapsController < ApplicationController
     @mymap = current_user.mymaps.new(create_mymap_params)
 
     if @mymap.save
-      flash[:success] = "#{@mymap.name}を保存しました"
+      flash[:success] = "#{@mymap.name}を保存しました。"
       redirect_to places_path
     else
       render :new
@@ -70,10 +70,10 @@ class MymapsController < ApplicationController
 
   def update
       if @mymap.update(update_mymap_params)
-        flash[:success] = "#{@mymap.name}の情報を更新しました"
+        flash[:success] = "#{@mymap.name}を更新しました。"
         redirect_to @mymap
       else
-        flash[:warning] = "マイマップ名を入力してください。"
+        flash[:warning] = "リスト名を入力してください。"
         redirect_to edit_mymap_path
       end
   end
@@ -81,7 +81,7 @@ class MymapsController < ApplicationController
   def destroy
     @mymap.destroy
 
-    flash[:success] = "#{@mymap.name}を削除しました"
+    flash[:success] = "#{@mymap.name}を削除しました。"
     redirect_to current_user
   end
 
