@@ -47,7 +47,11 @@
                     <% end %>
                     <p class="userName"><%= link_to @user.name, profile_user_path(@user) %></p>
                 </div>
-                <%= render 'user_mymaps/favorite_button', mymap: @mymap %>
+                <% if @mymap.status == 2 %>
+                  <div class="hrt-box hrtBox" >非公開</div>
+                <% else %>
+                  <%= render 'user_mymaps/favorite_button', mymap: @mymap %>
+                <% end %>
                 <% if @user == current_user %>
                   <div class="editBox">
                       <i class="fas fa-pencil-alt"></i>
