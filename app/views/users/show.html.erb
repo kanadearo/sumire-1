@@ -78,7 +78,11 @@
                           <% end %>
                         <% end %>
                       </div>
-                      <%= render 'user_mymaps/favorite_button', mymap: mymap %>
+                      <% if mymap.status == 2 %>
+                        <div class="hrt-box hrtBox" >非公開</div>
+                      <% else %>
+                        <%= render 'user_mymaps/favorite_button', mymap: mymap %>
+                      <% end %>
                       <div class="name-box">
                           <p><%= mymap.user.name %></p>
                       </div>
