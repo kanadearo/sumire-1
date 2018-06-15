@@ -3,7 +3,7 @@
 <content>
 <%= form_for @mymap do |f| %>
   <%= render 'layouts/error_messages', model: f.object %>
-  <input class="spot-name" id="mymap-name" type="text" name="mymap[name]" placeholder="リスト名" >
+  <input class="spot-name" id="mymap-name" type="text" name="mymap[name]" placeholder="マイリスト名" >
 
   <div class="check">
     <label><input type="radio" value="0" checked="checked" name="mymap[status]" id="mymap_status_0">全体に公開</label>
@@ -19,6 +19,6 @@
   <p id="tag_desc">※「、」で区切ってタグを作成できます。</p>
   <textarea name="mymap[comment]" id="mymap_comment" class="textarea-2" rows="10" cols="60" placeholder="メモ"></textarea>
 
-  <input type="submit" name="commit" value="リストを作成" class="enter">
+  <input type="submit" name="commit" value="マイリストを作成" class="enter">
 <% end %>
 </content>

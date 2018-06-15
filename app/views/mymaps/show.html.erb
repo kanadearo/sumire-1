@@ -22,6 +22,7 @@
                   <% places = @mymap.places.all %>
                   <% place_type = places.map{|place| place.types_number} %>
                   <% place_type.uniq! %>
+                  <% place_type.sort! %>
                   <% place_type.each do |type| %>
                     <% if type == 0 %>
                       <div class="dot" id="eat"></div>
@@ -84,4 +85,6 @@
                 <% end %>
             </div>
         </content>
-        <a href="/places" id="hoge" class="enter">新しいスポットを追加</a>
+        <% if @user == current_user %>
+          <a href="/places" id="hoge" class="enter">新しいスポットを追加</a>
+        <% end %>

@@ -17,8 +17,8 @@
                 <%= render 'relationships/follow_button', user: @user %>
             </div>
             <div class="discription">
-                <p class="disc-2"><a href="/users/<%= @user.id %>/self_mymaps">作成した<br>マイリスト</a></p>
-                <p class="disc-1"><a href="/users/<%= @user.id %>/like_mymaps">お気に入り<br>マイリスト</a></p>
+                <p class="disc-2"><a href="/users/<%= @user.id %>/self_mymaps">作成した<br>リスト</a></p>
+                <p class="disc-1"><a href="/users/<%= @user.id %>/like_mymaps">お気に入り<br>リスト</a></p>
             </div>
 
             <div class="boxContainer">
@@ -66,5 +66,5 @@
                 <% end %>
             </div>
         </content>
-        <a href="/mymaps/search?user_id=<%= @user.id %>" id="hoge" class="enter">マイリストからスポットを検索</a>
+        <a href="/mymaps/search?user_id=<%= @user.id %>" id="hoge" class="enter">リストからスポットを検索</a>
 

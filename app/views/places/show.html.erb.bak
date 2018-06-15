@@ -27,11 +27,11 @@
                 <%= image_tag "logo2.png", id: "logoInList", class: "logo2"%>
                 <ul>
                   <% if @place.mymap.user == current_user %>
-                    <li class="btn"><%= link_to "他のリストにも追加", plus_place_place_path(@place) %></li>
+                    <li class="btn"><%= link_to "他のマイリストにも追加", plus_place_place_path(@place) %></li>
                     <li class="btn"><%= link_to "このスポットを編集", edit_place_path(@place) %></li>
                     <li class="btn"><%= link_to "このスポットを削除", @place, method: :delete, data: { confirm: "#{@place.name}を削除しますか？" } %></li>
                   <% else %>
-                    <li class="btn"><%= link_to "自分のリストにも追加", plus_place_place_path(@place) %></li>
+                    <li class="btn"><%= link_to "自分のマイリストにも追加", plus_place_place_path(@place) %></li>
                   <% end %>
                 </ul>
               </div>

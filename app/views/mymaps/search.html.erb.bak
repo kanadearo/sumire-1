@@ -10,7 +10,7 @@
                 <input type="checkbox" name="types_number[]" class="not-check stay" id="types_number_3" value="3"><label for="types_number_3">泊まる</label>
             </div>
 
-            <%= collection_select :mymap_id, :id, @mymaps, :id, :name, {:prompt => "すべてのリスト"} %>
+            <%= collection_select :mymap_id, :id, @mymaps, :id, :name, {:prompt => "すべてのマイリスト"} %>
 
             <div class="switch-column">
                 <p>この時間に営業中のスポットのみ</p>

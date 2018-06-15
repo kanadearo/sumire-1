@@ -58,7 +58,7 @@ class MymapsController < ApplicationController
     @mymap = current_user.mymaps.new(create_mymap_params)
 
     if @mymap.save
-      flash[:success] = "#{@mymap.name}を保存しました。"
+      flash[:success] = "#{@mymap.name}を保存しました。スポットを検索して、リストに登録しましょう！"
       redirect_to places_path
     else
       render :new

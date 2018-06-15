@@ -17,7 +17,7 @@
                         <%= f.fields_for :place_pictures, @place.place_pictures do |m| %>
                         <label for="place_place_pictures_picture">
                           <i class="fa fa-camera"></i>
-                          写真を設定
+                          写真を変更
                           <%= m.file_field :picture, style: "display:none;" %>
                         </label>
                         <% end %>
@@ -48,6 +48,6 @@
             <div id="text-3">
               <p>設定はあとから変更できます</p>
             </div>
-            <input type="submit" name="commit" value="この内容でを更新" class="enter">
+            <input type="submit" name="commit" value="スポットを更新" class="enter">
           <% end %>
         </content>

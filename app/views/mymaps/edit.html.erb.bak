@@ -48,7 +48,7 @@
                   });
                 </script>
 
-                <input class="spot-name" id="mymap-name" type="text" value="<%= @mymap.name%>" name="mymap[name]" placeholder="リスト名" >
+                <input class="spot-name" id="mymap-name" type="text" value="<%= @mymap.name%>" name="mymap[name]" placeholder="マイリスト名" >
 
                 <div class="check">
                   <% if @mymap.status == 0 %>
@@ -81,6 +81,6 @@
 
                 <%= link_to "このリストを削除", @mymap, method: :delete, data: { confirm: "#{@mymap.name}を削除しますか？" }%>
 
-                <input type="submit" name="commit" value="リストを更新" class="enter">
+                <input type="submit" name="commit" value="マイリストを更新" class="enter">
           <% end %>
         </content>

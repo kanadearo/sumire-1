@@ -58,4 +58,4 @@
                 <% end %>
             </div>
         </content>
-        <a href="/mymaps/search?user_id=<%= @user.id %>" id="hoge" class="enter">リストからスポットを検索</a>
+        <a href="/mymaps/search?user_id=<%= @user.id %>" id="hoge" class="enter">マイリストからスポットを検索</a>
