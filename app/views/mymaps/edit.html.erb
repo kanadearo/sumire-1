@@ -51,13 +51,25 @@
                 <input class="spot-name" id="mymap-name" type="text" value="<%= @mymap.name%>" name="mymap[name]" placeholder="マイリスト名" >
 
                 <div class="check">
-                  <label><input type="radio" value="0" checked="checked" name="mymap[status]" id="mymap_status_0">全体に公開</label>
+                  <% if @mymap.status == 0 %>
+                    <label><input type="radio" value="0" checked="checked" name="mymap[status]" id="mymap_status_0">全体に公開</label>
+                  <% else %>
+                    <label><input type="radio" value="0" name="mymap[status]" id="mymap_status_0">全体に公開</label>
+                  <% end %>
                 </div>
                 <div class="check">
-                  <label><input type="radio" value="1" name="mymap[status]" id="mymap_status_1">フォロワーにのみ公開</label>
+                  <% if @mymap.status == 1 %>
+                    <label><input type="radio" value="1" checked="checked" name="mymap[status]" id="mymap_status_1">フォロワーにのみ公開</label>
+                  <% else %>
+                    <label><input type="radio" value="1" name="mymap[status]" id="mymap_status_1">フォロワーにのみ公開</label>
+                  <% end %>
                 </div>
                 <div class="check">
-                  <label><input type="radio" value="2" name="mymap[status]" id="mymap_status_2">非公開（自分のみ）</label>
+                  <% if @mymap.status == 2 %>
+                    <label><input type="radio" value="2" checked="checked" name="mymap[status]" id="mymap_status_2">非公開（自分のみ）</label>
+                  <% else %>
+                    <label><input type="radio" value="2" name="mymap[status]" id="mymap_status_2">非公開（自分のみ）</label>
+                  <% end %>
                 </div>
 
                 <%= text_field_tag 'mymap[tag_list]', @mymap.tag_list.join(','), class: "textarea-1", placeholder: "タグ　例：　中野、カフェ、行きつけ" %>
