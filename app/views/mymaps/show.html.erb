@@ -35,16 +35,16 @@
                     <% end %>
                   <% end %>
                 </div>
-                <div class="nameBox">
-                  <%= link_to profile_user_path(@user) do %>
+                <%= link_to profile_user_path(@user) do %>
+                  <div class="nameBox">
                     <% if @user.picture.url %>
                       <%= image_tag @user.picture.url, class: "userIcon" %>
                     <% else %>
                       <%= image_tag "no-picture.png", class: "userIcon" %>
                     <% end %>
                     <p class="userName"><%= @user.name %></p>
-                  <% end %>
-                </div>
+                  </div>
+                <% end %>
                 <% if @mymap.status == 2 %>
                   <div class="hrt-box hrtBox" >非公開</div>
                 <% else %>
