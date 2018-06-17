@@ -36,16 +36,14 @@
                   <% end %>
                 </div>
                 <div class="nameBox">
+                  <%= link_to profile_user_path(@user) do %>
                     <% if @user.picture.url %>
-                      <%= link_to profile_user_path(@user) do%>
-                        <%= image_tag @user.picture.url, class: "userIcon" %>
-                      <% end %>
+                      <%= image_tag @user.picture.url, class: "userIcon" %>
                     <% else %>
-                      <%= link_to profile_user_path(@user) do%>
-                        <%= image_tag "no-picture.png", class: "userIcon" %>
-                      <% end %>
+                      <%= image_tag "no-picture.png", class: "userIcon" %>
                     <% end %>
-                    <p class="userName"><%= link_to @user.name, profile_user_path(@user) %></p>
+                    <p class="userName"><%= @user.name %></p>
+                  <% end %>
                 </div>
                 <% if @mymap.status == 2 %>
                   <div class="hrt-box hrtBox" >非公開</div>
