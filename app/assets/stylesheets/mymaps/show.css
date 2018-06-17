@@ -93,10 +93,11 @@
 
 .userName{
     color: #4C4C4C;
-    font-size: 12px;
+    font-size: 14px;
     float: left;
     margin: 0px 4px;
     text-align: center;
+    line-height:14px;
 }
 
 .hrtBox{
@@ -168,10 +169,11 @@
 
 .editName{
     color: white;
-    font-size: 12px;
+    font-size: 14px;
     float: left;
     margin: 0px 4px;
     text-align: center;
+    line-height:14px;
 }
 
 .boxContainer{
