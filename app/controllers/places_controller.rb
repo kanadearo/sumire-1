@@ -227,7 +227,7 @@ class PlacesController < ApplicationController
   end
 
   def open_judge(openings)
-    print openings
+    puts openings
 
     today_open = []
     openings.each do |opening|
