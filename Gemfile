@@ -102,4 +102,4 @@ gem 'gon'
 gem 'activeadmin'
 gem 'fog-aws'
 gem 'pg', group: :production
-
+gem 'rails_12factor', group: :production
