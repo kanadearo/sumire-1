@@ -231,29 +231,29 @@ class PlacesController < ApplicationController
 
     today_open = []
     openings.each do |opening|
-      if opening['open']['day'] == Time.now.wday
+      if opening['open']['day'] == Time.zone.now.wday
         today_open.push opening
       end
     end
     if today_open.any?
       open_params = []
       today_open.each do |today|
-        time = Time.now
+        time = Time.zone.now
         open = today["open"]["time"]
         close = today["close"]["time"]
         if open >= close
           open = open.scan(/.{1,2}/)
-          open_time = Time.local(time.year, time.month, time.day, open[0].to_i, open[1].to_i)
+          open_time = Time.zone.local(time.year, time.month, time.day, open[0].to_i, open[1].to_i)
           close = close.scan(/.{1,2}/)
 
           next_day = time.tomorrow
           if next_day.month == time.month
-            close_time = Time.local(time.year, time.month, time.day+1, close[0].to_i, close[1].to_i)
+            close_time = Time.zone.local(time.year, time.month, time.day+1, close[0].to_i, close[1].to_i)
           elsif next_day.month != time.month
             if next_day.year != time.year
-              close_time = Time.local(time.year+1, 1, 1, close[0].to_i, close[1].to_i)
+              close_time = Time.zone.local(time.year+1, 1, 1, close[0].to_i, close[1].to_i)
             else
-              close_time = Time.local(time.year, time.month+1, 1, close[0].to_i, close[1].to_i)
+              close_time = Time.zone.local(time.year, time.month+1, 1, close[0].to_i, close[1].to_i)
             end
           end
 
@@ -264,9 +264,9 @@ class PlacesController < ApplicationController
           end
         else
           open = open.scan(/.{1,2}/)
-          open_time = Time.local(time.year, time.month, time.day,open[0].to_i,open[1].to_i)
+          open_time = Time.zone.local(time.year, time.month, time.day,open[0].to_i,open[1].to_i)
           close = close.scan(/.{1,2}/)
-          close_time = Time.local(time.year, time.month, time.day,close[0].to_i,close[1].to_i)
+          close_time = Time.zone.local(time.year, time.month, time.day,close[0].to_i,close[1].to_i)
           if open_time <= time && time <= close_time
             open_params.push true
           else
