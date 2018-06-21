@@ -227,6 +227,8 @@ class PlacesController < ApplicationController
   end
 
   def open_judge(openings)
+    print openings
+
     today_open = []
     openings.each do |opening|
       if opening['open']['day'] == Time.now.wday
