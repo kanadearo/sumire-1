@@ -22,6 +22,5 @@ module Sumire
                        request_specs: false
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
-    config.time_zone = 'Tokyo'
   end
 end
