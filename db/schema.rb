@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180621214611) do
+ActiveRecord::Schema.define(version: 20180624091713) do
 
   create_table "mymaps", force: :cascade do |t|
     t.string   "name",                   null: false
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20180621214611) do
     t.text     "address",      null: false
     t.string   "phone_number"
     t.text     "google_url"
-    t.string   "open_timing"
     t.string   "placeId",      null: false
     t.text     "memo"
     t.float    "latitude"
