@@ -6,10 +6,12 @@ namespace :open_time do
 
       places.each do |place|
         open_timings = place.open_timing
-        open_timings.each do |open_timing|
-          open = place.opens.new
-          open.time = open_timing.to_json
-          open.save!
+        unless open_timings.empty?
+          open_timings.each do |open_timing|
+            open = place.opens.new
+            open.time = open_timing.to_json
+            open.save!
+          end
         end
       end
     end
