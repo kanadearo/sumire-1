@@ -40,7 +40,7 @@ class User < ApplicationRecord
   validates :profile_text, length: { maximum: 200 }
 
   has_many :mymaps, dependent: :delete_all
-  has_many :user_mymaps
+  has_many :user_mymaps, dependent: :delete_all
   has_many :favoritings, through: :user_mymaps, source: :mymap
 
   has_many :relationships
