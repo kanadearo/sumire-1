@@ -23,8 +23,13 @@ class PlacesController < ApplicationController
     if @place
       @place_pictures = @place.place_pictures.all
       @place_type = @place.types_number
-      if @place.open_timing
-        openings = @place.open_timing
+      opens = @place.opens.all
+      unless opens.empty?
+        open_times = opens.map do |open|
+          hash = JSON.parse(open.time)
+          hash
+        end
+        openings = open_times
         @open_timing = openings.map do |opening|
           if opening['close']
             open_day = DAY_OF_THE_WEEK[opening['open']['day']]
@@ -117,7 +122,7 @@ class PlacesController < ApplicationController
   end
 
   def create
-    place_param, place_photo = create_place_params
+    place_param, place_photo, place_opens = create_place_params
     if place_param != nil
       @place = Place.new(place_param)
 
@@ -126,6 +131,13 @@ class PlacesController < ApplicationController
             place_picture = @place.place_pictures.new
             place_picture.remote_picture_url = place_photo.gsub('http://','https://')
             place_picture.save!
+          end
+          if place_opens
+            place_opens.each do |place_open|
+              open = @place.opens.new
+              open.time = place_open.to_json
+              open.save!
+            end
           end
           flash[:success] = "#{@place.name}を保存しました。"
           redirect_to @place.mymap
@@ -201,9 +213,9 @@ class PlacesController < ApplicationController
 
       open_timing = place.opening_hours
       if open_timing
-        place_param[:open_timing] = open_timing['periods']
+        place_open = open_timing['periods']
       else
-        place_param[:open_timing] = nil
+        place_open = nil
       end
 
       types_name = place.types[0]
@@ -213,7 +225,7 @@ class PlacesController < ApplicationController
 
       place_photo = place.photos[0]
       if place_photo
-        return place_param, place_photo.fetch_url(600)
+        return place_param, place_photo.fetch_url(600), place_open
       else
         return place_param
       end
@@ -227,8 +239,6 @@ class PlacesController < ApplicationController
   end
 
   def open_judge(openings)
-    puts openings
-
     today_open = []
     openings.each do |opening|
       if opening['open']['day'] == Time.now.wday

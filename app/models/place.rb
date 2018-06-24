@@ -1,6 +1,7 @@
 class Place < ApplicationRecord
   belongs_to :mymap
   has_many :place_pictures, dependent: :delete_all
+  has_many :opens, dependent: :delete_all
   serialize :open_timing
 
   validates :mymap_id, presence: true

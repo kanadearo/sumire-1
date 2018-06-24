@@ -26,7 +26,7 @@ class MymapsController < ApplicationController
 
   def result
     types_number = params[:types_number]
-    open_timing = params[:place][:open_timing]
+    open_timing = params[:open][:time]
     places = []
     unless params[:mymap_id][:id].empty?
       mymap_id = params[:mymap_id][:id].to_i
@@ -45,7 +45,6 @@ class MymapsController < ApplicationController
         place_sets = place_data_set(mymap, types_number, open_timing)
         place_sets.each{|f| places.push f}
       end
-      p places
       @places = places
     end
   end
@@ -141,10 +140,15 @@ class MymapsController < ApplicationController
   end
 
   def open_judge(place)
-    if place.open_timing
-      if place.open_timing[0]['close']
+    opens = place.opens.all
+    unless opens.empty?
+      open_times = opens.map do |open|
+        hash = JSON.parse(open.time)
+        hash
+      end
+      if open_times[0]['close']
         today_open = []
-        place.open_timing.each do |opening|
+        open_times.each do |opening|
           if opening['open']['day'] == Time.now.wday
             today_open.push opening
           end
