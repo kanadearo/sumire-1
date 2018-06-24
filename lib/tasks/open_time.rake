@@ -6,7 +6,7 @@ namespace :open_time do
 
       places.each do |place|
         open_timings = place.open_timing
-        unless open_timings.empty?
+        if open_timings != nil
           open_timings.each do |open_timing|
             open = place.opens.new
             open.time = open_timing.to_json
