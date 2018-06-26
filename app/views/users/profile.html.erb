@@ -32,5 +32,5 @@
                 <p><%= link_to "編集", edit_user_path(current_user) %></p>
             </div>
             <% end %>
-            <a href="/users/<%= @user.id %>"><div class="enter">このユーザーのリストを見る</div></a>
+            <a href="/users/<%= @user.id %>" class="list_link"><div class="enter">このユーザーのリストを見る</div></a>
         </content>
