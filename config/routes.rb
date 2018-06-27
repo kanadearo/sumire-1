@@ -48,9 +48,4 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :user_mymaps, only: [:create, :destroy]
 
-  resources :env_selections, only: [:index]
-  resources :browser_selections, only: [:index]
-  resources :select_safaris, only: [:index]
-  resources :select_chromes, only: [:index]
-  resources :select_pcs, only: [:index]
 end
