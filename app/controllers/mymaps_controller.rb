@@ -194,6 +194,11 @@ class MymapsController < ApplicationController
 
   def set_mymap
     @mymap = Mymap.find_by(id: params[:id])
+    if current_user != @mymap.user
+      if @mymap.status == 1 || @mymap.status == 2
+        redirect_to current_user
+      end
+    end
   end
 
   def create_mymap_params
