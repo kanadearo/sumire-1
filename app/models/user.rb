@@ -15,24 +15,28 @@ class User < ApplicationRecord
       user.save!
       return user
     else
-      registered_user = User.where(email: auth.info.email).first
-      if registered_user
-        registered_user.user_access_token = auth.credentials.token
-        registered_user.save!
-        return registered_user
+      if auth.info.email.empty?
+        user = User.new(
+                        password: Devise.friendly_token[0,20],
+                        name: auth.info.name,
+                        image: auth.info.image + "?type=large",
+                        uid: auth.uid,
+                        provider: auth.provider,
+                        user_access_token: auth.credentials.token
+                     )
       else
         user = User.new(
-                         email: auth.info.email,
-                         password: Devise.friendly_token[0,20],
-                         name: auth.info.name,
-                         image: auth.info.image + "?type=large",
-                         uid: auth.uid,
-                         provider: auth.provider,
-                         user_access_token: auth.credentials.token
-                       )
-        user.remote_picture_url = process_uri(auth.info.image + "?type=large")
-        return user
+                        email: auth.info.email,
+                        password: Devise.friendly_token[0,20],
+                        name: auth.info.name,
+                        image: auth.info.image + "?type=large",
+                        uid: auth.uid,
+                        provider: auth.provider,
+                        user_access_token: auth.credentials.token
+                     )
       end
+      user.remote_picture_url = process_uri(auth.info.image + "?type=large")
+      return user
     end
   end
 
