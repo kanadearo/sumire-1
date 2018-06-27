@@ -178,10 +178,11 @@ class PlacesController < ApplicationController
   end
 
   def destroy
+    mymap = @place.mymap
     @place.destroy
 
     flash[:success] = "#{@place.name}を削除しました。"
-    redirect_to places_path
+    redirect_to mymap
   end
 
   private
