@@ -258,6 +258,8 @@ Devise.setup do |config|
     config.omniauth :facebook, ENV['TEST_FACEBOOK_API_KEY'], ENV['TEST_FACEBOOK_API_SECRET'], scope: 'public_profile, user_friends, email', info_fields: 'email, name'
   end
 
+  config.omniauth :line, ENV['LINE_KEY'], ENV['LINE_SECRET']
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
